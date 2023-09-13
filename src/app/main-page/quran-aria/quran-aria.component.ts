@@ -37,7 +37,6 @@ export class QuranAriaComponent {
   }
 
   findSurahWidth() {
-    this.showBig = false;
     if (this.showBig) {
       this.quranIndex = quranIndex.slice(0, this.end);
       this.quranIndex.forEach((surah,index) => {
