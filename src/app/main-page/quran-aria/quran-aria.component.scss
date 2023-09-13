@@ -1,0 +1,34 @@
+.surah_container {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 20px auto 5px;
+
+  .surah {
+    cursor: pointer;
+    transition: all 1s;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 50%;
+    color: black;
+    font-weight: 700;
+    background: radial-gradient(circle at center, #fff 0%, black 0%);
+    box-shadow: 0 0 0px 0px white;
+
+    &:hover {
+      background: radial-gradient(circle at center, #fff 0%, black 80%) !important;
+      box-shadow: 0 0 20px 0px white !important;
+    }
+
+    .name {
+      transition: all 1s;
+      text-shadow: 0 0 0px black;
+      color: #fff;
+    }
+  }
+}
