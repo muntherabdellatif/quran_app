@@ -42,9 +42,9 @@ export class QuranAriaComponent {
       this.quranIndex.forEach((surah,index) => {
         const nextSurah = this.quranIndex[index + 1];
         if (nextSurah)
-          this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 40 * 0.98 * this.width) / this.slanderedPageWidth;
-          this.quranIndex[index].x = (this.quranIndex[index].xIndex * this.width) * 0.98 / this.slanderedPageWidth;
-          this.quranIndex[index].y = (this.quranIndex[index].yIndex * this.width) * 0.98 / this.slanderedPageWidth;
+          this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 40 * this.width) / this.slanderedPageWidth * 0.98 ;
+          this.quranIndex[index].x = (this.quranIndex[index].xIndex * this.width / this.slanderedPageWidth + 0.02 * this.width) * 0.98 ;
+          this.quranIndex[index].y = (this.quranIndex[index].yIndex * this.width / this.slanderedPageWidth + 0.002 * this.width) * 0.98 ;
       })
     } else if(this.showSmall) {
       this.smallQuranIndex = smallQuranIndex;

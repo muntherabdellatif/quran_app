@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
+  overflow-y: hidden;
 
   .sidebar {
     transition: all 1s;
