@@ -37,25 +37,23 @@ export class QuranAriaComponent {
   }
 
   findSurahWidth() {
-    //! for test
-    this.showBig = false;
     if (this.showBig) {
       this.quranIndex = quranIndex.slice(0, this.end);
       this.quranIndex.forEach((surah,index) => {
         const nextSurah = this.quranIndex[index + 1];
         if (nextSurah)
-          this.quranIndex[index].width = (Math.sqrt(nextSurah.page - surah.page) * 40 * this.width) / this.slanderedPageWidth;
-          this.quranIndex[index].x = this.quranIndex[index].xIndex * this.width / this.slanderedPageWidth;
-          this.quranIndex[index].y = this.quranIndex[index].yIndex * this.width / this.slanderedPageWidth;
+          this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 40 * 0.98 * this.width) / this.slanderedPageWidth;
+          this.quranIndex[index].x = (this.quranIndex[index].xIndex * this.width) * 0.98 / this.slanderedPageWidth;
+          this.quranIndex[index].y = (this.quranIndex[index].yIndex * this.width) * 0.98 / this.slanderedPageWidth;
       })
     } else if(this.showSmall) {
       this.smallQuranIndex = smallQuranIndex;
       this.smallQuranIndex.forEach((surah,index) => {
         const nextSurah = this.smallQuranIndex[index + 1];
         if (nextSurah)
-          this.smallQuranIndex[index].width = (Math.sqrt(nextSurah.page - surah.page) * 80 * this.width) * 1.2 / this.slanderedPageWidth;
-          this.smallQuranIndex[index].x = (this.smallQuranIndex[index].xIndex * this.width / this.slanderedPageWidth - 200)*1.35;
-          this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * this.width / this.slanderedPageWidth - 30)*1.35;
+          this.smallQuranIndex[index].width = (Math.sqrt(nextSurah.page - surah.page) * 80 * this.width) * 1.33 / this.slanderedPageWidth;
+          this.smallQuranIndex[index].x = (this.smallQuranIndex[index].xIndex * this.width / this.slanderedPageWidth - 235)*1.46;
+          this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * this.width / this.slanderedPageWidth - 35)*1.46;
       })
     }
   }

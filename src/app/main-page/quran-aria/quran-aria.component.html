@@ -1,5 +1,5 @@
   <div class="surah_container">
-    <div class="bigView" *ngIf="this.showBig">
+    <div class="suarh_aria bigView" *ngIf="this.showBig">
       <div class="surah" *ngFor="let surah of quranIndex.slice(0,end)"
           style="
             width: {{surah.width}}px;
@@ -14,7 +14,7 @@
         <p class="name">{{surah.name}}</p>
       </div>
     </div>
-    <div class="smallView" *ngIf="this.showSmall && !this.showBig">
+    <div class="suarh_aria smallView" *ngIf="this.showSmall && !this.showBig">
       <div class="surah" *ngFor="let surah of smallQuranIndex"
           style="
             width: {{surah.width}}px;
