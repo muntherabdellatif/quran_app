@@ -37,6 +37,7 @@ export class QuranAriaComponent {
   }
 
   findSurahWidth() {
+    this.showBig = false;
     if (this.showBig) {
       this.quranIndex = quranIndex.slice(0, this.end);
       this.quranIndex.forEach((surah,index) => {
@@ -52,8 +53,8 @@ export class QuranAriaComponent {
         const nextSurah = this.smallQuranIndex[index + 1];
         if (nextSurah)
           this.smallQuranIndex[index].width = (Math.sqrt(nextSurah.page - surah.page) * 80 * this.width) * 1.33 / this.slanderedPageWidth;
-          this.smallQuranIndex[index].x = (this.smallQuranIndex[index].xIndex * this.width / this.slanderedPageWidth - 235)*1.46;
-          this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * this.width / this.slanderedPageWidth - 35)*1.46;
+          this.smallQuranIndex[index].x = (this.smallQuranIndex[index].xIndex * this.width / this.slanderedPageWidth - 0.18 * this.width)*1.46;
+          this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * this.width / this.slanderedPageWidth - 0.03 * this.width)*1.46;
       })
     }
   }
