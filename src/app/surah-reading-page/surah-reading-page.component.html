@@ -1,3 +1,31 @@
 <div class="surah_text_container">
-  <p>{{text}}</p>
+  <fa-icon class="back_button"
+    [icon]="faBackward"
+    [title]="'العودة'"
+    [routerLink]="['/surah', surahId + 1]"
+  ></fa-icon>
+  <fa-icon class="home_button"
+    [icon]="faHome"
+    [title]="'الصفحة الرأيسية'"
+    [routerLink]="['/']"
+  ></fa-icon>
+  <p class="title">سورة {{surahName}}</p>
+  <p class="text">{{text}}</p>
+  <div class="control_container">
+    <fa-icon class="next_surah"
+      *ngIf="surahId < quranText.length - 1"
+      [icon]="faAnglesLeft"
+      [title]="quranText[surahId].name"
+      [routerLink]="['/surah_read', surahId + 1]"
+      (click)="scrollToTop()"
+    ></fa-icon>
+    <button class="done_reading" (click)="doneRead()" >إضغط إذا اتممت القراءة</button>
+    <fa-icon class="last_surah"
+      *ngIf="surahId > 1"
+      [icon]="faAnglesRight"
+      [title]="quranText[surahId - 2].name"
+      [routerLink]="['/surah_read', surahId - 1]"
+      (click)="scrollToTop()"
+    ></fa-icon>
+  </div>
 </div>

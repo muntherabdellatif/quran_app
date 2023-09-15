@@ -1,12 +1,82 @@
 .surah_text_container {
   max-width: 750px;
   margin: auto;
+  position: relative;
 
-  p {
+  .back_button,
+  .home_button {
+    position: fixed;
+    top: 50px;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 90%;
+    }
+  }
+
+  .back_button {
+    left: 50px;
+  }
+
+  .home_button {
+    right: 50px;
+  }
+
+  .title {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    position: relative;
+  }
+
+  .title::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 92px;
+    background-image: url('../../assets/image/surah_head.png');
+    background-size: 754px 91px;
+    z-index: -1;
+  }
+
+  .text {
     color: white;
     font-size: 40px;
     text-align: justify;
     line-height: 60px;
     text-align-last: end;
+  }
+
+  .control_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+
+    .last_surah ,.next_surah {
+      font-size: 50px;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        opacity: 90%;
+      }
+    }
+
+    .done_reading {
+      cursor: pointer;
+      margin-left: 20px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 30px;
+
+      &:hover {
+        opacity: 90%;
+      }
+    }
   }
 }

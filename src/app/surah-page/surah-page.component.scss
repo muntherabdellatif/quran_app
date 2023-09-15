@@ -2,23 +2,24 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  padding: 20px 50px;
+  padding: 20px 70px;
   box-sizing: border-box;
 
-  .next_surah {
+  .next_surah,
+  .last_surah {
+    font-size: 30px;
     cursor: pointer;
     color: white;
-    top: 60px;
-    left: 20px;
+    top: 73px;
     position: absolute;
   }
 
+  .next_surah {
+    left: 20px;
+  }
+
   .last_surah {
-    cursor: pointer;
-    color: white;
-    top: 60px;
     right: 20px;
-    position: absolute;
   }
 
   .header {
@@ -29,16 +30,16 @@
     flex-wrap: wrap;
 
     .surah-plant {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       border-radius: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid black;
       color: white;
-      font-weight: 700;
-      font-size: 20px;
+      font-weight: bold;
+      font-size: 35px;
     }
 
     .surah-info {
@@ -48,8 +49,9 @@
       flex-wrap: wrap;
 
       .info {
+        font-size: 20px;
         color: white;
-        padding: 10px 5px;
+        padding: 5px 10px;
         border: solid 0.5px white;
         border-radius: 5px;
         margin: 20px;
@@ -68,6 +70,7 @@
         margin: 20px;
 
         .question-text {
+          font-size: 20px;
           display: inline;
           color: white;
           text-wrap: nowrap;
@@ -95,6 +98,7 @@
         padding: 5px;
         color: white;
         background-color: gray;
+        font-size: 20px;
       }
 
       .surah_number {
@@ -107,7 +111,7 @@
   .subjects_title {
     color: white;
     text-align: right;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: bold;
     margin-top: 20px;
   }
@@ -121,7 +125,7 @@
       .reading_title {
         display: inline;
         color: white;
-        font-size: 18px;
+        font-size: 30px;
         font-weight: bold;
       }
 
@@ -139,19 +143,17 @@
       justify-content: right;
       align-items: center;
 
-      .go_to_reading_page {
-        cursor: pointer;
-        margin-left: 10px;
-        padding: 5px 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-      }
-
+      .go_to_reading_page,
       .update_read_time {
         cursor: pointer;
         padding: 5px 10px;
         border-radius: 5px;
         margin-top: 10px;
+        font-size: 20px;
+      }
+
+      .go_to_reading_page {
+        margin-left: 10px;
       }
     }
   }

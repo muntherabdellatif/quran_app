@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
-import { window } from 'rxjs';
 
 @Component({
   selector: 'app-root',
