@@ -1,4 +1,16 @@
 <div class="surah-page-container">
+  <fa-icon class="next_surah"
+    *ngIf="surah.id < quranIndex.length - 1"
+    [icon]="faAnglesLeft"
+    [title]="quranIndex[surah.id].name"
+    [routerLink]="['/surah', surah.id + 1]"
+  ></fa-icon>
+  <fa-icon class="last_surah"
+    *ngIf="surah.id > 1"
+    [icon]="faAnglesRight"
+    [title]="quranIndex[surah.id - 2].name"
+    [routerLink]="['/surah', surah.id - 1]"
+  ></fa-icon>
   <div class="header">
     <div class="surah-plant"
       style="
@@ -11,7 +23,7 @@
     <div class="surah-info">
       <span class="info">سورة {{surah.type}}</span>
       <span class="info">عدد اياتها: {{surah.aiahNumber}}</span>
-      <span class="info">الاجزاء: {{surah.parts.join("-")}}</span>
+      <span class="info">{{surah.parts.length > 1 ? 'الاجزاء:' : 'الجزء:'}} {{surah.parts.join("-")}}</span>
     </div>
     <div class="memorizing-interpretation">
       <div class="question">
@@ -20,10 +32,28 @@
         <fa-icon class="check-icon" *ngIf="surah.memorize"[icon]="faCircleCheck" (click)="toggleSurahMemorize()"></fa-icon>
       </div>
       <div class="question">
-        <p class="question-text">  هل تستطيع شرح معاني آيات هذه السورة بشكل عام؟ </p>
+        <p class="question-text">  هل تستطيع شرح هذه السورة بشكل عام؟ </p>
         <fa-icon class="check-icon" *ngIf="!surah.interpretation" [icon]="faCircle" (click)="toggleSurahInterpretation()"></fa-icon>
         <fa-icon class="check-icon" *ngIf="surah.interpretation"[icon]="faCircleCheck" (click)="toggleSurahInterpretation()"></fa-icon>
       </div>
+    </div>
+  </div>
+  <p class="subjects_title" *ngIf="surah.subjects.length > 0">:مواضيع السورة</p>
+  <div class="subjects" *ngIf="surah.subjects.length > 0">
+    <div class="subject" *ngFor="let subject of surah.subjects">
+      <div class="subject_text">{{subject.subject}}</div>
+      <div class="surah_number">{{subject.to}}</div>
+    </div>
+  </div>
+  <div class="reading_section">
+    <div class="title">
+      <p class="reading_title">إقرأ الان</p>
+      <p class="reading_title" *ngIf="surah.lastReadingTime">:</p>
+      <p class="last_reading_time" *ngIf="surah.lastReadingTime">لم تقرأ منذ {{getDaysOfLastReadTime()}} أيام</p>
+    </div>
+    <div class="buttons">
+      <button class="go_to_reading_page" [routerLink]="['/surah_read', surah.id]" >أقرأ ألان</button>
+      <button class="update_read_time" (click)="doneRead()" >تمت القراءة</button>
     </div>
   </div>
 </div>

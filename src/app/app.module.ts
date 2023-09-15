@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { MainPageModule } from './main-page/main-page.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SurahPageComponent } from './surah-page/surah-page.component';
+import { SurahReadingPageComponent } from './surah-reading-page/surah-reading-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SurahPageComponent,
+    SurahReadingPageComponent,
   ],
   imports: [
     BrowserModule,

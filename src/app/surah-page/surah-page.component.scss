@@ -1,14 +1,32 @@
 .surah-page-container {
+  position: relative;
   min-height: 100vh;
   width: 100%;
   padding: 20px 50px;
   box-sizing: border-box;
+
+  .next_surah {
+    cursor: pointer;
+    color: white;
+    top: 60px;
+    left: 20px;
+    position: absolute;
+  }
+
+  .last_surah {
+    cursor: pointer;
+    color: white;
+    top: 60px;
+    right: 20px;
+    position: absolute;
+  }
 
   .header {
     display: flex;
     flex-direction: row-reverse;
     justify-content: right;
     align-items: center;
+    flex-wrap: wrap;
 
     .surah-plant {
       width: 100px;
@@ -27,6 +45,7 @@
       display: flex;
       justify-content: right;
       flex-direction: row-reverse;
+      flex-wrap: wrap;
 
       .info {
         color: white;
@@ -42,6 +61,7 @@
       flex-direction: row-reverse;
       align-items: center;
       justify-content: right;
+      flex-wrap: wrap;
 
       .question {
         width: fit-content;
@@ -57,6 +77,81 @@
           cursor: pointer;
           color: white;
         }
+      }
+    }
+  }
+
+  .subjects {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-items: center;
+
+    .subject {
+      margin: 2px;
+
+      .subject_text {
+        border-radius: 2px;
+        padding: 5px;
+        color: white;
+        background-color: gray;
+      }
+
+      .surah_number {
+        font-size: 12px;
+        color: white;
+      }
+    }
+  }
+
+  .subjects_title {
+    color: white;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .reading_section {
+    margin-top: 20px;
+
+    .title {
+      text-align: right;
+
+      .reading_title {
+        display: inline;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .last_reading_time {
+        margin-right: 10px;
+        display: inline;
+        color: rgba(255, 255, 255, 0.53);
+        text-align: right;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: right;
+      align-items: center;
+
+      .go_to_reading_page {
+        cursor: pointer;
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      .update_read_time {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
       }
     }
   }

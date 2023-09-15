@@ -2,8 +2,21 @@ import { Component } from '@angular/core';
 import { quranIndex } from '../data/index';
 import { surahInfo } from '../data/info';
 import { ActivatedRoute } from '@angular/router';
-import { faUpRightAndDownLeftFromCenter, faDownLeftAndUpRightToCenter, faCircleCheck, faCircle} from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faCircleCheck, faCircle} from '@fortawesome/free-solid-svg-icons';
 
+interface Surah {
+  id: number,
+  name: string,
+  light: number,
+  type: string,
+  aiahNumber: number,
+  parts: number[],
+  memorize: boolean,
+  interpretation: boolean,
+  subjects:  ({ subject: string; to: number;}| { subject: string; to: string;})[]
+  lastReadingTime: number;
+   surahText: string;
+}
 
 @Component({
   selector: 'app-surah-page',
@@ -13,8 +26,11 @@ import { faUpRightAndDownLeftFromCenter, faDownLeftAndUpRightToCenter, faCircleC
 export class SurahPageComponent {
   faCircleCheck = faCircleCheck;
   faCircle = faCircle;
+  faAnglesRight = faAnglesRight;
+  faAnglesLeft = faAnglesLeft;
 
-  surah = {
+  surah: Surah = {
+    id: 0,
     name: "",
     light: 100,
     type: "مكية",
@@ -22,6 +38,9 @@ export class SurahPageComponent {
     parts: [0],
     memorize: true,
     interpretation: true,
+    subjects: [{subject: "", to: 1}],
+    lastReadingTime: 0,
+    surahText: ""
   };
   readonly surahInfo = surahInfo;
   readonly quranIndex = quranIndex;
@@ -32,15 +51,17 @@ export class SurahPageComponent {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      console.log(id);
       if (id) {
-        this.surah.name = this.quranIndex[+id].name;
-        this.surah.light = this.quranIndex[+id].light;
-        this.surah.type = this.surahInfo[+id].type;
-        this.surah.aiahNumber = this.surahInfo[+id].aiahNumber;
-        this.surah.parts = this.surahInfo[+id].parts;
-        console.log(this.surah);
+        this.surah.id = +id;
+        this.surah.name = this.quranIndex[+id - 1].name;
+        this.surah.light = this.quranIndex[+id - 1].light;
+        this.surah.type = this.surahInfo[+id - 1].type;
+        this.surah.aiahNumber = this.surahInfo[+id - 1].aiahNumber;
+        this.surah.parts = this.surahInfo[+id - 1].parts;
+        this.surah.subjects = this.surahInfo[+id - 1].subjects;
+        this.getLastReadTime();
       }
+      console.log(this.surah);
     })
   }
 
@@ -50,5 +71,30 @@ export class SurahPageComponent {
 
   toggleSurahInterpretation () {
 
+  }
+
+  getLastReadTime() {
+    const lastReadTimeArray = JSON.parse(localStorage.getItem("lastReadingTime") || "[]");
+    if (lastReadTimeArray.length > 0) {
+      this.surah.lastReadingTime = lastReadTimeArray[this.surah.id - 1];
+    }
+  }
+
+  getDaysOfLastReadTime() {
+    if (!this.surah.lastReadingTime)
+      return 1;
+
+    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
+    return Math.floor((timestampInSeconds - this.surah.lastReadingTime)/(60 * 60 * 24));
+  }
+
+  doneRead() {
+    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
+    const lastReadTimeArray = JSON.parse(localStorage.getItem("lastReadingTime") || "[]");
+    if (lastReadTimeArray.length > 0) {
+      lastReadTimeArray[this.surah.id - 1] = timestampInSeconds;
+      localStorage.setItem("lastReadingTime", JSON.stringify(lastReadTimeArray));
+      this.surah.lastReadingTime = timestampInSeconds;
+    }
   }
 }
