@@ -10,6 +10,7 @@
             background: radial-gradient(circle at center, rgb({{surah.light * 5/2}},{{surah.light * 5/2}},{{surah.light * 5/2}}) 0%, black 80%);
             box-shadow: 0 0 {{surah.light < 40 ? 0 : surah.light / 5}}px 0px white;
           "
+          [routerLink]="['/surah', surah.id]"
           >
         <p class="name">{{surah.name}}</p>
       </div>
@@ -25,6 +26,7 @@
             background: radial-gradient(circle at center, rgb({{surah.light * 5/2}},{{surah.light * 5/2}},{{surah.light * 5/2}}) 0%, black 80%);
             box-shadow: 0 0 {{surah.light < 40 ? 0 : surah.light / 5}}px 0px white;
           "
+          [routerLink]="['/surah', surah.id]"
           >
         <p class="name">{{surah.name}}</p>
       </div>

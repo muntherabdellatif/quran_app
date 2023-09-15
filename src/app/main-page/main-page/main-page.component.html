@@ -17,7 +17,7 @@
         <fa-icon class="check-icon" *ngIf="showBigSurah"[icon]="faCircleCheck" (click)="toggleShowBig()"></fa-icon>
       </div>
       <ul class="list" *ngIf="showBigSurah">
-        <li class="item" *ngFor="let surah of quranIndex.slice(0,57)">
+        <li class="item" *ngFor="let surah of quranIndex.slice(0,57)" [routerLink]="['/surah', surah.id]">
           {{surah.name}}
         </li>
       </ul>
@@ -26,9 +26,10 @@
       <div class="title">
         <p class="list_title">السور الصغيرة</p>
         <fa-icon class="check-icon" *ngIf="!showSmallSurah" [icon]="faCircle" (click)="toggleShowSmall()"></fa-icon>
-        <fa-icon class="check-icon" *ngIf="showSmallSurah"[icon]="faCircleCheck" (click)="toggleShowSmall()"></fa-icon>      </div>
+        <fa-icon class="check-icon" *ngIf="showSmallSurah"[icon]="faCircleCheck" (click)="toggleShowSmall()"></fa-icon>
+      </div>
       <ul class="list" *ngIf="showSmallSurah">
-        <li class="item" *ngFor="let surah of quranIndex.slice(57,114)">
+        <li class="item" *ngFor="let surah of quranIndex.slice(57,114)" [routerLink]="['/surah', surah.id]">
           {{surah.name}}
         </li>
       </ul>

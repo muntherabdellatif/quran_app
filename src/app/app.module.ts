@@ -4,10 +4,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageModule } from './main-page/main-page.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SurahPageComponent } from './surah-page/surah-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SurahPageComponent,
   ],
   imports: [
     BrowserModule,
