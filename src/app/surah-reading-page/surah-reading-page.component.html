@@ -20,6 +20,7 @@
     (click)="goToMark()"
   ></fa-icon>
   <p class="title">سورة {{surahName}}</p>
+  <p class="basmala" *ngIf="surahId != 9">بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ</p>
   <p class="text">{{text}}</p>
   <div class="control_container">
     <fa-icon class="next_surah"

@@ -15,7 +15,8 @@ interface Surah {
   interpretation: boolean,
   subjects:  ({ subject: string; to: number;}| { subject: string; to: string;})[]
   lastReadingTime: number;
-   surahText: string;
+  lastListeningTime:number,
+  surahText: string;
 }
 
 @Component({
@@ -40,6 +41,7 @@ export class SurahPageComponent {
     interpretation: true,
     subjects: [{subject: "", to: 1}],
     lastReadingTime: 0,
+    lastListeningTime: 0,
     surahText: ""
   };
   readonly surahInfo = surahInfo;
@@ -60,6 +62,7 @@ export class SurahPageComponent {
         this.surah.parts = this.surahInfo[+id - 1].parts;
         this.surah.subjects = this.surahInfo[+id - 1].subjects;
         this.getLastReadTime();
+        this.getLastListeningTime();
       }
       console.log(this.surah);
     })
@@ -80,12 +83,27 @@ export class SurahPageComponent {
     }
   }
 
+  getLastListeningTime() {
+    const lastListeningTimeArray = JSON.parse(localStorage.getItem("lastListeningTime") || "[]");
+    if (lastListeningTimeArray.length > 0) {
+      this.surah.lastListeningTime = lastListeningTimeArray[this.surah.id - 1];
+    }
+  }
+
   getDaysOfLastReadTime() {
     if (!this.surah.lastReadingTime)
       return 1;
 
     const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
     return Math.floor((timestampInSeconds - this.surah.lastReadingTime)/(60 * 60 * 24));
+  }
+
+  getDaysOfLastListeningTime() {
+    if (!this.surah.lastListeningTime)
+      return 1;
+
+    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
+    return Math.floor((timestampInSeconds - this.surah.lastListeningTime)/(60 * 60 * 24));
   }
 
   doneRead() {
@@ -95,6 +113,16 @@ export class SurahPageComponent {
       lastReadTimeArray[this.surah.id - 1] = timestampInSeconds;
       localStorage.setItem("lastReadingTime", JSON.stringify(lastReadTimeArray));
       this.surah.lastReadingTime = timestampInSeconds;
+    }
+  }
+
+  doneListening() {
+    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
+    const lastListeningTimeArray = JSON.parse(localStorage.getItem("lastListeningTime") || "[]");
+    if (lastListeningTimeArray.length > 0) {
+      lastListeningTimeArray[this.surah.id - 1] = timestampInSeconds;
+      localStorage.setItem("lastListeningTime", JSON.stringify(lastListeningTimeArray));
+      this.surah.lastListeningTime = timestampInSeconds;
     }
   }
 }

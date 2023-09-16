@@ -1,0 +1,28 @@
+.listening_container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px 70px;
+  box-sizing: border-box;
+
+  .reader-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .reader {
+      cursor: pointer;
+      font-size: 20px;
+      color: white;
+      padding: 5px 10px;
+      border: solid 0.5px white;
+      border-radius: 5px;
+      margin: 20px;
+
+      &:hover {
+        opacity: 70%;
+      }
+    }
+  }
+}

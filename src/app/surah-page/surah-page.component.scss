@@ -169,4 +169,50 @@
       }
     }
   }
+
+  .listening_serction {
+    margin-top: 20px;
+
+    .title {
+      text-align: right;
+
+      .listening_title {
+        display: inline;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .last_listening_time {
+        margin-right: 10px;
+        display: inline;
+        color: rgba(255, 255, 255, 0.53);
+        text-align: right;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: right;
+      align-items: center;
+
+      .go_to_listening_page,
+      .update_listening_time {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-size: 20px;
+
+        &:hover {
+          opacity: 90%;
+        }
+      }
+
+      .go_to_listening_page {
+        margin-left: 10px;
+      }
+    }
+  }
 }

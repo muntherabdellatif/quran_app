@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { quranText } from '../data/Quran';
+import { quranText } from '../data/quranText';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAnglesRight, faAnglesLeft, faBackward, faHome, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft} from '@fortawesome/free-solid-svg-icons';
 

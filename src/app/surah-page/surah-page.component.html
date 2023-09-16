@@ -48,12 +48,23 @@
   <div class="reading_section">
     <div class="title">
       <p class="reading_title">إقرأ الان</p>
-      <p class="reading_title" *ngIf="surah.lastReadingTime">:</p>
-      <p class="last_reading_time" *ngIf="surah.lastReadingTime">لم تقرأ منذ {{getDaysOfLastReadTime()}} أيام</p>
+      <p class="reading_title" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">:</p>
+      <p class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ منذ {{getDaysOfLastReadTime()}} أيام</p>
     </div>
     <div class="buttons">
       <button class="go_to_reading_page" [routerLink]="['/surah_read', surah.id]" >أقرأ ألان</button>
       <button class="update_read_time" (click)="doneRead()" >تمت القراءة</button>
+    </div>
+  </div>
+  <div class="listening_serction">
+    <div class="title">
+      <p class="listening_title">إستمع الان</p>
+      <p class="listening_title" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">:</p>
+      <p class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تقرأ منذ {{getDaysOfLastListeningTime()}} أيام</p>
+    </div>
+    <div class="buttons">
+      <button class="go_to_listening_page" [routerLink]="['/surah_listening', surah.id]" >إستمع ألان</button>
+      <button class="update_listening_time" (click)="doneListening()" >تم الإستماع</button>
     </div>
   </div>
 </div>
