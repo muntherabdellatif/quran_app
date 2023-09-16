@@ -12,6 +12,10 @@
     color: white;
     top: 73px;
     position: absolute;
+
+    &:hover {
+      opacity: 70%;
+    }
   }
 
   .next_surah {
@@ -79,6 +83,10 @@
         .check-icon {
           cursor: pointer;
           color: white;
+
+          &:hover {
+            opacity: 70%;
+          }
         }
       }
     }
@@ -150,6 +158,10 @@
         border-radius: 5px;
         margin-top: 10px;
         font-size: 20px;
+
+        &:hover {
+          opacity: 90%;
+        }
       }
 
       .go_to_reading_page {

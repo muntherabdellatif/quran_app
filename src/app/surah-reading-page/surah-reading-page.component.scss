@@ -4,9 +4,10 @@
   position: relative;
 
   .back_button,
-  .home_button {
+  .home_button,
+  .go_to_mark_button,
+  .book_mark_button {
     position: fixed;
-    top: 50px;
     color: white;
     font-size: 50px;
     cursor: pointer;
@@ -18,10 +19,22 @@
 
   .back_button {
     left: 50px;
+    top: 50px;
   }
 
   .home_button {
+    left: 50px;
+    top: 200px;
+  }
+
+  .go_to_mark_button {
     right: 50px;
+    top: 200px;
+  }
+
+  .book_mark_button {
+    right: 50px;
+    top: 50px;
   }
 
   .title {

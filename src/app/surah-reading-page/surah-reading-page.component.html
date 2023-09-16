@@ -2,12 +2,22 @@
   <fa-icon class="back_button"
     [icon]="faBackward"
     [title]="'العودة'"
-    [routerLink]="['/surah', surahId + 1]"
+    [routerLink]="['/surah', surahId]"
   ></fa-icon>
   <fa-icon class="home_button"
     [icon]="faHome"
     [title]="'الصفحة الرأيسية'"
     [routerLink]="['/']"
+  ></fa-icon>
+  <fa-icon class="book_mark_button"
+    [icon]="faBookmark"
+    [title]="'ضع علامة هنا'"
+    (click)="addMarkHer()"
+  ></fa-icon>
+  <fa-icon class="go_to_mark_button"
+    [icon]="pointer"
+    [title]="'إذهب إلى العلامة'"
+    (click)="goToMark()"
   ></fa-icon>
   <p class="title">سورة {{surahName}}</p>
   <p class="text">{{text}}</p>
