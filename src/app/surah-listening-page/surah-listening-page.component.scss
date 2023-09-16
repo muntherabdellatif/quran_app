@@ -25,4 +25,31 @@
       }
     }
   }
+
+  .video_player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .control_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .buttons {
+      background-color: black;
+      font-size: 20px;
+      color: white;
+      padding: 10px 20px;
+      border: solid 0.5px white;
+      border-radius: 5px;
+      margin: 20px;
+
+      &:hover {
+        opacity: 70%;
+      }
+    }
+  }
 }

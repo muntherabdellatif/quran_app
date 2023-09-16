@@ -1,6 +1,15 @@
 <div class="listening_container">
   <div class="video_player">
-    
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <youtube-player
+      [videoId]="'C4oz4FfqbHw'"
+      [width]="600"
+      [height]="350"
+    ></youtube-player>
+  </div>
+  <div class="control_button">
+    <button class="buttons" (click)="togglePlayPause()">start/stop</button>
+    <button class="buttons" (click)="stopVideo()">stop</button>
   </div>
   <div class="reader-list">
     <div class="reader" *ngFor="let reader of readers" >{{reader.reader_name}}</div>

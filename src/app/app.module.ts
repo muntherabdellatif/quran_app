@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageModule } from './main-page/main-page.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SurahPageComponent } from './surah-page/surah-page.component';
 import { SurahReadingPageComponent } from './surah-reading-page/surah-reading-page.component';
 import { SurahListeningPageComponent } from './surah-listening-page/surah-listening-page.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { SurahListeningPageComponent } from './surah-listening-page/surah-listen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainPageModule
+    MainPageModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
