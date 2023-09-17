@@ -46,6 +46,7 @@ export class SurahPageComponent {
   };
   readonly surahInfo = surahInfo;
   readonly quranIndex = quranIndex;
+  readerId: number = 0;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -63,8 +64,8 @@ export class SurahPageComponent {
         this.surah.subjects = this.surahInfo[+id - 1].subjects;
         this.getLastReadTime();
         this.getLastListeningTime();
+        this.getDefaultReader();
       }
-      console.log(this.surah);
     })
   }
 
@@ -124,5 +125,14 @@ export class SurahPageComponent {
       localStorage.setItem("lastListeningTime", JSON.stringify(lastListeningTimeArray));
       this.surah.lastListeningTime = timestampInSeconds;
     }
+  }
+
+  getDefaultReader() {
+    let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
+    if (!readerId) {
+      localStorage.setItem("readerId", "1");
+      readerId = 1;
+    }
+    this.readerId = readerId;
   }
 }

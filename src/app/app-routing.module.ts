@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'surah/:id', component: SurahPageComponent},
   {path: 'surah_read/:id', component: SurahReadingPageComponent},
-  {path: 'surah_listening/:id', component: SurahListeningPageComponent}
+  {path: 'surah_listening/:reader/:id', component: SurahListeningPageComponent}
 ];
 
 @NgModule({

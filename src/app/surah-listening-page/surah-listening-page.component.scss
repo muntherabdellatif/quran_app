@@ -4,6 +4,9 @@
   width: 100%;
   padding: 20px 70px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   .reader-list {
     display: flex;
@@ -24,6 +27,10 @@
         opacity: 70%;
       }
     }
+
+    .reader.active {
+      box-shadow: 0 0 20px white;
+    }
   }
 
   .video_player {
@@ -38,18 +45,39 @@
     justify-content: center;
     align-items: center;
 
-    .buttons {
-      background-color: black;
-      font-size: 20px;
+    .icon {
+      font-size: 30px;
+      margin: 10px;
       color: white;
-      padding: 10px 20px;
-      border: solid 0.5px white;
-      border-radius: 5px;
-      margin: 20px;
+      cursor: pointer;
 
       &:hover {
         opacity: 70%;
       }
+    }
+  }
+
+  .change_surah_control {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    margin: auto;
+
+    .next_surah,
+    .last_surah {
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        opacity: 70%;
+      }
+    }
+
+    .surah_name {
+      color: white;
+      font-size: 30px;
     }
   }
 }

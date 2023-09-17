@@ -63,7 +63,7 @@
       <p class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تقرأ منذ {{getDaysOfLastListeningTime()}} أيام</p>
     </div>
     <div class="buttons">
-      <button class="go_to_listening_page" [routerLink]="['/surah_listening', surah.id]" >إستمع ألان</button>
+      <button class="go_to_listening_page" [routerLink]="['/surah_listening', readerId ,surah.id]" >إستمع ألان</button>
       <button class="update_listening_time" (click)="doneListening()" >تم الإستماع</button>
     </div>
   </div>

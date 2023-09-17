@@ -2,16 +2,45 @@
   <div class="video_player">
     <script src="https://www.youtube.com/iframe_api"></script>
     <youtube-player
-      [videoId]="'C4oz4FfqbHw'"
+      [videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
       [width]="600"
       [height]="350"
     ></youtube-player>
   </div>
   <div class="control_button">
-    <button class="buttons" (click)="togglePlayPause()">start/stop</button>
-    <button class="buttons" (click)="stopVideo()">stop</button>
+    <fa-icon class="icon"
+      [icon]="playPauseIcon"
+      (click)="togglePlayPause()"
+    ></fa-icon>
+    <fa-icon class="icon"
+      [icon]="faStop"
+      (click)="stopVideo()"
+    ></fa-icon>
+  </div>
+  <div class="change_surah_control">
+    <fa-icon class="next_surah"
+      *ngIf="surahId < readers[readerId - 1].quran.length - 1"
+      [icon]="faAnglesLeft"
+      [title]="readers[readerId - 1].quran[surahId].name"
+      [routerLink]="['/surah_listening', readerId ,surahId + 1]"
+      (click)="resetVideo()"
+    ></fa-icon>
+    <p class="surah_name">سورة {{readers[readerId - 1].quran[surahId - 1].name}} بصوت: {{readers[readerId - 1].reader_name}}</p>
+    <fa-icon class="last_surah"
+      *ngIf="surahId > 1"
+      [icon]="faAnglesRight"
+      [title]="readers[readerId - 1].quran[surahId - 2].name"
+      [routerLink]="['/surah_listening', readerId, surahId - 1]"
+      (click)="resetVideo()"
+    ></fa-icon>
   </div>
   <div class="reader-list">
-    <div class="reader" *ngFor="let reader of readers" >{{reader.reader_name}}</div>
+    <div
+      class="reader"
+      *ngFor="let reader of readers"
+      [ngClass]="{'active': readerId == reader.reader_id}"
+      [routerLink]="['/surah_listening', reader.reader_id, surahId]"
+      (click)="resetVideo()"
+    >{{reader.reader_name}}</div>
   </div>
 </div>
