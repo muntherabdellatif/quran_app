@@ -26,17 +26,31 @@
       <span class="info">{{surah.parts.length > 1 ? 'الاجزاء:' : 'الجزء:'}} {{surah.parts.join("-")}}</span>
     </div>
     <div class="memorizing-interpretation">
-      <div class="question">
-        <p class="question-text"> هل تحفظ هذه السورة؟ </p>
-        <fa-icon class="check-icon" *ngIf="!surah.memorize" [icon]="faCircle" (click)="toggleSurahMemorize()"></fa-icon>
-        <fa-icon class="check-icon" *ngIf="surah.memorize"[icon]="faCircleCheck" (click)="toggleSurahMemorize()"></fa-icon>
+      <div class="container">
+        <fa-icon class="icon"
+          [icon]="faBrain"
+          [ngClass]="{'active': surah.memorize}"
+          (click)="toggleSurahMemorize()"
+        ></fa-icon>
+        <p class="text" [ngClass]="{'active': surah.memorize}">الحفظ</p>
       </div>
-      <div class="question">
-        <p class="question-text">  هل تستطيع شرح هذه السورة بشكل عام؟ </p>
-        <fa-icon class="check-icon" *ngIf="!surah.interpretation" [icon]="faCircle" (click)="toggleSurahInterpretation()"></fa-icon>
-        <fa-icon class="check-icon" *ngIf="surah.interpretation"[icon]="faCircleCheck" (click)="toggleSurahInterpretation()"></fa-icon>
+      <div class="container">
+        <fa-icon class="icon"
+          [icon]="faBookOpenReader"
+          [ngClass]="{'active': surah.interpretation}"
+          (click)="  toggleSurahInterpretation()"
+        ></fa-icon>
+        <p class="text" [ngClass]="{'active': surah.interpretation}">التدبر و التفسير</p>
       </div>
     </div>
+  </div>
+  <div class="memorizing-interpretation_section">
+    <button (click)="toggleSurahMemorize()">
+      {{surah.memorize ? 'حذف السورة من قائمة السور التي تحفظها' : 'أضف السورة لقائمة السور التي تحفظها'}}
+    </button>
+    <button (click)="toggleSurahInterpretation()">
+      {{surah.interpretation ? 'حذف السورة من قائمة السور التي إستمعت لتفسيرها' : 'أضف السورة لقائمة السور التي إستمعت لتفسيرها'}}
+    </button>
   </div>
   <p class="subjects_title" *ngIf="surah.subjects.length > 0">:مواضيع السورة</p>
   <div class="subjects" *ngIf="surah.subjects.length > 0">

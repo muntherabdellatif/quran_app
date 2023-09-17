@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngOnInit() {
-    ["memorizingArray", "interpretation", "lastReadingTime", "lastListeningTime"].forEach((key) => {
+    ["memorizing", "interpretation", "lastReadingTime", "lastListeningTime"].forEach((key) => {
       if (!localStorage.getItem(key)) {
         localStorage.setItem(key, JSON.stringify(Array.from({ length: 144 }, () => 0)));
       }
