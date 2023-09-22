@@ -27,7 +27,6 @@ export class SurahListeningPageComponent {
   readerId: number = 0;
   private apiLoaded = false;
 
-
   playPauseIcon = faPlay;
   faStop = faStop;
   faAnglesLeft = faAnglesLeft;

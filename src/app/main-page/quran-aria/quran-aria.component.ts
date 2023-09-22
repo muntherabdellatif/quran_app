@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
+import { SideBarService } from 'src/app/services/side_bar.service';
 @Component({
   selector: 'app-quran-aria',
   templateUrl: './quran-aria.component.html',
@@ -10,25 +11,32 @@ export class QuranAriaComponent {
   readonly slanderedPageWidth = 1400;
   @Input() width: number = this.slanderedPageWidth;
   @Input() quranAriaWidthSubject: Subject<number> | undefined;
-  @Input() showSmallSurah: Subject<boolean> | undefined;
+
   showBig: boolean = true;
-  @Input() showBigSurah: Subject<boolean> | undefined;
   showSmall: boolean = true;
+  showList: boolean = false;
+
   end: 144 | 57 = 144;
 
   quranIndex = quranIndex;
   smallQuranIndex = smallQuranIndex;
+
+  constructor(private sideBarService: SideBarService ){}
 
   ngOnInit() {
     this.quranAriaWidthSubject && this.quranAriaWidthSubject.subscribe(value => {
       this.width = value;
       this.findSurahWidth();
     });
-    this.showBigSurah && this.showBigSurah.subscribe(value => {
+    this.sideBarService.surahList.subscribe(value => {
+      this.showList = value;
+      this.findSurahWidth();
+    });
+    this.sideBarService.showBig.subscribe(value => {
       this.showBig = value;
       this.findSurahWidth();
     });
-    this.showSmallSurah && this.showSmallSurah.subscribe(value => {
+    this.sideBarService.showSmall.subscribe(value => {
       this.showSmall = value;
       this.end = this.showSmall? 144 : 57;
       this.findSurahWidth();

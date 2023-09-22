@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,6 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular
 })
 export class AppComponent implements OnInit {
   itIsFirstTime = false;
-
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngOnInit() {
     ["memorizing", "interpretation", "lastReadingTime", "lastListeningTime"].forEach((key) => {

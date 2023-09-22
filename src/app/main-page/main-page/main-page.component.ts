@@ -10,10 +10,6 @@ import { quranIndex } from 'src/app/data';
 })
 export class MainPageComponent {
   quranAriaWidthSubject: Subject<number> = new Subject();
-  showBig: Subject<boolean> = new Subject();
-  showSmall: Subject<boolean> = new Subject();
-  showBigSurah: boolean = true;
-  showSmallSurah: boolean = true;
 
   openIcon = faUpRightAndDownLeftFromCenter;
   closeIcon = faDownLeftAndUpRightToCenter;
@@ -37,15 +33,5 @@ export class MainPageComponent {
     console.log("window.innerWidth :", window.innerWidth);
     console.log("this.quranAriaWidth :", this.quranAriaWidth);
     this.quranAriaWidthSubject.next(this.quranAriaWidth);
-  }
-
-  toggleShowBig() {
-    this.showBigSurah = !this.showBigSurah;
-    this.showBig.next(this.showBigSurah);
-  }
-
-  toggleShowSmall() {
-    this.showSmallSurah = !this.showSmallSurah;
-    this.showSmall.next(this.showSmallSurah);
   }
 }

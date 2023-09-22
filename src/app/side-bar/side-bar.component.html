@@ -1,0 +1,31 @@
+<div class="side_bar">
+  <div class="icon_container">
+    <fa-icon class="icon"
+      [icon]="faHome"
+      [title]="'الصفحة الرأيسية'"
+      [routerLink]="['/']"
+      *ngIf="currentUrl != '/'"
+    ></fa-icon>
+    <fa-icon class="icon"
+      [icon]="faArrowUpAZ"
+      *ngIf="currentUrl == '/' && !showSurahList"
+      [title]="'عرض السور الطويلة'"
+      (click)="toggleShowBigSurah()"
+      [class.active]="showBigSurah"
+    ></fa-icon>
+    <fa-icon class="icon"
+      [icon]="faArrowDownAZ"
+      *ngIf="currentUrl == '/' && !showSurahList"
+      [title]="'عرض السور القصيرة'"
+      (click)="toggleShowSmallSurah()"
+      [class.active]="showSmallSurah"
+    ></fa-icon>
+    <fa-icon class="icon"
+      [icon]="faBars"
+      *ngIf="currentUrl == '/'"
+      [title]="'عرض قائمةالسور'"
+      (click)="toggleShowSurahList()"
+      [class.active]="showSurahList"
+    ></fa-icon>
+  </div>
+</div>

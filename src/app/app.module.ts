@@ -8,6 +8,7 @@ import { SurahReadingPageComponent } from './surah-reading-page/surah-reading-pa
 import { SurahListeningPageComponent } from './surah-listening-page/surah-listening-page.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { QuranPagesComponent } from './quran-pages/quran-pages.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { QuranPagesComponent } from './quran-pages/quran-pages.component';
     SurahReadingPageComponent,
     SurahListeningPageComponent,
     QuranPagesComponent,
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
