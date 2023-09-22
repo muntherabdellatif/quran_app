@@ -66,7 +66,7 @@
       <p class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ منذ {{getDaysOfLastReadTime()}} أيام</p>
     </div>
     <div class="buttons">
-      <button class="go_to_reading_page" [routerLink]="['/surah_read', surah.id]" >أقرأ ألان</button>
+      <button class="go_to_reading_page" [routerLink]="['/quran_pages', surah.startPage]" >أقرأ ألان</button>
       <button class="update_read_time" (click)="doneRead()" >تمت القراءة</button>
     </div>
   </div>

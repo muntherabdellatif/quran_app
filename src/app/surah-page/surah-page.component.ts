@@ -17,6 +17,7 @@ interface Surah {
   lastReadingTime: number;
   lastListeningTime:number,
   surahText: string;
+  startPage: number,
 }
 
 @Component({
@@ -44,7 +45,8 @@ export class SurahPageComponent {
     subjects: [{subject: "", to: 1}],
     lastReadingTime: 0,
     lastListeningTime: 0,
-    surahText: ""
+    surahText: "",
+    startPage: 0,
   };
   readonly surahInfo = surahInfo;
   readonly quranIndex = quranIndex;
@@ -64,6 +66,7 @@ export class SurahPageComponent {
         this.surah.aiahNumber = this.surahInfo[+id - 1].aiahNumber;
         this.surah.parts = this.surahInfo[+id - 1].parts;
         this.surah.subjects = this.surahInfo[+id - 1].subjects;
+        this.surah.startPage = this.quranIndex[+id - 1].page;
         this.getLastReadTime();
         this.getLastListeningTime();
         this.getMemorizing();

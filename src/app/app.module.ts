@@ -7,6 +7,7 @@ import { SurahPageComponent } from './surah-page/surah-page.component';
 import { SurahReadingPageComponent } from './surah-reading-page/surah-reading-page.component';
 import { SurahListeningPageComponent } from './surah-listening-page/surah-listening-page.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { QuranPagesComponent } from './quran-pages/quran-pages.component';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     SurahPageComponent,
     SurahReadingPageComponent,
     SurahListeningPageComponent,
+    QuranPagesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MainPageModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

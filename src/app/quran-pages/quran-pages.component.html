@@ -1,0 +1,8 @@
+<div class="pages_container">
+  <img
+    *ngFor="let pageId of pagesNumber"
+    [src]="'./assets/image/'+ pageId + '.gif'"
+    alt=""
+    [id]="'page-' + pageId"
+  >
+</div>
