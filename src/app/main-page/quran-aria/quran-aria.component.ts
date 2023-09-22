@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
 import { SideBarService } from 'src/app/services/side_bar.service';
+import { faBookOpenReader, faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-quran-aria',
   templateUrl: './quran-aria.component.html',
@@ -12,11 +14,12 @@ export class QuranAriaComponent {
   @Input() width: number = this.slanderedPageWidth;
   @Input() quranAriaWidthSubject: Subject<number> | undefined;
 
-  showBig: boolean = true;
-  showSmall: boolean = true;
-  showList: boolean = false;
+  faBookOpenReader = faBookOpenReader;
+  faHeadphonesSimple = faHeadphonesSimple;
 
-  end: 144 | 57 = 144;
+  showBig: boolean = true;
+  showList: boolean = false;
+  readerId: number = 0;
 
   quranIndex = quranIndex;
   smallQuranIndex = smallQuranIndex;
@@ -24,29 +27,30 @@ export class QuranAriaComponent {
   constructor(private sideBarService: SideBarService ){}
 
   ngOnInit() {
+    this.showList = this.sideBarService.getShowSurahList();
+    this.showBig = this.sideBarService.getShowBigSurah();
+
     this.quranAriaWidthSubject && this.quranAriaWidthSubject.subscribe(value => {
       this.width = value;
       this.findSurahWidth();
     });
+
     this.sideBarService.surahList.subscribe(value => {
       this.showList = value;
-      this.findSurahWidth();
     });
+
     this.sideBarService.showBig.subscribe(value => {
       this.showBig = value;
       this.findSurahWidth();
     });
-    this.sideBarService.showSmall.subscribe(value => {
-      this.showSmall = value;
-      this.end = this.showSmall? 144 : 57;
-      this.findSurahWidth();
-    });
+
     this.findSurahWidth();
+    this.getDefaultReader();
   }
 
   findSurahWidth() {
     if (this.showBig) {
-      this.quranIndex = quranIndex.slice(0, this.end);
+      this.quranIndex = quranIndex;
       this.quranIndex.forEach((surah,index) => {
         const nextSurah = this.quranIndex[index + 1];
         if (nextSurah)
@@ -54,7 +58,7 @@ export class QuranAriaComponent {
           this.quranIndex[index].x = (this.quranIndex[index].xIndex * this.width / this.slanderedPageWidth + 0.02 * this.width) * 0.98 ;
           this.quranIndex[index].y = (this.quranIndex[index].yIndex * this.width / this.slanderedPageWidth + 0.002 * this.width) * 0.98 ;
       })
-    } else if(this.showSmall) {
+    } else {
       this.smallQuranIndex = smallQuranIndex;
       this.smallQuranIndex.forEach((surah,index) => {
         const nextSurah = this.smallQuranIndex[index + 1];
@@ -64,5 +68,14 @@ export class QuranAriaComponent {
           this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * this.width / this.slanderedPageWidth - 0.03 * this.width)*1.46;
       })
     }
+  }
+
+    getDefaultReader() {
+    let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
+    if (!readerId) {
+      localStorage.setItem("readerId", "1");
+      readerId = 1;
+    }
+    this.readerId = readerId;
   }
 }

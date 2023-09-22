@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { faHome, faArrowUpAZ, faArrowDownAZ, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faExpand, faCompress, faBars } from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 
 @Component({
@@ -15,8 +15,8 @@ export class SideBarComponent {
   showSmallSurah = true;
   showSurahList = false;
 
-  faArrowUpAZ = faArrowUpAZ;
-  faArrowDownAZ = faArrowDownAZ;
+  faExpand = faExpand;
+  faCompress = faCompress;
   faHome = faHome;
   faBars = faBars;
 
@@ -39,11 +39,6 @@ export class SideBarComponent {
   toggleShowBigSurah() {
     this.sideBar.toggleShowBigSurah();
     this.showBigSurah = this.sideBar.getShowBigSurah();
-  }
-
-  toggleShowSmallSurah() {
-    this.sideBar.toggleShowSmallSurah();
-    this.showSmallSurah = this.sideBar.getShowSmallSurah();
   }
 
   toggleShowSurahList() {

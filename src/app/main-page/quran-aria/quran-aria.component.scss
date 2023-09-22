@@ -50,17 +50,37 @@
       padding: 10px 20px;
       width: 150px;
       display: flex;
-      justify-content: center;
+      justify-content: end;
       align-items: center;
       height: 30px;
 
-      .name {
+      .name, .number {
         color: #fff;
         margin: 0;
         font-size: 20px;
         font-weight: bold;
         text-align: right;
         text-wrap: nowrap;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 80%;
+        }
+      }
+
+      .number {
+        margin-left: 5px;
+      }
+
+      .icon {
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: 5px;
+
+        &:hover {
+          opacity: 80%;
+        }
       }
     }
   }

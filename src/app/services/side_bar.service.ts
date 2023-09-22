@@ -6,18 +6,12 @@ import { Subject } from 'rxjs';
 })
 export class SideBarService {
   showBigSurah: boolean = true;
-  showSmallSurah: boolean = true;
   showSurahList: boolean = false;
 
   showBig: Subject<boolean> = new Subject();
-  showSmall: Subject<boolean> = new Subject();
   surahList: Subject<boolean> = new Subject();
 
   constructor() { }
-
-  getShowSmallSurah() {
-    return this.showSmallSurah;
-  }
 
   getShowBigSurah() {
     return this.showBigSurah;
@@ -25,11 +19,6 @@ export class SideBarService {
 
   getShowSurahList() {
     return this.showSurahList;
-  }
-
-  toggleShowSmallSurah() {
-    this.showSmallSurah = !this.showSmallSurah;
-    this.showSmall.next(this.showSmallSurah);
   }
 
   toggleShowBigSurah() {
