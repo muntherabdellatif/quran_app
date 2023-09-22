@@ -40,8 +40,6 @@ export class SurahReadingPageComponent {
 
   @HostListener('window:scroll', ['$event'])
   checkPointerDirection(): void {
-    console.log("id : " , this.surahId , "bookMark.id :", this.bookMark.id);
-
     if (this.surahId == this.bookMark.id && Math.abs(window.scrollY - this.bookMark.scrollY) < 500)
       this.pointer = faHandPointLeft;
     else if (window.scrollY > this.bookMark.scrollY && this.surahId == this.bookMark.id || this.surahId > this.bookMark.id)

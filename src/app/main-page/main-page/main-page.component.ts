@@ -29,9 +29,6 @@ export class MainPageComponent {
     this.isSideBarOpen = !this.isSideBarOpen;
     this.sideBarWidth = this.isSideBarOpen ? 150 : 40;
     this.quranAriaWidth = window.innerWidth - this.sideBarWidth;
-    console.log("this.sideBarWidth :", this.sideBarWidth);
-    console.log("window.innerWidth :", window.innerWidth);
-    console.log("this.quranAriaWidth :", this.quranAriaWidth);
     this.quranAriaWidthSubject.next(this.quranAriaWidth);
   }
 }

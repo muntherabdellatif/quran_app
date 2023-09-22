@@ -25,5 +25,17 @@
       (click)="toggleShowSurahList()"
       [class.active]="showSurahList"
     ></fa-icon>
+    <fa-icon class="icon"
+      *ngIf="isQuranPages(currentUrl)"
+      [icon]="faBookmark"
+      [title]="'ضع علامة هنا'"
+      (click)="addMarkHer()"
+    ></fa-icon>
+    <fa-icon class="icon"
+      *ngIf="isQuranPages(currentUrl)"
+      [icon]="pointer"
+      [title]="'إذهب إلى العلامة'"
+      (click)="goToMark()"
+    ></fa-icon>
   </div>
 </div>
