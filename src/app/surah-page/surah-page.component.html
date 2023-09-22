@@ -59,26 +59,31 @@
       <div class="surah_number">{{subject.to}}</div>
     </div>
   </div>
-  <div class="reading_section">
-    <div class="title">
-      <p class="reading_title">إقرأ الان</p>
-      <p class="reading_title" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">:</p>
-      <p class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ منذ {{getDaysOfLastReadTime()}} أيام</p>
-    </div>
-    <div class="buttons">
-      <button class="go_to_reading_page" [routerLink]="['/quran_pages', surah.startPage]" >أقرأ ألان</button>
-      <button class="update_read_time" (click)="doneRead()" >تمت القراءة</button>
-    </div>
+  <div class="last_time_section">
+    <p style="background-color: rgb({{surah.color.r}},{{surah.color.g}},0);">
+      <span class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ هذه السورة منذ {{getDaysOfLastReadTime()}} أيام</span>
+      <span>/</span>
+      <span class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تستمع لهذه السورة منذ {{getDaysOfLastListeningTime()}} أيام</span>
+    </p>
   </div>
-  <div class="listening_serction">
-    <div class="title">
-      <p class="listening_title">إستمع الان</p>
-      <p class="listening_title" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">:</p>
-      <p class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تقرأ منذ {{getDaysOfLastListeningTime()}} أيام</p>
+  <div class="card_section">
+    <div class="card">
+      <div class="header">
+        <img src="/assets/image/read.jpeg" alt="read now" [routerLink]="['/quran_pages', surah.startPage]">
+      </div>
+      <div class="body">
+        <p [routerLink]="['/quran_pages', surah.startPage]" >إقرأ الأن</p>
+        <button (click)="doneRead()">تمت القراءة</button>
+      </div>
     </div>
-    <div class="buttons">
-      <button class="go_to_listening_page" [routerLink]="['/surah_listening', readerId ,surah.id]" >إستمع ألان</button>
-      <button class="update_listening_time" (click)="doneListening()" >تم الإستماع</button>
+    <div class="card">
+      <div class="header">
+        <img src="/assets/image/listen.jpg" alt="listen now" [routerLink]="['/surah_listening', readerId ,surah.id]">
+      </div>
+      <div class="body">
+        <p [routerLink]="['/surah_listening', readerId ,surah.id]">إستمع الأن</p>
+        <button (click)="doneListening()">تم الإستماع</button>
+      </div>
     </div>
   </div>
 </div>

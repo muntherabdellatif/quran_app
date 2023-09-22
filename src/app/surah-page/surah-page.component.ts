@@ -18,6 +18,7 @@ interface Surah {
   lastListeningTime:number,
   surahText: string;
   startPage: number,
+  color: {r: number, g: number}
 }
 
 @Component({
@@ -47,7 +48,9 @@ export class SurahPageComponent {
     lastListeningTime: 0,
     surahText: "",
     startPage: 0,
+    color: {r: 0, g: 255}
   };
+
   readonly surahInfo = surahInfo;
   readonly quranIndex = quranIndex;
   readerId: number = 0;
@@ -72,6 +75,7 @@ export class SurahPageComponent {
         this.getMemorizing();
         this.getInterpretation();
         this.getDefaultReader();
+        this.getTimeColor();
       }
     })
   }
@@ -165,5 +169,19 @@ export class SurahPageComponent {
       readerId = 1;
     }
     this.readerId = readerId;
+  }
+
+  getTimeColor() {
+    const days = 60;
+    const lastReadDay = Math.min(this.getDaysOfLastReadTime(),60);
+    const lastListeningDay = Math.min(this.getDaysOfLastReadTime(),60);
+    if (lastReadDay < lastListeningDay) {
+      this.surah.color.g = 255 - (lastReadDay/days)*255;
+      this.surah.color.r = (lastReadDay/days)*255;
+    } else {
+      const average = (lastReadDay + lastListeningDay)/2;
+      this.surah.color.g = 255 - (average/days)*255;
+      this.surah.color.r = (average/days)*255;
+    }
   }
 }

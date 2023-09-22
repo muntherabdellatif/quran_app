@@ -154,94 +154,87 @@
     margin: 10px 0;
   }
 
-  .reading_section {
-    margin-top: 20px;
+  .last_time_section {
+    display: flex;
+    justify-content: end;
 
-    .title {
+    p {
+      color: black;
+      padding: 10px 20px;
+      width: fit-content;
+      font-size: 20px;
       text-align: right;
+      border-radius: 5px;
+      font-weight: bold;
 
-      .reading_title {
-        display: inline;
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-      }
-
-      .last_reading_time {
-        margin-right: 10px;
-        display: inline;
-        color: rgba(255, 255, 255, 0.53);
-        text-align: right;
-      }
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: right;
-      align-items: center;
-
-      .go_to_reading_page,
-      .update_read_time {
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-        font-size: 20px;
-
-        &:hover {
-          opacity: 90%;
-        }
-      }
-
-      .go_to_reading_page {
-        margin-left: 10px;
+      span {
+        margin: 0 5px;
       }
     }
   }
 
-  .listening_serction {
+  .card_section {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-items: center;
+    gap: 20px;
     margin-top: 20px;
 
-    .title {
-      text-align: right;
+    .card {
+      border: 1px solid white;
+      border-radius: 20px;
+      overflow: hidden;
 
-      .listening_title {
-        display: inline;
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-      }
+      .header {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
 
-      .last_listening_time {
-        margin-right: 10px;
-        display: inline;
-        color: rgba(255, 255, 255, 0.53);
-        text-align: right;
-      }
-    }
+        img {
+          width: 200px;
+          height: 200px;
+          transition: all 0.5s;
+          cursor: pointer;
 
-    .buttons {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: right;
-      align-items: center;
-
-      .go_to_listening_page,
-      .update_listening_time {
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-        font-size: 20px;
-
-        &:hover {
-          opacity: 90%;
+          &:hover {
+            transform: rotate(7deg) scale(1.2);
+          }
         }
       }
+      .body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        align-items: end;
 
-      .go_to_listening_page {
-        margin-left: 10px;
+        p {
+          cursor: pointer;
+          margin: 0 0 10px;
+          color: white;
+          text-align: right;
+          font-size: 20px;
+          font-weight: bold;
+
+          &:hover {
+            opacity: 80%;
+          }
+        }
+
+        button {
+          cursor: pointer;
+          color: white;
+          background-color: black;
+          border: 1px solid white;
+          padding: 5px 10px;
+          font-size: 20px;
+          border-radius: 5px;
+
+          &:hover {
+            opacity: 80%;
+          }
+        }
       }
     }
   }
