@@ -13,6 +13,9 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: row-reverse
+
+;
 
     .reader {
       cursor: pointer;
@@ -78,6 +81,8 @@
     .surah_name {
       color: white;
       font-size: 30px;
+      width: 400px;
+      text-align: center;
     }
   }
 }

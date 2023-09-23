@@ -59,10 +59,10 @@
       <div class="surah_number">{{subject.to}}</div>
     </div>
   </div>
-  <div class="last_time_section">
+  <div class="last_time_section" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime() || surah.lastListeningTime && getDaysOfLastListeningTime()">
     <p style="background-color: rgb({{surah.color.r}},{{surah.color.g}},0);">
       <span class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ هذه السورة منذ {{getDaysOfLastReadTime()}} أيام</span>
-      <span>/</span>
+      <span *ngIf="surah.lastReadingTime && getDaysOfLastReadTime() && surah.lastListeningTime && getDaysOfLastListeningTime()" >/</span>
       <span class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تستمع لهذه السورة منذ {{getDaysOfLastListeningTime()}} أيام</span>
     </p>
   </div>
