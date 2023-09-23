@@ -1,0 +1,20 @@
+<div class="">
+	<div class="card_section">
+		<div class="card">
+			<div class="header">
+				<img src="/assets/image/read.jpeg" alt="read now" [routerLink]="['/quran_pages', lastReadPage]">
+			</div>
+			<div class="body">
+				<p [routerLink]="['/quran_pages', lastReadPage]">{{lastReadPage ? 'أكمل القراءة' : 'ابدأ القراءة'}}</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="header">
+				<img src="/assets/image/listen.jpg" alt="listen now" [routerLink]="['/surah_listening']">
+			</div>
+			<div class="body">
+				<p [routerLink]="['/surah_listening']">أكمل الاستماع</p>
+			</div>
+		</div>
+	</div>
+</div>
