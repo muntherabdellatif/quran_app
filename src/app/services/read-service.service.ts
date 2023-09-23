@@ -14,13 +14,14 @@ export class ReadServiceService {
     this.markId = JSON.parse(localStorage.getItem("bookMarkPage") || '0');
   }
 
-  getCurrentPageId() : number{
+  getCurrentPageId(): number {
     return this.currentPageId;
   }
 
   setCurrentPageId(page_id: number) {
     this.currentPageId = page_id;
     this.currentPage.next(this.currentPageId);
+    this.setLastPageLocalStorage(this.currentPageId);
   }
 
   addMark(page_id: number) {
@@ -35,5 +36,9 @@ export class ReadServiceService {
 
   scrollToPage() {
     this.scroll.next(this.markId);
+  }
+
+  setLastPageLocalStorage(page: number) {
+    localStorage.setItem('last-read-page', String(page));
   }
 }

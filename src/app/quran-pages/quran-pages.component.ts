@@ -10,7 +10,7 @@ import { ReadServiceService } from '../services/read-service.service';
 export class QuranPagesComponent {
   pageIdNumber = 1;
   pageId = "001";
-  pagesNumber: any[]= Array.from({ length: 604 }, (_, index) => index + 1);
+  pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
   lastScrollPosition: number = 0;
 
   constructor(
@@ -32,7 +32,7 @@ export class QuranPagesComponent {
         this.scrollToPage(this.pageId);
       }
     });
-    this.read.scroll.subscribe((id )=> {
+    this.read.scroll.subscribe((id) => {
       this.pageIdNumber = +id - 1;
       this.pageId = this.pagesNumber[this.pageIdNumber];
       this.scrollToPage(this.pageId);
