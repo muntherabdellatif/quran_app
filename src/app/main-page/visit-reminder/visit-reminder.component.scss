@@ -1,0 +1,77 @@
+.page_container {
+  height: 100%;
+  width: 100%;
+
+  .page_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+
+    .aiah_container {
+      position: relative;
+      max-width: 600px;
+
+      .aiah {
+        font-size: 50px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 75px;
+      }
+
+      .surah_name {
+        color: white;
+        position: absolute;
+        font-size: 25px;
+        bottom: 0;
+        right: 0;
+      }
+
+      .aiah_number {
+        color: white;
+        position: absolute;
+        font-size: 25px;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+
+  .control_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+
+    .icon {
+      cursor: pointer;
+      color: white;
+      font-size: 50px;
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      background-color: black;
+      border: 1px solid white;
+      color: white;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 10px 20px;
+
+      .icon {
+        color: white;
+        font-size: 20px;
+      }
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+  }
+}

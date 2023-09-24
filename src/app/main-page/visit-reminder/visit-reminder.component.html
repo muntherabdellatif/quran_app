@@ -1,20 +1,23 @@
-<div class="">
-	<div class="card_section">
-		<div class="card">
-			<div class="header">
-				<img src="/assets/image/read.jpeg" alt="read now" [routerLink]="['/quran_pages', lastReadPage]">
-			</div>
-			<div class="body">
-				<p [routerLink]="['/quran_pages', lastReadPage]">{{lastReadPage ? 'أكمل القراءة' : 'ابدأ القراءة'}}</p>
-			</div>
-		</div>
-		<div class="card">
-			<div class="header">
-				<img src="/assets/image/listen.jpg" alt="listen now" [routerLink]="['/surah_listening']">
-			</div>
-			<div class="body">
-				<p [routerLink]="['/surah_listening']">أكمل الاستماع</p>
-			</div>
-		</div>
-	</div>
+<div class="page_container">
+  <div class="page_header">
+      <div class="aiah_container">
+        <p class="aiah">{{aiehObj.aieh}}</p>
+        <p class="surah_name">سورة {{aiehObj.surahName}}</p>
+        <p class="aiah_number">الاية {{aiehObj.aiehNumber}}</p>
+      </div>
+  </div>
+	<div class="control_section">
+			<button [routerLink]="['/quran_pages', lastReadPage]">
+        {{lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '}}
+        <fa-icon class="icon" [icon]="faBookOpenReader"></fa-icon>
+      </button>
+      <fa-icon class="icon"
+        [icon]="faHome"
+        [title]="'الصفحة الرئيسية'"
+        [routerLink]="['/']"
+      ></fa-icon>
+      <button *ngIf="listiningData.readerId" [routerLink]="['/surah_listening',listiningData.readerId ,listiningData.surahId]">
+        أكمل الاستماع
+        <fa-icon class="icon" [icon]="faHeadphonesSimple"></fa-icon>
+      </button>
 </div>

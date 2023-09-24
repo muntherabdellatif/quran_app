@@ -42,6 +42,7 @@ export class SurahListeningPageComponent {
       const readerId = params.get('reader');
       if (id) this.surahId = +id;
       if (readerId) this.readerId = +readerId;
+      localStorage.setItem('last_listening',JSON.stringify({readerId: this.readerId, surahId: this.surahId}));
     })
 
     // prepare youtube player
