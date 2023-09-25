@@ -1,7 +1,9 @@
+@import '../../styles.scss';
+
 .side_bar {
   position: fixed;
   z-index: 1000;
-  background-color: white;
+  background-color: $color4;
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
@@ -19,7 +21,7 @@
 
     .icon {
       font-size: 20px;
-      color: black;
+      color: $color1;
       cursor: pointer;
 
       &:hover {
@@ -27,7 +29,7 @@
       }
 
       &.active {
-        color: rgb(210, 145, 41);
+        color: $color5;
       }
     }
   }

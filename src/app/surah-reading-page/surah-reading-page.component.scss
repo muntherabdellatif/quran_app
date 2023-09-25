@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .surah_text_container {
   max-width: 750px;
   margin: auto;
@@ -8,7 +10,7 @@
   .go_to_mark_button,
   .book_mark_button {
     position: fixed;
-    color: white;
+    color: $color4;
     font-size: 50px;
     cursor: pointer;
 
@@ -38,7 +40,7 @@
   }
 
   .title {
-    color: white;
+    color: $color4;
     text-align: center;
     font-size: 50px;
     position: relative;
@@ -57,13 +59,13 @@
   }
 
   .basmala {
-    color: white;
+    color: $color4;
     text-align: center;
     font-size: 40px;
   }
 
   .text {
-    color: white;
+    color: $color4;
     font-size: 40px;
     text-align: justify;
     line-height: 60px;
@@ -79,7 +81,7 @@
     .last_surah ,.next_surah {
       font-size: 50px;
       cursor: pointer;
-      color: white;
+      color: $color4;
 
       &:hover {
         opacity: 90%;

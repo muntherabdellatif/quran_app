@@ -31,20 +31,46 @@
         <p class="name">{{surah.name}}</p>
       </div>
     </div>
-    <div class="quran_list" *ngIf="this.showList">
-      <div class="surah" *ngFor="let surah of quranIndex.slice(0, 114)">
-        <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
-        <span class="number" [routerLink]="['/surah', surah.id]">({{surah.id}})</span>
-        <fa-icon class="icon"
-          [icon]="faBookOpenReader"
-          [title]="'إقرأ الأن'"
-          [routerLink]="['/quran_pages', surah.page]">
-        </fa-icon>
-        <fa-icon class="icon"
-          [icon]="faHeadphonesSimple"
-          [title]="'إستمع الأن'"
-          [routerLink]="['/surah_listening', readerId ,surah.id]">
-        </fa-icon>
+    <div class="list_container">
+      <div class="quran_list" *ngIf="this.showList">
+        <div class="surah" *ngFor="let surah of quranIndex.slice(0, 57)">
+          <div class="text">
+            <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
+            <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
+          </div>
+          <div class="control">
+            <fa-icon class="icon"
+              [icon]="faBookOpenReader"
+              [title]="'إقرأ الأن'"
+              [routerLink]="['/quran_pages', surah.page]">
+            </fa-icon>
+            <fa-icon class="icon"
+              [icon]="faHeadphonesSimple"
+              [title]="'إستمع الأن'"
+              [routerLink]="['/surah_listening', readerId ,surah.id]">
+            </fa-icon>
+          </div>
+        </div>
+      </div>
+      <div class="quran_list" *ngIf="this.showList">
+        <div class="surah" *ngFor="let surah of quranIndex.slice(57, 114)">
+          <div class="text">
+            <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
+            <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
+          </div>
+          <div class="control">
+            <fa-icon class="icon"
+              [icon]="faBookOpenReader"
+              [title]="'إقرأ الأن'"
+              [routerLink]="['/quran_pages', surah.page]">
+            </fa-icon>
+            <fa-icon class="icon"
+              [icon]="faHeadphonesSimple"
+              [title]="'إستمع الأن'"
+              [routerLink]="['/surah_listening', readerId ,surah.id]">
+            </fa-icon>
+          </div>
+        </div>
       </div>
     </div>
   </div>
