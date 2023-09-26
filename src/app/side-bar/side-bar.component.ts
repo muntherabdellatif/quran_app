@@ -1,8 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { faHome, faExpand, faCompress, faBars, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faExpand, faCompress, faBars, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple} from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
+import { quranIndex } from 'src/app/data';
+
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -14,6 +16,10 @@ export class SideBarComponent {
   showBigSurah = true;
   showSmallSurah = true;
   showSurahList = false;
+	lastReadPage: number = 0;
+  listiningData: {readerId: number, surahId:number} = {readerId: 1, surahId:1};
+	firstListeningTime = true;
+  quranIndex = quranIndex;
 
   faExpand = faExpand;
   faCompress = faCompress;
@@ -21,6 +27,8 @@ export class SideBarComponent {
   faBars = faBars;
   faBookmark = faBookmark;
   pointer = faHandPointDown;
+  faHeadphonesSimple =faHeadphonesSimple;
+  faBookOpenReader = faBookOpenReader;
 
   constructor(
     private router: Router,
@@ -40,6 +48,8 @@ export class SideBarComponent {
     this.read.currentPage.subscribe((currentPage => {
       this.checkPointerDirection(currentPage);
     }))
+  	this.getLastReadPage();
+    this.getLastListeningData();
   }
 
   toggleShowBigSurah() {
@@ -73,5 +83,34 @@ export class SideBarComponent {
 
   isQuranPages(url: string) {
     return url.split('/')[1] == 'quran_pages';
+  }
+
+  isListeningPage(url: string) {
+    return url.split('/')[1] == 'surah_listening';
+  }
+
+  getLastReadPage() {
+		this.lastReadPage = +(localStorage.getItem('last-read-page') || '');
+	}
+
+  getLastListeningData() {
+		const LastListeningData = JSON.parse(localStorage.getItem('last_listening') || '{}');
+		if (LastListeningData?.surahId && LastListeningData?.readerId) {
+			this.listiningData.surahId = LastListeningData?.surahId;
+			this.listiningData.readerId = LastListeningData?.readerId;
+			this.firstListeningTime = false;
+		} else {
+      this.listiningData = {readerId: this.getDefaultReader(), surahId: 1};
+      this.firstListeningTime = true;
+		}
+	}
+
+  getDefaultReader() {
+    let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
+    if (!readerId) {
+      localStorage.setItem("readerId", "1");
+      readerId = 1;
+    }
+    return readerId;
   }
 }

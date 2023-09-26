@@ -8,7 +8,7 @@
   </div>
 	<div class="control_section">
 			<button [routerLink]="['/quran_pages', lastReadPage]">
-        {{lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '}}
+       {{lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '}}
         <fa-icon class="icon" [icon]="faBookOpenReader"></fa-icon>
       </button>
       <fa-icon class="icon"
@@ -16,8 +16,8 @@
         [title]="'الصفحة الرئيسية'"
         [routerLink]="['/']"
       ></fa-icon>
-      <button *ngIf="listiningData.readerId" [routerLink]="['/surah_listening',listiningData.readerId ,listiningData.surahId]">
-        أكمل الاستماع
+      <button [routerLink]="['/surah_listening',listiningData.readerId ,listiningData.surahId]">
+        {{firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + " " + quranIndex[listiningData.surahId - 1].name }}
         <fa-icon class="icon" [icon]="faHeadphonesSimple"></fa-icon>
       </button>
 </div>

@@ -59,11 +59,15 @@
       <div class="surah_number">{{subject.to}}</div>
     </div>
   </div>
-  <div class="last_time_section" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime() || surah.lastListeningTime && getDaysOfLastListeningTime()">
+  <div class="last_time_section" *ngIf="surah.lastReadingTime || surah.lastListeningTime">
     <p style="background-color: rgb({{surah.color.r}},{{surah.color.g}},0);">
-      <span class="last_reading_time" *ngIf="surah.lastReadingTime && getDaysOfLastReadTime()">لم تقرأ هذه السورة منذ {{getDaysOfLastReadTime()}} أيام</span>
-      <span *ngIf="surah.lastReadingTime && getDaysOfLastReadTime() && surah.lastListeningTime && getDaysOfLastListeningTime()" >/</span>
-      <span class="last_listening_time" *ngIf="surah.lastListeningTime && getDaysOfLastListeningTime()">لم تستمع لهذه السورة منذ {{getDaysOfLastListeningTime()}} أيام</span>
+      <span class="last_reading_time" *ngIf="surah.lastReadingTime">
+        {{getDaysOfLastReadTime() != 0 ? 'لم تقرأ هذه السورة منذ' + ' ' + getDaysOfLastReadTime() +' أيام' : 'تمت القراءة اليوم'}}
+      </span>
+      <span *ngIf="surah.lastReadingTime && surah.lastListeningTime" >/</span>
+      <span class="last_listening_time" *ngIf="surah.lastListeningTime ">
+        {{getDaysOfLastListeningTime() != 0 ? 'لم تستمع لهذه السورة منذ' + ' ' + getDaysOfLastListeningTime() +' أيام' : 'تمت الإستماع اليوم'}}
+      </span>
     </p>
   </div>
   <div class="card_section">
