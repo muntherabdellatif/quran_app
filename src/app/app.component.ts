@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LightService } from './services/light.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private light: LightService
   ) { }
 
   ngOnInit() {
@@ -22,7 +24,8 @@ export class AppComponent implements OnInit {
       if (!localStorage.getItem(key)) {
         localStorage.setItem(key, JSON.stringify(Array.from({ length: 144 }, () => 0)));
       }
-    })
+    });
+    this.light.init();
   }
 
   checkLastVisitTime() {

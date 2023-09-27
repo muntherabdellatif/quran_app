@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { faHome, faExpand, faCompress, faBars, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faExpand, faCompress, faBars, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple, faArrowTurnRight} from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from 'src/app/data';
@@ -17,7 +17,7 @@ export class SideBarComponent {
   showSmallSurah = true;
   showSurahList = false;
 	lastReadPage: number = 0;
-  listiningData: {readerId: number, surahId:number} = {readerId: 1, surahId:1};
+  listeningData: {readerId: number, surahId:number} = {readerId: 1, surahId:1};
 	firstListeningTime = true;
   quranIndex = quranIndex;
 
@@ -29,6 +29,7 @@ export class SideBarComponent {
   pointer = faHandPointDown;
   faHeadphonesSimple =faHeadphonesSimple;
   faBookOpenReader = faBookOpenReader;
+  faArrowTurnRight = faArrowTurnRight;
 
   constructor(
     private router: Router,
@@ -96,11 +97,11 @@ export class SideBarComponent {
   getLastListeningData() {
 		const LastListeningData = JSON.parse(localStorage.getItem('last_listening') || '{}');
 		if (LastListeningData?.surahId && LastListeningData?.readerId) {
-			this.listiningData.surahId = LastListeningData?.surahId;
-			this.listiningData.readerId = LastListeningData?.readerId;
+			this.listeningData.surahId = LastListeningData?.surahId;
+			this.listeningData.readerId = LastListeningData?.readerId;
 			this.firstListeningTime = false;
 		} else {
-      this.listiningData = {readerId: this.getDefaultReader(), surahId: 1};
+      this.listeningData = {readerId: this.getDefaultReader(), surahId: 1};
       this.firstListeningTime = true;
 		}
 	}
@@ -112,5 +113,15 @@ export class SideBarComponent {
       readerId = 1;
     }
     return readerId;
+  }
+
+  getBackSurahId() {
+    if (this.isQuranPages(this.currentUrl)) {
+      return this.read.getCurrentPageId();
+    } else if (this.isListeningPage(this.currentUrl)){
+      this.getLastListeningData();
+      return this.listeningData.surahId;
+    }
+    return 0;
   }
 }

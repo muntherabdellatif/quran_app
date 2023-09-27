@@ -276,3 +276,27 @@
     }
   }
 }
+
+.gold_bg {
+  background-image: url('../../assets/image/goldBG.png');
+  width: 223px;
+  height: 244px;
+  position: fixed;
+  left: 10px;
+  top: 52%;
+  background-size: cover;
+  transform: rotate(33deg);
+  z-index: -1;
+}
+
+.gold_bg_2 {
+  background-image: url('../../assets/image/goldBG2.png');
+  width: 223px;
+  height: 244px;
+  position: fixed;
+  left: 200px;
+  top: 8%;
+  background-size: cover;
+  transform: rotate(49deg);
+  z-index: -1;
+}

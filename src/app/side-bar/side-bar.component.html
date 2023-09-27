@@ -46,8 +46,14 @@
     <fa-icon class="icon"
       *ngIf="currentUrl == '/'"
       [icon]="faHeadphonesSimple"
-      [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listiningData.surahId - 1].name"
-      [routerLink]="['/surah_listening',listiningData.readerId ,listiningData.surahId]"
+      [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
+      [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]"
+    ></fa-icon>
+    <fa-icon class="icon"
+      *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)"
+      [icon]="faArrowTurnRight"
+      [title]="'عد إلى صفحة الصورة'"
+      [routerLink]="['/surah',getBackSurahId()]"
     ></fa-icon>
   </div>
 </div>
