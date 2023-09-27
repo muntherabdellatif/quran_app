@@ -1,16 +1,4 @@
 <div class="surah-page-container">
-  <fa-icon class="next_surah"
-    *ngIf="surah.id < quranIndex.length - 1"
-    [icon]="faAnglesLeft"
-    [title]="quranIndex[surah.id].name"
-    [routerLink]="['/surah', surah.id + 1]"
-  ></fa-icon>
-  <fa-icon class="last_surah"
-    *ngIf="surah.id > 1"
-    [icon]="faAnglesRight"
-    [title]="quranIndex[surah.id - 2].name"
-    [routerLink]="['/surah', surah.id - 1]"
-  ></fa-icon>
   <div class="header">
     <div class="surah-plant"
       style="
@@ -19,11 +7,29 @@
       "
     >
       <div class="surah-name">{{surah.name}}</div>
+      <fa-icon class="next_surah"
+        *ngIf="surah.id < quranIndex.length - 1"
+        [icon]="faAnglesLeft"
+        [title]="quranIndex[surah.id].name"
+        [routerLink]="['/surah', surah.id + 1]"
+      ></fa-icon>
+      <fa-icon class="last_surah"
+        *ngIf="surah.id > 1"
+        [icon]="faAnglesRight"
+        [title]="quranIndex[surah.id - 2].name"
+        [routerLink]="['/surah', surah.id - 1]"
+      ></fa-icon>
     </div>
     <div class="surah-info">
-      <span class="info">سورة {{surah.type}}</span>
-      <span class="info">عدد اياتها: {{surah.aiahNumber}}</span>
-      <span class="info">{{surah.parts.length > 1 ? 'الاجزاء:' : 'الجزء:'}} {{surah.parts.join("-")}}</span>
+      <div class="info">
+        <p>سورة {{surah.type}}</p>
+      </div>
+      <div class="info">
+        <p>عدد اياتها: {{surah.aiahNumber}}</p>
+      </div>
+      <div class="info">
+        <p>{{surah.parts.length > 1 ? 'الاجزاء:' : 'الجزء:'}} {{surah.parts.join("-")}}</p>
+      </div>
     </div>
     <div class="memorizing-interpretation">
       <div class="container">
@@ -46,16 +52,16 @@
   </div>
   <div class="memorizing-interpretation_section">
     <button (click)="toggleSurahMemorize()">
-      {{surah.memorize ? 'حذف السورة من قائمة السور التي تحفظها' : 'أضف السورة لقائمة السور التي تحفظها'}}
+      <p>{{surah.memorize ? 'حذف السورة من قائمة السور التي تحفظها' : 'أضف السورة لقائمة السور التي تحفظها'}}</p>
     </button>
     <button (click)="toggleSurahInterpretation()">
-      {{surah.interpretation ? 'حذف السورة من قائمة السور التي إستمعت لتفسيرها' : 'أضف السورة لقائمة السور التي إستمعت لتفسيرها'}}
+      <p>{{surah.interpretation ? 'حذف السورة من قائمة السور التي إستمعت لتفسيرها' : 'أضف السورة لقائمة السور التي إستمعت لتفسيرها'}}</p>
     </button>
   </div>
   <p class="subjects_title" *ngIf="surah.subjects.length > 0">:مواضيع السورة</p>
   <div class="subjects" *ngIf="surah.subjects.length > 0">
     <div class="subject" *ngFor="let subject of surah.subjects">
-      <div class="subject_text">{{subject.subject}}</div>
+      <div class="subject_text"><p>{{subject.subject}}</p></div>
       <div class="surah_number">{{subject.to}}</div>
     </div>
   </div>

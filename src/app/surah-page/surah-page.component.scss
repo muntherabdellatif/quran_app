@@ -21,11 +21,13 @@
   }
 
   .next_surah {
-    left: 20px;
+    top: 90%;
+    left: -15px;
   }
 
   .last_surah {
-    right: 20px;
+    top: 90%;
+    right: -15px;
   }
 
   .header {
@@ -36,16 +38,18 @@
     flex-wrap: wrap;
 
     .surah-plant {
+      position: relative;
       width: 150px;
       height: 150px;
       border-radius: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid $color1;
+      border: 3px solid $gold3;
       color: $color4;
       font-weight: bold;
       font-size: 35px;
+      margin-bottom: 20px;
     }
 
     .surah-info {
@@ -57,11 +61,19 @@
       .info {
         font-size: 20px;
         color: $color4;
-        padding: 5px 10px;
-        border: solid 0.5px $color4;
         border-radius: 5px;
         margin: 20px;
         background-color: $color2;
+        border: solid 0.5px transparent;
+        background-image: linear-gradient($color1, $color1), linear-gradient(to right, $gold1, $gold3);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        padding: 0.5px;
+
+        p {
+          margin: 0;
+          padding: 5px 10px;
+        }
       }
     }
 
@@ -118,9 +130,19 @@
       opacity: 100%;
       font-size: 18px;
       font-weight: bold;
+      border: solid 0.5px transparent;
+      background-image: linear-gradient($color1, $color1), linear-gradient(90deg, $color3, $gold3);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      padding: 0.5px;
+
+      p {
+        margin: 0;
+        padding: 10px 15px;
+      }
 
       &:hover {
-        opacity: 70%;
+        background-image: linear-gradient($color1, $color1), linear-gradient(180deg, $gold1, $gold3);
       }
     }
   }
@@ -140,7 +162,16 @@
         color: $color4;
         background-color: $color3;
         font-size: 20px;
-        border: solid $color4 0.5px;
+        border: solid 0.5px transparent;
+        background-image: linear-gradient($color3, $color3), linear-gradient(290deg, $gold2, $color1);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        padding: 0.5px;
+
+        p {
+          margin: 0;
+          padding: 5px 10px;
+        }
       }
 
       .surah_number {

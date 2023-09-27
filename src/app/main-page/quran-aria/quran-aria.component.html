@@ -1,6 +1,6 @@
   <div class="surah_container">
     <div class="suarh_aria bigView" *ngIf="this.showBig && !this.showList">
-      <div class="surah" *ngFor="let surah of quranIndex"
+      <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
           style="
             width: {{surah.width}}px;
             height: {{surah.width}}px;
@@ -33,18 +33,18 @@
     </div>
     <div class="list_container">
       <div class="quran_list" *ngIf="this.showList">
-        <div class="surah" *ngFor="let surah of quranIndex.slice(0, 57)">
+        <div class="surah" *ngFor="let surah of quranIndex.slice(0, 57)" [routerLink]="['/surah', surah.id]">
           <div class="text">
             <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
             <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
           </div>
           <div class="control">
-            <fa-icon class="icon"
+            <fa-icon class="icon read"
               [icon]="faBookOpenReader"
               [title]="'إقرأ الأن'"
               [routerLink]="['/quran_pages', surah.page]">
             </fa-icon>
-            <fa-icon class="icon"
+            <fa-icon class="icon listen"
               [icon]="faHeadphonesSimple"
               [title]="'إستمع الأن'"
               [routerLink]="['/surah_listening', readerId ,surah.id]">
@@ -59,12 +59,12 @@
             <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
           </div>
           <div class="control">
-            <fa-icon class="icon"
+            <fa-icon class="icon read"
               [icon]="faBookOpenReader"
               [title]="'إقرأ الأن'"
               [routerLink]="['/quran_pages', surah.page]">
             </fa-icon>
-            <fa-icon class="icon"
+            <fa-icon class="icon listen"
               [icon]="faHeadphonesSimple"
               [title]="'إستمع الأن'"
               [routerLink]="['/surah_listening', readerId ,surah.id]">

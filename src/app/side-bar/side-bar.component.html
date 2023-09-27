@@ -38,13 +38,13 @@
       (click)="goToMark()"
     ></fa-icon>
     <fa-icon class="icon"
-      *ngIf="!isQuranPages(currentUrl)"
+      *ngIf="currentUrl == '/'"
       [icon]="faBookOpenReader"
       [title]="lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '"
       [routerLink]="['/quran_pages', lastReadPage]"
     ></fa-icon>
     <fa-icon class="icon"
-      *ngIf="!isListeningPage(currentUrl)"
+      *ngIf="currentUrl == '/'"
       [icon]="faHeadphonesSimple"
       [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listiningData.surahId - 1].name"
       [routerLink]="['/surah_listening',listiningData.readerId ,listiningData.surahId]"

@@ -41,6 +41,6 @@
       [ngClass]="{'active': readerId == reader.reader_id}"
       [routerLink]="['/surah_listening', reader.reader_id, surahId]"
       (click)="resetVideo()"
-    >{{reader.reader_name}}</div>
+    ><p>{{reader.reader_name}}</p></div>
   </div>
 </div>
