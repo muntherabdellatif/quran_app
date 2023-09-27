@@ -3,6 +3,7 @@ import { quranIndex } from '../data/index';
 import { surahInfo } from '../data/info';
 import { ActivatedRoute } from '@angular/router';
 import { faBrain, faBookOpenReader, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle} from '@fortawesome/free-solid-svg-icons';
+import { LightService } from '../services/light.service';
 
 interface Surah {
   id: number,
@@ -33,6 +34,7 @@ export class SurahPageComponent {
   faAnglesLeft = faAnglesLeft;
   faBrain = faBrain;
   faBookOpenReader = faBookOpenReader;
+  surahLight = 0;
 
   surah: Surah = {
     id: 0,
@@ -55,7 +57,7 @@ export class SurahPageComponent {
   readonly quranIndex = quranIndex;
   readerId: number = 0;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private light: LightService) {
   }
 
   ngOnInit() {
@@ -64,7 +66,7 @@ export class SurahPageComponent {
       if (id) {
         this.surah.id = +id;
         this.surah.name = this.quranIndex[+id - 1].name;
-        this.surah.light = this.quranIndex[+id - 1].light;
+        this.surah.light = this.light.getSurahLight(+id);
         this.surah.type = this.surahInfo[+id - 1].type;
         this.surah.aiahNumber = this.surahInfo[+id - 1].aiahNumber;
         this.surah.parts = this.surahInfo[+id - 1].parts;
@@ -87,6 +89,8 @@ export class SurahPageComponent {
       memorizeArray[this.surah.id - 1] = this.surah.memorize;
       localStorage.setItem("memorizing", JSON.stringify(memorizeArray));
     }
+    this.light.updateSurahLight(this.surah.id);
+    this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
   toggleSurahInterpretation () {
@@ -96,6 +100,8 @@ export class SurahPageComponent {
       interpretationArray[this.surah.id - 1] = this.surah.interpretation;
       localStorage.setItem("interpretation", JSON.stringify(interpretationArray));
     }
+    this.light.updateSurahLight(this.surah.id);
+    this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
   getLastReadTime() {
@@ -150,6 +156,8 @@ export class SurahPageComponent {
       localStorage.setItem("lastReadingTime", JSON.stringify(lastReadTimeArray));
       this.surah.lastReadingTime = timestampInSeconds;
     }
+    this.light.updateSurahLight(this.surah.id);
+    this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
   doneListening() {
@@ -160,6 +168,8 @@ export class SurahPageComponent {
       localStorage.setItem("lastListeningTime", JSON.stringify(lastListeningTimeArray));
       this.surah.lastListeningTime = timestampInSeconds;
     }
+    this.light.updateSurahLight(this.surah.id);
+    this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
   getDefaultReader() {

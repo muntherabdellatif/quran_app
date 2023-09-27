@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
 import { SideBarService } from 'src/app/services/side_bar.service';
 import { faBookOpenReader, faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
+import { LightService } from 'src/app/services/light.service';
 
 @Component({
   selector: 'app-quran-aria',
@@ -23,8 +24,9 @@ export class QuranAriaComponent {
 
   quranIndex = quranIndex;
   smallQuranIndex = smallQuranIndex;
+  lightArray: number[] = [];
 
-  constructor(private sideBarService: SideBarService ){}
+  constructor(private sideBarService: SideBarService, private light: LightService){}
 
   ngOnInit() {
     this.showList = this.sideBarService.getShowSurahList();
@@ -45,6 +47,7 @@ export class QuranAriaComponent {
     });
 
     this.findSurahWidth();
+    this.findSurahLight();
     this.getDefaultReader();
   }
 
@@ -70,12 +73,21 @@ export class QuranAriaComponent {
     }
   }
 
-    getDefaultReader() {
+  getDefaultReader() {
     let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
     if (!readerId) {
       localStorage.setItem("readerId", "1");
       readerId = 1;
     }
     this.readerId = readerId;
+  }
+
+
+  findSurahLight() {
+    const quranLightArray = this.light.getQuranLightArray();
+    this.quranIndex.forEach((surah,index) => {
+      this.lightArray.push(quranLightArray[index]);
+    });
+    console.log(this.lightArray);
   }
 }

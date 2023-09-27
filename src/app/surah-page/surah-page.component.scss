@@ -221,7 +221,11 @@
       border: 1px solid $color4;
       border-radius: 20px;
       overflow: hidden;
-      background-color: $color1;
+      border: solid 0.5px transparent;
+      background-image: linear-gradient($color3, $color3), linear-gradient(290deg, $gold3, $gold1);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      padding: 0.5px;
 
       .header {
         width: 200px;
@@ -245,6 +249,7 @@
         flex-direction: column;
         justify-content: right;
         align-items: end;
+        background-color: $color1;
 
         p {
           cursor: pointer;
