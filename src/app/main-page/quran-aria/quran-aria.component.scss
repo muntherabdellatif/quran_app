@@ -6,10 +6,53 @@
   align-items: center;
   justify-content: center;
   margin: 20px auto 20px;
+  flex-direction: column;
+
+  .search {
+    position: fixed;
+    z-index: 1000;
+    background-color: $color4;
+    top: 50px;
+    right: 10px;
+    border-radius: 25px;
+    min-height: 25px;
+    min-width: 25px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    input {
+      border: none;
+      text-align: right;
+      background-color: $color4;
+      color: $color1;
+      padding: 5px 0;
+      font-size: 18px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $color1;
+      }
+    }
+
+    .icon {
+      font-size: 20px;
+      color: $color1;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+  }
 
   .suarh_aria {
     width: fit-content;
-    position: relative;
 
     .surah {
       cursor: pointer;

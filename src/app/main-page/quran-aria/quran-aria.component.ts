@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
 import { SideBarService } from 'src/app/services/side_bar.service';
-import { faBookOpenReader, faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpenReader, faHeadphonesSimple, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { LightService } from 'src/app/services/light.service';
 
 @Component({
@@ -14,9 +14,12 @@ export class QuranAriaComponent {
   readonly slanderedPageWidth = 1400;
   @Input() width: number = this.slanderedPageWidth;
   @Input() quranAriaWidthSubject: Subject<number> | undefined;
+  searchKey:string = "";
 
   faBookOpenReader = faBookOpenReader;
   faHeadphonesSimple = faHeadphonesSimple;
+  faSearch = faSearch;
+  showSearch = false;
 
   showBig: boolean = true;
   showList: boolean = false;
@@ -89,5 +92,9 @@ export class QuranAriaComponent {
       this.lightArray.push(quranLightArray[index]);
     });
     console.log(this.lightArray);
+  }
+
+  toggelShowSearch() {
+    this.showSearch = !this.showSearch;
   }
 }

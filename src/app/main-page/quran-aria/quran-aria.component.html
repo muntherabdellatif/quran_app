@@ -1,4 +1,18 @@
   <div class="surah_container">
+    <div class="search">
+      <input type="text"
+        name="search"
+        id="search"
+        [(ngModel)]="searchKey"
+        placeholder="إبحث هنا"
+        *ngIf="showSearch"
+      >
+      <fa-icon class="icon"
+        [icon]="faSearch"
+        (click)="toggelShowSearch()"
+        title="إبحث عن سورة"
+      ></fa-icon>
+    </div>
     <div class="suarh_aria bigView" *ngIf="this.showBig && !this.showList">
       <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
           style="
