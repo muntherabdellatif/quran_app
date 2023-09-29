@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     if (!lastVisitTime)
       return this.router.navigate(['visit_reminder']);
 
-    if (Date.now() - lastVisitTime >= this.oneDayUnix) {
+    if ((Date.now() - lastVisitTime / 1000) >= this.oneDayUnix) {
       return this.router.navigate(['visit_reminder']);
     }
 
