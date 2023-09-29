@@ -21,9 +21,9 @@ export class SideBarComponent {
   showBigSurah = true;
   showSmallSurah = true;
   showSurahList = false;
-	lastReadPage: number = 0;
-  listeningData: {readerId: number, surahId:number} = {readerId: 1, surahId:1};
-	firstListeningTime = true;
+  lastReadPage: number = 0;
+  listeningData: { readerId: number, surahId: number } = { readerId: 1, surahId: 1 };
+  firstListeningTime = true;
   showSavePopup = false;
   doneReadingList: number[] = [];
   doneListeningList: number[] = [];
@@ -35,7 +35,7 @@ export class SideBarComponent {
   faBars = faBars;
   faBookmark = faBookmark;
   pointer = faHandPointDown;
-  faHeadphonesSimple =faHeadphonesSimple;
+  faHeadphonesSimple = faHeadphonesSimple;
   faBookOpenReader = faBookOpenReader;
   faArrowTurnRight = faArrowTurnRight;
   faFloppyDisk = faFloppyDisk;
@@ -53,25 +53,25 @@ export class SideBarComponent {
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = this.router.url;
       }
     });
-    this.read.currentPage.subscribe((currentPage => {
+    this.read.currentPage.subscribe((currentPage: any) => {
       this.checkPointerDirection(currentPage);
-    }))
-    this.progress.showSave.subscribe((showPopup)=> {
+    })
+    this.progress.showSave.subscribe((showPopup: any) => {
       this.showSavePopup = showPopup;
     })
-    this.progress.updateDoneReadingList.subscribe((doneReadingList) => {
+    this.progress.updateDoneReadingList.subscribe((doneReadingList: any) => {
       this.doneReadingList = doneReadingList;
     })
-    this.progress.updateDoneListeningList.subscribe((doneListeningList) => {
+    this.progress.updateDoneListeningList.subscribe((doneListeningList: any) => {
       this.doneListeningList = doneListeningList;
       console.log("doneListeningList :", doneListeningList);
     })
-  	this.getLastReadPage();
+    this.getLastReadPage();
     this.getLastListeningData();
     this.doneListeningList = this.progress.getDoneListeningList();
     this.doneReadingList = this.progress.getDoneReadingList();
@@ -116,20 +116,20 @@ export class SideBarComponent {
   }
 
   getLastReadPage() {
-		this.lastReadPage = +(localStorage.getItem('last-read-page') || '');
-	}
+    this.lastReadPage = +(localStorage.getItem('last-read-page') || '');
+  }
 
   getLastListeningData() {
-		const LastListeningData = JSON.parse(localStorage.getItem('last_listening') || '{}');
-		if (LastListeningData?.surahId && LastListeningData?.readerId) {
-			this.listeningData.surahId = LastListeningData?.surahId;
-			this.listeningData.readerId = LastListeningData?.readerId;
-			this.firstListeningTime = false;
-		} else {
-      this.listeningData = {readerId: this.getDefaultReader(), surahId: 1};
+    const LastListeningData = JSON.parse(localStorage.getItem('last_listening') || '{}');
+    if (LastListeningData?.surahId && LastListeningData?.readerId) {
+      this.listeningData.surahId = LastListeningData?.surahId;
+      this.listeningData.readerId = LastListeningData?.readerId;
+      this.firstListeningTime = false;
+    } else {
+      this.listeningData = { readerId: this.getDefaultReader(), surahId: 1 };
       this.firstListeningTime = true;
-		}
-	}
+    }
+  }
 
   getDefaultReader() {
     let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
@@ -143,7 +143,7 @@ export class SideBarComponent {
   getBackSurahId() {
     if (this.isQuranPages(this.currentUrl)) {
       return this.read.getCurrentPageId();
-    } else if (this.isListeningPage(this.currentUrl)){
+    } else if (this.isListeningPage(this.currentUrl)) {
       this.getLastListeningData();
       return this.listeningData.surahId;
     }

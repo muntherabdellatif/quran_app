@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { quranIndex } from '../data/index';
 import { surahInfo } from '../data/info';
 import { ActivatedRoute } from '@angular/router';
-import { faBrain, faBookOpenReader, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle} from '@fortawesome/free-solid-svg-icons';
+import { faBrain, faBookOpenReader, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { LightService } from '../services/light.service';
 
 interface Surah {
@@ -14,12 +14,12 @@ interface Surah {
   parts: number[],
   memorize: boolean,
   interpretation: boolean,
-  subjects:  ({ subject: string; to: number;}| { subject: string; to: string;})[]
+  subjects: ({ subject: string; to: number; } | { subject: string; to: string; })[]
   lastReadingTime: number;
-  lastListeningTime:number,
+  lastListeningTime: number,
   surahText: string;
   startPage: number,
-  color: {r: number, g: number}
+  color: { r: number, g: number }
 }
 
 @Component({
@@ -45,12 +45,12 @@ export class SurahPageComponent {
     parts: [0],
     memorize: true,
     interpretation: true,
-    subjects: [{subject: "", to: 1}],
+    subjects: [{ subject: "", to: 1 }],
     lastReadingTime: 0,
     lastListeningTime: 0,
     surahText: "",
     startPage: 0,
-    color: {r: 0, g: 255}
+    color: { r: 0, g: 255 }
   };
 
   readonly surahInfo = surahInfo;
@@ -61,7 +61,7 @@ export class SurahPageComponent {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       if (id) {
         this.surah.id = +id;
@@ -93,7 +93,7 @@ export class SurahPageComponent {
     this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
-  toggleSurahInterpretation () {
+  toggleSurahInterpretation() {
     this.surah.interpretation = !this.surah.interpretation;
     const interpretationArray = JSON.parse(localStorage.getItem("interpretation") || "[]");
     if (interpretationArray.length > 0) {
@@ -137,7 +137,7 @@ export class SurahPageComponent {
       return 1;
 
     const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
-    return Math.floor((timestampInSeconds - this.surah.lastReadingTime)/(60 * 60 * 24));
+    return Math.floor((timestampInSeconds - this.surah.lastReadingTime) / (60 * 60 * 24));
   }
 
   getDaysOfLastListeningTime() {
@@ -145,7 +145,7 @@ export class SurahPageComponent {
       return 1;
 
     const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
-    return Math.floor((timestampInSeconds - this.surah.lastListeningTime)/(60 * 60 * 24));
+    return Math.floor((timestampInSeconds - this.surah.lastListeningTime) / (60 * 60 * 24));
   }
 
   doneRead() {
@@ -183,15 +183,15 @@ export class SurahPageComponent {
 
   getTimeColor() {
     const days = 60;
-    const lastReadDay = Math.min(this.getDaysOfLastReadTime(),60);
-    const lastListeningDay = Math.min(this.getDaysOfLastReadTime(),60);
+    const lastReadDay = Math.min(this.getDaysOfLastReadTime(), 60);
+    const lastListeningDay = Math.min(this.getDaysOfLastReadTime(), 60);
     if (lastReadDay < lastListeningDay) {
-      this.surah.color.g = 255 - (lastReadDay/days)*255;
-      this.surah.color.r = (lastReadDay/days)*255;
+      this.surah.color.g = 255 - (lastReadDay / days) * 255;
+      this.surah.color.r = (lastReadDay / days) * 255;
     } else {
-      const average = (lastReadDay + lastListeningDay)/2;
-      this.surah.color.g = 255 - (average/days)*255;
-      this.surah.color.r = (average/days)*255;
+      const average = (lastReadDay + lastListeningDay) / 2;
+      this.surah.color.g = 255 - (average / days) * 255;
+      this.surah.color.r = (average / days) * 255;
     }
   }
 }
