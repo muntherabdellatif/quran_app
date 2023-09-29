@@ -9,6 +9,7 @@ import { SurahListeningPageComponent } from './surah-listening-page/surah-listen
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { QuranPagesComponent } from './quran-pages/quran-pages.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { Mp3Directive } from './directive/mp3.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     SurahListeningPageComponent,
     QuranPagesComponent,
     SideBarComponent,
+    Mp3Directive,
   ],
   imports: [
     BrowserModule,
