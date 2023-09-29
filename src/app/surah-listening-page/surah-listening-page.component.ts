@@ -6,101 +6,101 @@ import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 
 interface SurahLink {
-  id: number,
-  name: string,
-  link_id: string,
-  mp3_link: string,
+	id: number,
+	name: string,
+	link_id: string,
+	mp3_link: string,
 }
 
 interface Reader {
-  reader_id: number,
-  reader_name: string,
-  quran: SurahLink[]
+	reader_id: number,
+	reader_name: string,
+	quran: SurahLink[]
 }
 @Component({
-  selector: 'app-surah-listening-page',
-  templateUrl: './surah-listening-page.component.html',
-  styleUrls: ['./surah-listening-page.component.scss']
+	selector: 'app-surah-listening-page',
+	templateUrl: './surah-listening-page.component.html',
+	styleUrls: ['./surah-listening-page.component.scss']
 })
 
 export class SurahListeningPageComponent {
-  @ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
-  readers: Reader[] = readers;
-  surahId: number = 0;
-  readerId: number = 0;
-  private apiLoaded = false;
-  isVideo: boolean = true;
+	@ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
+	readers: Reader[] = readers;
+	surahId: number = 0;
+	readerId: number = 0;
+	private apiLoaded = false;
+	isVideo: boolean = true;
 
-  playPauseIcon = faPlay;
-  faStop = faStop;
-  faAnglesLeft = faAnglesLeft;
-  faAnglesRight = faAnglesRight;
-  faFileAudio = faFileAudio;
-  faFileVideo = faFileVideo;
+	playPauseIcon = faPlay;
+	faStop = faStop;
+	faAnglesLeft = faAnglesLeft;
+	faAnglesRight = faAnglesRight;
+	faFileAudio = faFileAudio;
+	faFileVideo = faFileVideo;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private progress: ProgressService
-  ) { }
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private progress: ProgressService
+	) { }
 
-  ngOnInit() {
-    // get surah id
-    this.route.paramMap.subscribe((params: any) => {
-      const id = params.get('id');
-      const readerId = params.get('reader');
-      if (id) this.surahId = +id;
-      if (readerId) this.readerId = +readerId;
-      localStorage.setItem('last_listening', JSON.stringify({ readerId: this.readerId, surahId: this.surahId }));
-    })
+	ngOnInit() {
+		// get surah id
+		this.route.paramMap.subscribe((params: any) => {
+			const id = params.get('id');
+			const readerId = params.get('reader');
+			if (id) this.surahId = +id;
+			if (readerId) this.readerId = +readerId;
+			localStorage.setItem('last_listening', JSON.stringify({ readerId: this.readerId, surahId: this.surahId }));
+		})
 
-    // prepare youtube player
-    if (!this.apiLoaded) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.body.appendChild(tag);
-      this.apiLoaded = true;
-    }
-    this.togglePlayPause();
+		// prepare youtube player
+		if (!this.apiLoaded) {
+			const tag = document.createElement('script');
+			tag.src = 'https://www.youtube.com/iframe_api';
+			document.body.appendChild(tag);
+			this.apiLoaded = true;
+		}
+		this.togglePlayPause();
 
-    // get default reader
-  }
+		// get default reader
+	}
 
-  ngAfterViewInit() {
-    if (this.player) {
-      this.player.stateChange.subscribe((event: any) => {
-        if (event.data === YT.PlayerState.ENDED) {
-          // Video has ended, perform your desired actions here
-          this.progress.addToDoneListening(this.surahId);
-        }
-      });
-    }
-  }
+	ngAfterViewInit() {
+		if (this.player) {
+			this.player.stateChange.subscribe((event: any) => {
+				if (event.data === YT.PlayerState.ENDED) {
+					// Video has ended, perform your desired actions here
+					this.progress.addToDoneListening(this.surahId);
+				}
+			});
+		}
+	}
 
-  stopVideo() {
-    if (this.player)
-      this.player.stopVideo();
-  }
+	stopVideo() {
+		if (this.player)
+			this.player.stopVideo();
+	}
 
-  togglePlayPause() {
-    if (!this.player) return;
+	togglePlayPause() {
+		if (!this.player) return;
 
-    if (this.player.getPlayerState() === 1) {
-      this.player.pauseVideo();
-      this.playPauseIcon = faPlay;
-    } else {
-      this.player.playVideo();
-      this.playPauseIcon = faPause;
-    }
-  }
+		if (this.player.getPlayerState() === 1) {
+			this.player.pauseVideo();
+			this.playPauseIcon = faPlay;
+		} else {
+			this.player.playVideo();
+			this.playPauseIcon = faPause;
+		}
+	}
 
-  resetVideo() {
-    if (this.player)
-      this.player.stopVideo();
-    this.playPauseIcon = faPlay;
-  }
+	resetVideo() {
+		if (this.player)
+			this.player.stopVideo();
+		this.playPauseIcon = faPlay;
+	}
 
-  toggleIsVideo() {
-    this.isVideo = !this.isVideo;
-  }
+	toggleIsVideo() {
+		this.isVideo = !this.isVideo;
+	}
 }

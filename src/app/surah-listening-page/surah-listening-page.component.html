@@ -31,7 +31,7 @@
   </div>
   <div class="mp3_container" *ngIf="!isVideo">
     <div class="audio_container">
-      <audio controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link">
+      <audio controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId">
         <source type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
