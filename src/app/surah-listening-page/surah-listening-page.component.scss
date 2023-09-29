@@ -8,7 +8,38 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+
+  .file_type_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:  10px auto 20px;
+    background-color: $color1;
+    border: 1px solid $gold3;
+    border-radius: 40%;
+    overflow: hidden;
+
+    .icon {
+      color: $color3;
+      font-size: 30px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 20%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.active {
+        color: $color1;
+        background-image: linear-gradient(290deg, $gold1, $gold3), linear-gradient(290deg, $gold1, $gold3);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+      }
+    }
+  }
 
   .reader-list {
     display: flex;
@@ -53,6 +84,17 @@
     margin-bottom: 20px;
   }
 
+  .mp3_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+    .audio_container {
+    }
+  }
+
   .control_button {
     display: flex;
     justify-content: center;
@@ -75,7 +117,7 @@
     justify-content: space-around;
     align-items: center;
     width: 600px;
-    margin: auto;
+    margin: 20px auto;
 
     .next_surah,
     .last_surah {

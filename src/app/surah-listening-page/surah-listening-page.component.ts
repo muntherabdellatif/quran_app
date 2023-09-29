@@ -1,13 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faHome} from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo} from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 
 interface SurahLink {
   id: number,
   name: string,
-  link_id: string
+  link_id: string,
+  mp3_link: string,
 }
 
 interface Reader {
@@ -26,11 +27,14 @@ export class SurahListeningPageComponent {
   surahId: number = 0;
   readerId: number = 0;
   private apiLoaded = false;
+  isVideo: boolean = true;
 
   playPauseIcon = faPlay;
   faStop = faStop;
   faAnglesLeft = faAnglesLeft;
-  faAnglesRight = faAnglesRight
+  faAnglesRight = faAnglesRight;
+  faFileAudio = faFileAudio;
+  faFileVideo = faFileVideo;
 
   constructor(private route: ActivatedRoute, private router: Router) {
   }
@@ -78,5 +82,9 @@ export class SurahListeningPageComponent {
     if (this.player)
       this.player.stopVideo();
     this.playPauseIcon = faPlay;
+  }
+
+  toggleIsVideo() {
+    this.isVideo = !this.isVideo;
   }
 }

@@ -1,21 +1,41 @@
 <div class="listening_container">
-  <div class="video_player">
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <youtube-player
-      [videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
-      [width]="600"
-      [height]="350"
-    ></youtube-player>
+  <div class="file_type_button" (click)="toggleIsVideo()">
+    <fa-icon class="icon"
+      [icon]="faFileAudio"
+      [class.active]="!isVideo"
+    ></fa-icon>
+    <fa-icon class="icon"
+      [icon]="faFileVideo"
+      [class.active]="isVideo"
+    ></fa-icon>
   </div>
-  <div class="control_button">
-    <fa-icon class="icon"
-      [icon]="playPauseIcon"
-      (click)="togglePlayPause()"
-    ></fa-icon>
-    <fa-icon class="icon"
-      [icon]="faStop"
-      (click)="stopVideo()"
-    ></fa-icon>
+  <div class="video-container" *ngIf="isVideo">
+    <div class="video_player">
+      <script src="https://www.youtube.com/iframe_api"></script>
+      <youtube-player
+        [videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
+        [width]="600"
+        [height]="350"
+      ></youtube-player>
+    </div>
+    <div class="control_button">
+      <fa-icon class="icon"
+        [icon]="playPauseIcon"
+        (click)="togglePlayPause()"
+      ></fa-icon>
+      <fa-icon class="icon"
+        [icon]="faStop"
+        (click)="stopVideo()"
+      ></fa-icon>
+    </div>
+  </div>
+  <div class="mp3_container" *ngIf="!isVideo">
+    <div class="audio_container">
+      <audio controls>
+        <source [src]="'https://drive.google.com/uc?export=download&id=' + readers[readerId - 1].quran[surahId - 1].mp3_link" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
   </div>
   <div class="change_surah_control">
     <fa-icon class="next_surah"
