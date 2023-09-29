@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo} from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 
@@ -22,6 +22,7 @@ interface Reader {
   templateUrl: './surah-listening-page.component.html',
   styleUrls: ['./surah-listening-page.component.scss']
 })
+
 export class SurahListeningPageComponent {
   @ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
   readers: Reader[] = readers;
@@ -41,20 +42,20 @@ export class SurahListeningPageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private progress: ProgressService
-  ) {}
+  ) { }
 
   ngOnInit() {
     // get surah id
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       const readerId = params.get('reader');
       if (id) this.surahId = +id;
       if (readerId) this.readerId = +readerId;
-      localStorage.setItem('last_listening',JSON.stringify({readerId: this.readerId, surahId: this.surahId}));
+      localStorage.setItem('last_listening', JSON.stringify({ readerId: this.readerId, surahId: this.surahId }));
     })
 
     // prepare youtube player
-    if(!this.apiLoaded) {
+    if (!this.apiLoaded) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       document.body.appendChild(tag);

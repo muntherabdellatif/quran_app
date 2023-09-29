@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { quranText } from '../data/quranText';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faBackward, faHome, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft} from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faBackward, faHome, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-surah-reading-page',
@@ -20,14 +20,14 @@ export class SurahReadingPageComponent {
   text: string = "";
   surahName: string = "";
   surahId = 0;
-  bookMark = {scrollY: 0, id: 0}
+  bookMark = { scrollY: 0, id: 0 }
 
   constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
     this.bookMark = JSON.parse(localStorage.getItem("bookMark") || '');
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       if (id) {
         this.surahId = +id;
@@ -58,12 +58,12 @@ export class SurahReadingPageComponent {
   }
 
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'instant'});
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   addMarkHer() {
     const scrollY = window.scrollY;
-    localStorage.setItem("bookMark", JSON.stringify({scrollY, id: this.surahId}));
+    localStorage.setItem("bookMark", JSON.stringify({ scrollY, id: this.surahId }));
     this.pointer = faHandPointLeft;
   }
 
@@ -71,7 +71,7 @@ export class SurahReadingPageComponent {
     this.bookMark = JSON.parse(localStorage.getItem("bookMark") || '');
     if (this.bookMark?.scrollY && this.bookMark?.id) {
       this.router.navigate(['/surah_read', this.bookMark?.id]);
-      window.scrollTo({ top: this.bookMark?.scrollY, behavior: 'smooth'});
+      window.scrollTo({ top: this.bookMark?.scrollY, behavior: 'smooth' });
       this.pointer = faHandPointLeft;
     }
   }

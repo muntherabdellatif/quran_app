@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/quran_light",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

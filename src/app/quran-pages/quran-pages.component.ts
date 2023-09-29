@@ -24,7 +24,7 @@ export class QuranPagesComponent {
   }
 
   ngAfterViewInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       if (id) {
         this.pageIdNumber = +id - 1;
@@ -32,7 +32,7 @@ export class QuranPagesComponent {
         this.scrollToPage(this.pageId);
       }
     });
-    this.read.scroll.subscribe((id) => {
+    this.read.scroll.subscribe((id: any) => {
       this.pageIdNumber = +id - 1;
       this.pageId = this.pagesNumber[this.pageIdNumber];
       this.scrollToPage(this.pageId);
