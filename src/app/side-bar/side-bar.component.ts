@@ -3,12 +3,13 @@ import { NavigationEnd, Router } from '@angular/router';
 import {
   faHome, faExpand, faCompress, faBars, faBookmark,
   faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple,
-  faArrowTurnRight, faFloppyDisk, faXmark
+  faArrowTurnRight, faFloppyDisk, faXmark, faEraser
   } from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from 'src/app/data';
 import { ProgressService } from '../services/progress.service';
+import { surahInfo } from '../data/info';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -39,6 +40,7 @@ export class SideBarComponent {
   faArrowTurnRight = faArrowTurnRight;
   faFloppyDisk = faFloppyDisk;
   faXmark = faXmark;
+  faEraser = faEraser;
 
   constructor(
     private router: Router,
@@ -150,5 +152,9 @@ export class SideBarComponent {
 
   toggleSaveProgressPopup() {
     this.progress.toggleSavePopup();
+  }
+
+  removeFromDoneListeningList(surahId: number) {
+    this.progress.removeFromDoneListeningList(surahId)
   }
 }

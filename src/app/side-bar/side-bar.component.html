@@ -75,20 +75,24 @@
   ></fa-icon>
   <h2>{{isQuranPages(currentUrl) ? 'قم بتأكيد السور التي اتممت قراتها': 'قم بتأكيد السور الي قمت بالاستماع لها'}}</h2>
   <div class="surah_list" *ngIf="isQuranPages(currentUrl)">
-
+    <div class="item" *ngFor="let surahId of doneReadingList">
+      {{quranIndex[surahId -1].name}}
+    </div>
   </div>
 
   <div class="surah_list" *ngIf="isListeningPage(currentUrl)">
     <div class="item" *ngFor="let surahId of doneListeningList">
       {{quranIndex[surahId -1].name}}
+      <fa-icon class="delete"
+        [icon]="faEraser"
+        (click)="removeFromDoneListeningList(surahId)"
+        title="حذف"
+      ></fa-icon>
     </div>
   </div>
   <div class="button_container">
     <button>
-      <p>تأكيد جميع السور</p>
-    </button>
-    <button>
-      <p>تأكيد ما تم إختياره</p>
+      <p>تأكيد</p>
     </button>
   </div>
 </div>

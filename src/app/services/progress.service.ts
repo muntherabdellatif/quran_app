@@ -35,6 +35,15 @@ export class ProgressService {
     this.updateDoneListeningList.next(this.doneListeningList);
   }
 
+  removeFromDoneListeningList(surahId: number) {
+    const indexToDelete = this.doneListeningList.indexOf(surahId);
+    if (indexToDelete !== -1) {
+      this.doneListeningList.splice(indexToDelete, 1);
+    }
+    localStorage.setItem("done-listening-list", JSON.stringify(this.doneListeningList));
+    this.updateDoneListeningList.next(this.doneListeningList);
+  }
+
   addToDoneReading(surahId: number) {
     if (this.doneReadingList.includes(surahId))
       return

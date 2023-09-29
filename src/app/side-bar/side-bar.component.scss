@@ -81,11 +81,26 @@
   }
 
   .surah_list {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: right;
+    gap: 50px;
 
     .item {
       color: $color4;
       font-size: 25px;
       font-weight: 500;
+
+      .delete {
+        color: $gold2;
+        cursor: pointer;
+        margin-left: 10px;
+
+        &:hover {
+          opacity: 80%;
+        }
+      }
     }
   }
 
@@ -109,7 +124,7 @@
 
       p {
         margin: 0;
-        padding: 5px 10px;
+        padding: 5px 20px;
       }
 
       &:hover {
