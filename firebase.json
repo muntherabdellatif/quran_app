@@ -1,6 +1,12 @@
 {
   "hosting": {
     "public": "dist/quran_light",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
