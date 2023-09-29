@@ -7,6 +7,12 @@
       *ngIf="currentUrl != '/'"
     ></fa-icon>
     <fa-icon class="icon"
+      *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)"
+      [icon]="faArrowTurnRight"
+      [title]="'عد إلى صفحة الصورة'"
+      [routerLink]="['/surah',getBackSurahId()]"
+    ></fa-icon>
+    <fa-icon class="icon"
       [icon]="faExpand"
       *ngIf="currentUrl == '/' && !showSurahList && !showBigSurah"
       [title]="'عرض كل السور'"
@@ -49,11 +55,40 @@
       [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
       [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]"
     ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)"
-      [icon]="faArrowTurnRight"
-      [title]="'عد إلى صفحة الصورة'"
-      [routerLink]="['/surah',getBackSurahId()]"
-    ></fa-icon>
+    <div class="save_icon_container">
+      <fa-icon class="icon"
+        *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
+        [icon]="faFloppyDisk"
+        [title]="isQuranPages(currentUrl) ? 'أكد السور التي قراتها' : 'أكد السور التي استمعت لها'"
+        (click)="toggleSaveProgressPopup()"
+      ></fa-icon>
+      <p class="done_counter">{{isQuranPages(currentUrl)? doneReadingList.length : doneListeningList.length}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="save_progress_popup"
+  *ngIf="showSavePopup && (isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0)">
+  <fa-icon class="close"
+    [icon]="faXmark"
+    (click)="toggleSaveProgressPopup()"
+  ></fa-icon>
+  <h2>{{isQuranPages(currentUrl) ? 'قم بتأكيد السور التي اتممت قراتها': 'قم بتأكيد السور الي قمت بالاستماع لها'}}</h2>
+  <div class="surah_list" *ngIf="isQuranPages(currentUrl)">
+
+  </div>
+
+  <div class="surah_list" *ngIf="isListeningPage(currentUrl)">
+    <div class="item" *ngFor="let surahId of doneListeningList">
+      {{quranIndex[surahId -1].name}}
+    </div>
+  </div>
+  <div class="button_container">
+    <button>
+      <p>تأكيد جميع السور</p>
+    </button>
+    <button>
+      <p>تأكيد ما تم إختياره</p>
+    </button>
   </div>
 </div>

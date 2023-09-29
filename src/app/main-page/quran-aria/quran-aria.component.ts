@@ -91,7 +91,6 @@ export class QuranAriaComponent {
     this.quranIndex.forEach((surah,index) => {
       this.lightArray.push(quranLightArray[index]);
     });
-    console.log(this.lightArray);
   }
 
   toggelShowSearch() {

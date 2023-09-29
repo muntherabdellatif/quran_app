@@ -1,10 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { faHome, faExpand, faCompress, faBars, faBookmark, faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple, faArrowTurnRight} from '@fortawesome/free-solid-svg-icons';
+import {
+  faHome, faExpand, faCompress, faBars, faBookmark,
+  faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple,
+  faArrowTurnRight, faFloppyDisk, faXmark
+  } from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from 'src/app/data';
-
+import { ProgressService } from '../services/progress.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -19,6 +23,9 @@ export class SideBarComponent {
 	lastReadPage: number = 0;
   listeningData: {readerId: number, surahId:number} = {readerId: 1, surahId:1};
 	firstListeningTime = true;
+  showSavePopup = false;
+  doneReadingList: number[] = [];
+  doneListeningList: number[] = [];
   quranIndex = quranIndex;
 
   faExpand = faExpand;
@@ -30,12 +37,15 @@ export class SideBarComponent {
   faHeadphonesSimple =faHeadphonesSimple;
   faBookOpenReader = faBookOpenReader;
   faArrowTurnRight = faArrowTurnRight;
+  faFloppyDisk = faFloppyDisk;
+  faXmark = faXmark;
 
   constructor(
     private router: Router,
     private sideBar: SideBarService,
     private read: ReadServiceService,
     private el: ElementRef,
+    private progress: ProgressService
   ) {
     this.currentUrl = this.router.url;
   }
@@ -49,8 +59,21 @@ export class SideBarComponent {
     this.read.currentPage.subscribe((currentPage => {
       this.checkPointerDirection(currentPage);
     }))
+    this.progress.showSave.subscribe((showPopup)=> {
+      this.showSavePopup = showPopup;
+    })
+    this.progress.updateDoneReadingList.subscribe((doneReadingList) => {
+      this.doneReadingList = doneReadingList;
+    })
+    this.progress.updateDoneListeningList.subscribe((doneListeningList) => {
+      this.doneListeningList = doneListeningList;
+      console.log("doneListeningList :", doneListeningList);
+    })
   	this.getLastReadPage();
     this.getLastListeningData();
+    this.doneListeningList = this.progress.getDoneListeningList();
+    this.doneReadingList = this.progress.getDoneReadingList();
+
   }
 
   toggleShowBigSurah() {
@@ -123,5 +146,9 @@ export class SideBarComponent {
       return this.listeningData.surahId;
     }
     return 0;
+  }
+
+  toggleSaveProgressPopup() {
+    this.progress.toggleSavePopup();
   }
 }

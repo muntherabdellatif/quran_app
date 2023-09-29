@@ -3,6 +3,7 @@ import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo} from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { ProgressService } from '../services/progress.service';
 
 interface SurahLink {
   id: number,
@@ -36,8 +37,11 @@ export class SurahListeningPageComponent {
   faFileAudio = faFileAudio;
   faFileVideo = faFileVideo;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private progress: ProgressService
+  ) {}
 
   ngOnInit() {
     // get surah id
@@ -59,6 +63,17 @@ export class SurahListeningPageComponent {
     this.togglePlayPause();
 
     // get default reader
+  }
+
+  ngAfterViewInit() {
+    if (this.player) {
+      this.player.stateChange.subscribe((event: any) => {
+        if (event.data === YT.PlayerState.ENDED) {
+          // Video has ended, perform your desired actions here
+          this.progress.addToDoneListening(this.surahId);
+        }
+      });
+    }
   }
 
   stopVideo() {
