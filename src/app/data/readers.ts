@@ -2261,7 +2261,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 19, reader_name: "عبد الرحمن السديس", quran: [
+		reader_id: 20, reader_name: "عبد الرحمن السديس", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server11.mp3quran.net/sds/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server11.mp3quran.net/sds/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server11.mp3quran.net/sds/" },
@@ -2380,7 +2380,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 20, reader_name: "عبدالله خياط", quran: [
+		reader_id: 21, reader_name: "عبدالله خياط", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server12.mp3quran.net/kyat/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server12.mp3quran.net/kyat/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server12.mp3quran.net/kyat/" },
@@ -2499,7 +2499,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 21, reader_name: "محمد الطبلاوي", quran: [
+		reader_id: 22, reader_name: "محمد الطبلاوي", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server12.mp3quran.net/tblawi/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server12.mp3quran.net/tblawi/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server12.mp3quran.net/tblawi/" },
@@ -2618,7 +2618,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 22, reader_name: "محمد صديق المنشاوي", quran: [
+		reader_id: 23, reader_name: "محمد صديق المنشاوي", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server10.mp3quran.net/minsh/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server10.mp3quran.net/minsh/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server10.mp3quran.net/minsh/" },
@@ -2737,7 +2737,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 23, reader_name: "محمود خليل الحصري", quran: [
+		reader_id: 24, reader_name: "محمود خليل الحصري", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server13.mp3quran.net/husr/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server13.mp3quran.net/husr/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server13.mp3quran.net/husr/" },
@@ -2856,7 +2856,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 24, reader_name: "محمود علي البنا", quran: [
+		reader_id: 25, reader_name: "محمود علي البنا", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server8.mp3quran.net/bna/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server8.mp3quran.net/bna/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server8.mp3quran.net/bna/" },
@@ -2975,7 +2975,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 25, reader_name: "محمد جبريل", quran: [
+		reader_id: 26, reader_name: "محمد جبريل", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server8.mp3quran.net/jbrl/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server8.mp3quran.net/jbrl/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server8.mp3quran.net/jbrl/" },
@@ -3094,7 +3094,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 26, reader_name: "محمد البراك", quran: [
+		reader_id: 27, reader_name: "محمد البراك", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server13.mp3quran.net/braak/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server13.mp3quran.net/braak/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server13.mp3quran.net/braak/" },
@@ -3213,7 +3213,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 27, reader_name: "محمد أيوب", quran: [
+		reader_id: 28, reader_name: "محمد أيوب", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server8.mp3quran.net/ayyub/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server8.mp3quran.net/ayyub/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server8.mp3quran.net/ayyub/" },
@@ -3332,7 +3332,7 @@ export const readers = [
 		]
 	},
 	{
-		reader_id: 28, reader_name: "ياسر سلامة", quran: [
+		reader_id: 29, reader_name: "ياسر سلامة", quran: [
 			{ id: 1, name: "الفاتحة", link_id: "", mp3_link: "https://server12.mp3quran.net/salamah/Rewayat-Hafs-A-n-Assem/" },
 			{ id: 2, name: "البقرة", link_id: "", mp3_link: "https://server12.mp3quran.net/salamah/Rewayat-Hafs-A-n-Assem/" },
 			{ id: 3, name: "آل عمران", link_id: "", mp3_link: "https://server12.mp3quran.net/salamah/Rewayat-Hafs-A-n-Assem/" },
