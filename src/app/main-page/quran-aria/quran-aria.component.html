@@ -7,6 +7,7 @@
         placeholder="ابحث هنا"
         (ngModelChange)="search()"
         *ngIf="showSearch"
+        #search_field
       >
       <fa-icon class="icon"
         [icon]="faSearch"

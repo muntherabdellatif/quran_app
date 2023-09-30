@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
 import { SideBarService } from 'src/app/services/side_bar.service';
@@ -14,6 +14,8 @@ export class QuranAriaComponent {
 	readonly slanderedPageWidth = 1400;
 	@Input() width: number = this.slanderedPageWidth;
 	@Input() quranAriaWidthSubject: Subject<number> | undefined;
+  @ViewChild('search_field') searchField: ElementRef | undefined;
+
 	searchKey: string = "";
 
 	faBookOpenReader = faBookOpenReader;
@@ -61,7 +63,7 @@ export class QuranAriaComponent {
 			this.quranIndex.forEach((surah, index) => {
 				const nextSurah = this.quranIndex[index + 1];
 				if (nextSurah)
-					this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 40 * this.width) / this.slanderedPageWidth * 0.98;
+					this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 39 * this.width) / this.slanderedPageWidth * 0.98;
 				this.quranIndex[index].x = (this.quranIndex[index].xIndex * this.width / this.slanderedPageWidth + 0.02 * this.width) * 0.98;
 				this.quranIndex[index].y = (this.quranIndex[index].yIndex * this.width / this.slanderedPageWidth + 0.002 * this.width) * 0.98;
 			})
@@ -96,6 +98,8 @@ export class QuranAriaComponent {
 
 	toggelShowSearch() {
 		this.showSearch = !this.showSearch;
+    if (this.showSearch)
+      setTimeout(() => this.searchField && this.searchField.nativeElement.focus(),);
 	}
 
 	search() {
