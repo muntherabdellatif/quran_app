@@ -136,6 +136,15 @@
       font-size: 30px;
       width: 400px;
       text-align: center;
+
+      .option {
+        color: $gold3;
+        cursor: pointer;
+
+        &:hover {
+          color: $gold2;
+        }
+      }
     }
   }
 
@@ -148,7 +157,6 @@
     background-color: $color1;
     z-index: 100;
     top: 65%;
-    right: 50px;
     border-radius: 20px;
 
     .list_item {

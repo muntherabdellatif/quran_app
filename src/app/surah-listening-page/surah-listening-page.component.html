@@ -47,13 +47,8 @@
     ></fa-icon>
     <p class="surah_name">
       سورة
-      <span class="option">{{readers[readerId - 1].quran[surahId - 1].name}}</span>
+      <span class="option" (click)="toggleShowList()">{{readers[readerId - 1].quran[surahId - 1].name}}</span>
       بصوت: {{readers[readerId - 1].reader_name}}
-      <fa-icon class="next_surah"
-        *ngIf="surahId < readers[readerId - 1].quran.length - 1"
-        [icon]="showList ? faAngleLeft : faAngleDown"
-        (click)="toggleShowList()"
-      ></fa-icon>
     </p>
     <fa-icon class="last_surah"
       *ngIf="surahId > 1"
