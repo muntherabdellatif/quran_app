@@ -22,7 +22,6 @@ export class ProgressService {
   }
 
   toggleSavePopup() {
-    console.log("toggle service");
     this.showSavePopup = !this.showSavePopup;
     this.showSave.next(this.showSavePopup);
   }

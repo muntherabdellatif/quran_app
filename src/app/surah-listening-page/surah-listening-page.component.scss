@@ -118,6 +118,7 @@
     align-items: center;
     width: 600px;
     margin: 20px auto;
+    position: relative;
 
     .next_surah,
     .last_surah {
@@ -135,6 +136,31 @@
       font-size: 30px;
       width: 400px;
       text-align: center;
+    }
+  }
+
+  .surah_list {
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    overflow-y: scroll;
+    margin: 0 auto;
+    background-color: $color1;
+    z-index: 100;
+    top: 65%;
+    right: 50px;
+    border-radius: 20px;
+
+    .list_item {
+      color: #efefef;
+      text-align: right;
+      font-size: 20px;
+      margin: 10px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 80%;
+      }
     }
   }
 }

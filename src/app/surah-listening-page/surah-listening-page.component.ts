@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft,faAngleLeft , faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 import { quranIndex } from 'src/app/data';
@@ -34,11 +34,14 @@ export class SurahListeningPageComponent {
 	readerId: number = 0;
 	private apiLoaded = false;
 	isVideo: boolean = true;
+  showList: boolean = false;
 
 	playPauseIcon = faPlay;
 	faStop = faStop;
 	faAnglesLeft = faAnglesLeft;
+  faAngleLeft = faAngleLeft;
 	faAnglesRight = faAnglesRight;
+  faAngleDown = faAngleDown;
 	faFileAudio = faFileAudio;
 	faFileVideo = faFileVideo;
 
@@ -108,7 +111,12 @@ export class SurahListeningPageComponent {
 		this.isVideo = !this.isVideo;
 	}
 
-	changeSurah() {
-		this.router.navigate(['surah_listening', this.readerId, this.surahId]);
+  toggleShowList() {
+    this.showList = !this.showList;
+  }
+
+	changeSurah(surahId: number) {
+		this.router.navigate(['surah_listening', this.readerId, surahId]);
+    this.showList = !this.showList;
 	}
 }

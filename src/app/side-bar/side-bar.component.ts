@@ -72,7 +72,6 @@ export class SideBarComponent {
 		})
 		this.progress.updateDoneListeningList.subscribe((doneListeningList: any) => {
 			this.doneListeningList = doneListeningList;
-			console.log("doneListeningList :", doneListeningList);
 		})
 		this.getLastReadPage();
 		this.getLastListeningData();
