@@ -99,7 +99,7 @@ export class QuranAriaComponent {
 	}
 
 	search() {
-		if (!this.searchKey) {
+		if (!this.searchKey || this.searchKey == '') {
 			this.quranIndex = quranIndex;
 			this.smallQuranIndex = smallQuranIndex;
 			return;
@@ -108,4 +108,10 @@ export class QuranAriaComponent {
 		this.quranIndex = quranIndex.filter(surah => surah.name.includes(this.searchKey));
 		this.smallQuranIndex = smallQuranIndex.filter(surah => surah.name.includes(this.searchKey));
 	}
+
+  splitSearchResult(array: any) {
+    if (array.length > 114)
+      array.pop();
+    return [array.slice(0, array.length/2 + 1), array.slice(array.length/2 + 1, array.length)]
+  }
 }

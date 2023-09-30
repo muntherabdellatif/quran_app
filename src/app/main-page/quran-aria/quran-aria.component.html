@@ -14,7 +14,7 @@
         title="ابحث عن سورة"
       ></fa-icon>
     </div>
-    <div class="suarh_aria bigView" *ngIf="this.showBig && !this.showList">
+    <div class="suarh_aria bigView" *ngIf="this.showBig && !this.showList && (!this.searchKey || this.searchKey == '')">
       <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
           style="
             width: {{surah.width}}px;
@@ -30,7 +30,7 @@
         <p class="name">{{surah.name}}</p>
       </div>
     </div>
-    <div class="suarh_aria smallView" *ngIf="!this.showBig && !this.showList">
+    <div class="suarh_aria smallView" *ngIf="!this.showBig && !this.showList && (!this.searchKey || this.searchKey == '')">
       <div class="surah" *ngFor="let surah of smallQuranIndex"
           style="
             width: {{surah.width}}px;
@@ -46,9 +46,20 @@
         <p class="name">{{surah.name}}</p>
       </div>
     </div>
+    <div class="search_result" *ngIf="this.searchKey && this.searchKey != ''">
+      <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
+          style="
+            background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
+            box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;
+          "
+          [routerLink]="['/surah', surah.id]"
+          >
+        <p class="name">{{surah.name}}</p>
+      </div>
+    </div>
     <div class="list_container">
       <div class="quran_list" *ngIf="this.showList">
-        <div class="surah" *ngFor="let surah of quranIndex.slice(0, 57)" [routerLink]="['/surah', surah.id]">
+        <div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[0]" [routerLink]="['/surah', surah.id]">
           <div class="text">
             <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
             <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
@@ -68,7 +79,7 @@
         </div>
       </div>
       <div class="quran_list" *ngIf="this.showList">
-        <div class="surah" *ngFor="let surah of quranIndex.slice(57, 114)">
+        <div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[1]">
           <div class="text">
             <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
             <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>

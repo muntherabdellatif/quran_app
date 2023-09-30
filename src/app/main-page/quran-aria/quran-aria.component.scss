@@ -81,10 +81,47 @@
     }
   }
 
+  .search_result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    flex-wrap: wrap;
+
+    .surah {
+      cursor: pointer;
+      transition: all 1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid $gold3;
+      border-radius: 50%;
+      color: $color1;
+      font-weight: 700;
+      background: radial-gradient(circle at center, $color4 0%, $color1 0%);
+      box-shadow: 0 0 0px 0px $color4;
+      width: 150px;
+      height: 150px;
+      font-size: 30px;
+
+      &:hover {
+        background: radial-gradient(circle at center, $color4 0%, $color1 80%) !important;
+        box-shadow: 0 0 20px 0px $color4 !important;
+      }
+
+      .name {
+        transition: all 1s;
+        text-shadow: 0 0 0px $color1;
+        color: $color4;
+      }
+    }
+  }
+
   .list_container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+    align-items: start;
     gap: 150px;
     width: 100vw;
 

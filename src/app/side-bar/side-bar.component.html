@@ -55,9 +55,10 @@
       [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
       [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]"
     ></fa-icon>
-    <div class="save_icon_container">
+    <div class="save_icon_container"
+      *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
+    >
       <fa-icon class="icon"
-        *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
         [icon]="faFloppyDisk"
         [title]="isQuranPages(currentUrl) ? 'أكد السور التي قراتها' : 'أكد السور التي استمعت لها'"
         (click)="toggleSaveProgressPopup()"
