@@ -1,10 +1,14 @@
 <div class="pages_container">
-  <div class="page_container" *ngFor="let pageId of pagesNumber">
+  <div class="page_container" *ngFor="let pageId of pagesNumber; let i = index">
     <img
       [src]="'./assets/image/'+ pageId + '.gif'"
       alt=""
       [id]="'page-' + pageId"
     >
-    <button *ngIf="isSurahEnd(pageId)" (click)="doneReading(5)">نم قراءة سورة كذا</button>
+    <div class="button_list" *ngIf="pagesSurahEndArray[i].length > 0">
+      <button *ngFor="let surahId of pagesSurahEndArray[i]" (click)="doneReading(surahId); deleteButton(i ,surahId);">
+        <p>أكد قراءة سورة {{quranIndex[surahId - 1]?.name}}</p>
+      </button>
+    </div>
   </div>
 </div>

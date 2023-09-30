@@ -153,14 +153,13 @@ export class SurahPageComponent {
   }
 
   doneRead() {
-    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
-    const lastReadTimeArray = JSON.parse(localStorage.getItem("lastReadingTime") || "[]");
-    if (lastReadTimeArray.length > 0) {
-      lastReadTimeArray[this.surah.id - 1] = timestampInSeconds;
-      localStorage.setItem("lastReadingTime", JSON.stringify(lastReadTimeArray));
+    const setLastReadingTime = this.localStorageServices.doneReading(this.surah.id);
+
+    if (setLastReadingTime) {
+      const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
       this.surah.lastReadingTime = timestampInSeconds;
     }
-    this.light.updateSurahLight(this.surah.id);
+
     this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 

@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .pages_container {
   display: flex;
   flex-direction: column;
@@ -8,5 +10,34 @@
     width: 700px;
     margin: 20px;
     filter: contrast(1.4) brightness(0.9);
+  }
+
+  .button_list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    button {
+      cursor: pointer;
+      font-size: 20px;
+      color: $color4;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: solid 0.5px transparent;
+      background-image: linear-gradient($color2, $color3), linear-gradient(290deg, $gold2, $gold3);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      padding: 0.5px;
+
+      p {
+        margin: 0;
+        padding: 5px 10px;
+      }
+
+      &:hover {
+        background-image: linear-gradient($color2, $color3), linear-gradient(150deg, $gold1, $gold3);
+        box-shadow: 0 0 5px $gold1;
+      }
+    }
   }
 }

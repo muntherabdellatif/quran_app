@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReadServiceService } from '../services/read-service.service';
+import { quranIndex } from '../data';
+import { LocalStorageService } from '../services/localStorage.service';
 
 @Component({
   selector: 'app-quran-pages',
@@ -12,14 +14,30 @@ export class QuranPagesComponent {
   pageId = "001";
   pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
   lastScrollPosition: number = 0;
+  quranIndex = quranIndex;
+  pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
 
   constructor(
     private route: ActivatedRoute,
     private el: ElementRef,
-    private read: ReadServiceService
+    private read: ReadServiceService,
+    private localStorage: LocalStorageService
   ) {
     this.pagesNumber.forEach(n => {
       this.pagesNumber[n - 1] = String(this.pagesNumber[n - 1]).padStart(3, '0')
+    });
+
+    quranIndex.forEach((surah, index) => {
+      const nextSurah = quranIndex[index + 1];
+      if (nextSurah){
+        let nextSurahPage = 0;
+        if (nextSurah.page - Math.floor(nextSurah.page) == 0)
+          nextSurahPage = nextSurah.page - 1;
+        else
+          nextSurahPage = Math.floor(nextSurah.page);
+
+        this.pagesSurahEndArray[nextSurahPage - 1].push(surah.id);
+      }
     });
   }
 
@@ -82,10 +100,13 @@ export class QuranPagesComponent {
   }
 
   doneReading(surahId: number) {
-
+    this.localStorage.doneReading(surahId);
   }
 
-  isSurahEnd(pageId: number) {
-    
+  deleteButton(index: number, surahId: number) {
+    const indexToDelete = this.pagesSurahEndArray[index].indexOf(surahId);
+    if (indexToDelete !== -1) {
+      this.pagesSurahEndArray[index].splice(indexToDelete, 1);
+    }
   }
 }
