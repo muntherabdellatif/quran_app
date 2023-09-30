@@ -52,10 +52,10 @@
   </div>
   <div class="memorizing-interpretation_section">
     <button (click)="toggleSurahMemorize()">
-      <p>{{surah.memorize ? 'حذف السورة من قائمة السور التي تحفظها' : 'أضف السورة لقائمة السور التي تحفظها'}}</p>
+      <p>{{surah.memorize ? 'حذف من قائمة السور التي تحفظها' : 'أضف لقائمة السور التي تحفظها'}}</p>
     </button>
     <button (click)="toggleSurahInterpretation()">
-      <p>{{surah.interpretation ? 'حذف السورة من قائمة السور التي إستمعت لتفسيرها' : 'أضف السورة لقائمة السور التي إستمعت لتفسيرها'}}</p>
+      <p>{{surah.interpretation ? 'حذف من قائمة السور التي إستمعت لتفسيرها' : 'أضف لقائمة السور التي إستمعت لتفسيرها'}}</p>
     </button>
   </div>
   <p class="subjects_title" *ngIf="surah.subjects.length > 0">:مواضيع السورة</p>

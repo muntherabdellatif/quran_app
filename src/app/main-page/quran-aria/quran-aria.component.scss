@@ -210,38 +210,6 @@
 // tablet
 @media (max-width: 768px) {
   .surah_container {
-
-    .search {
-
-      input {
-
-      }
-
-      .icon {
-
-      }
-    }
-
-    .suarh_aria {
-
-      .surah {
-
-        .name {
-
-        }
-      }
-    }
-
-    .search_result {
-
-      .surah {
-
-        .name {
-
-        }
-      }
-    }
-
     .list_container {
       display: flex;
       flex-direction: column;
@@ -250,34 +218,8 @@
       gap: 0;
 
       .quran_list {
-
         .surah {
           max-width: 80%;
-
-          .text {
-
-            .name, .number {
-
-            }
-
-            .number {
-
-            }
-          }
-
-          .control {
-            .icon {
-
-            }
-
-            .read {
-
-            }
-
-            .listen {
-
-            }
-          }
         }
       }
     }
@@ -287,68 +229,10 @@
 // mobile
 @media (max-width: 426px) {
   .surah_container {
-    .search {
-
-      input {
-
-      }
-
-      .icon {
-
-      }
-    }
-
-    .suarh_aria {
-      // transform: rotate(90deg);
-      .surah {
-
-        .name {
-
-        }
-      }
-    }
-
     .search_result {
-
       .surah {
-
-        .name {
-
-        }
-      }
-    }
-
-    .list_container {
-
-      .quran_list {
-
-        .surah {
-
-          .text {
-
-            .name, .number {
-
-            }
-
-            .number {
-
-            }
-          }
-
-          .control {
-            .icon {
-
-            }
-
-            .read {
-
-            }
-
-            .listen {
-
-            }
-          }
-        }
+        width: 100px;
+        height: 100px;
       }
     }
   }

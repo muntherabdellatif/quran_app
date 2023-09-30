@@ -35,7 +35,6 @@
     flex-direction: row-reverse;
     justify-content: right;
     align-items: center;
-    flex-wrap: wrap;
 
     .surah-plant {
       position: relative;
@@ -82,7 +81,6 @@
       flex-direction: row-reverse;
       align-items: center;
       justify-content: right;
-      flex-wrap: wrap;
 
       .container {
         display: flex;
@@ -304,4 +302,165 @@
   background-size: cover;
   transform: rotate(49deg);
   z-index: -1;
+}
+
+// tablet
+@media (max-width: 768px) {
+  .surah-page-container {
+    padding: 20px 60px;
+
+    .next_surah,
+    .last_surah {
+      font-size: 25px;
+      top: 73px;
+    }
+
+    .header {
+      .surah-plant {
+        width: 120px;
+        height: 120px;
+        min-width: 120px;
+        min-height: 120px;
+      }
+
+      .surah-info {
+        justify-content: center;
+
+        .info {
+          margin: 5px;
+          font-size: 15px;
+        }
+      }
+
+      .memorizing-interpretation {
+        .container {
+          .icon {
+            font-size: 40px;
+            margin: 0 15px;
+          }
+        }
+      }
+    }
+
+    .memorizing-interpretation_section {
+      flex-direction: column;
+
+      button {
+        margin: 10px 0 5px;
+        padding: 1px 1px;
+        font-size: 16px;
+      }
+    }
+
+    .subjects {
+      overflow-y: scroll;
+
+      .subject {
+        .subject_text {
+          font-size: 15px;
+          text-wrap: nowrap;
+        }
+      }
+    }
+
+    .subjects_title {
+      font-size: 25px;
+    }
+
+    .last_time_section {
+      p {
+        font-size: 14px;
+        padding: 5px;
+      }
+    }
+
+
+    .card_section {
+      .card {
+        .body {
+          font-size: 16;
+        }
+      }
+    }
+  }
+}
+
+// mobile
+@media (max-width: 426px) {
+  .surah-page-container {
+    padding: 20px 60px;
+
+    .header {
+      .surah-plant {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        min-height: 80px;
+        font-size: 25px;
+      }
+
+      .surah-info {
+        .info {
+          margin: 5px;
+          font-size: 15px;
+          width: 100px;
+          text-align: right;
+        }
+      }
+
+      .memorizing-interpretation {
+        flex-direction: column;
+
+        .container {
+          .icon {
+            font-size: 30px;
+            margin: 0 10px;
+          }
+          .text {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .memorizing-interpretation_section {
+      font-size: 14px;
+      gap: 0;
+
+      button {
+        margin: 5px 0 5px;
+        padding: 1px 1px;
+        font-size: 14px;
+      }
+    }
+
+    .subjects {
+      overflow-y: scroll;
+
+      .subject {
+        .subject_text {
+          font-size: 15px;
+          text-wrap: nowrap;
+        }
+      }
+    }
+
+    .subjects_title {
+      font-size: 20px;
+    }
+
+    .last_time_section {
+      padding: 5px 10px;
+      font-size: 15px;
+    }
+
+
+    .card_section {
+      .card {
+        .body {
+          font-size: 16;
+        }
+      }
+    }
+  }
 }
