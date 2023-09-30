@@ -80,4 +80,12 @@ export class QuranPagesComponent {
       }
     }, 800);
   }
+
+  doneReading(surahId: number) {
+
+  }
+
+  isSurahEnd(pageId: number) {
+    
+  }
 }

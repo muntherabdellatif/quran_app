@@ -47,7 +47,7 @@
       *ngIf="currentUrl == '/'"
       [icon]="faBookOpenReader"
       [title]="lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '"
-      [routerLink]="['/quran_pages', lastReadPage]"
+      [routerLink]="['/quran_pages', getFloor(lastReadPage)]"
     ></fa-icon>
     <fa-icon class="icon"
       *ngIf="currentUrl == '/'"

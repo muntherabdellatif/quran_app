@@ -197,4 +197,8 @@ export class SurahPageComponent {
       this.surah.color.r = (average / days) * 255;
     }
   }
+
+  getFloor(number: number) {
+    return Math.floor(number);
+  }
 }

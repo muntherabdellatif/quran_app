@@ -1,8 +1,10 @@
 <div class="pages_container">
-  <img
-    *ngFor="let pageId of pagesNumber"
-    [src]="'./assets/image/'+ pageId + '.gif'"
-    alt=""
-    [id]="'page-' + pageId"
-  >
+  <div class="page_container" *ngFor="let pageId of pagesNumber">
+    <img
+      [src]="'./assets/image/'+ pageId + '.gif'"
+      alt=""
+      [id]="'page-' + pageId"
+    >
+    <button *ngIf="isSurahEnd(pageId)" (click)="doneReading(5)">نم قراءة سورة كذا</button>
+  </div>
 </div>

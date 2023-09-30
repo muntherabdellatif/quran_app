@@ -170,4 +170,8 @@ export class SideBarComponent {
 		this.removeFromDoneListeningList([...this.doneListeningList]);
 		this.progress.toggleSavePopup();
 	}
+
+  getFloor(number: number) {
+    return Math.floor(number);
+  }
 }

@@ -69,7 +69,7 @@
             <fa-icon class="icon read"
               [icon]="faBookOpenReader"
               [title]="'إقرأ الأن'"
-              [routerLink]="['/quran_pages', surah.page]">
+              [routerLink]="['/quran_pages', getFloor(surah.page)]">
             </fa-icon>
             <fa-icon class="icon listen"
               [icon]="faHeadphonesSimple"
@@ -89,7 +89,7 @@
             <fa-icon class="icon read"
               [icon]="faBookOpenReader"
               [title]="'إقرأ الأن'"
-              [routerLink]="['/quran_pages', surah.page]">
+              [routerLink]="['/quran_pages', getFloor(surah.page)]">
             </fa-icon>
             <fa-icon class="icon listen"
               [icon]="faHeadphonesSimple"

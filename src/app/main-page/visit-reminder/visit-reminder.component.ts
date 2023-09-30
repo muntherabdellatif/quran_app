@@ -58,4 +58,8 @@ export class VisitReminderComponent implements OnInit {
 		}
 		return readerId;
 	}
+
+  getFloor(number: number) {
+    return Math.floor(number);
+  }
 }

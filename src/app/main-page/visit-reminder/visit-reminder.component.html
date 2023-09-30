@@ -9,7 +9,7 @@
       </div>
   </div>
 	<div class="control_section">
-			<button [routerLink]="['/quran_pages', lastReadPage]">
+			<button [routerLink]="['/quran_pages', getFloor(lastReadPage)]">
         <p>
           {{lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '}}
           <fa-icon class="icon" [icon]="faBookOpenReader"></fa-icon>

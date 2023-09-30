@@ -116,6 +116,10 @@ export class QuranAriaComponent {
   splitSearchResult(array: any) {
     if (array.length > 114)
       array.pop();
-    return [array.slice(0, array.length/2 + 1), array.slice(array.length/2 + 1, array.length)]
+    return [array.slice(0, array.length/2), array.slice(array.length/2, array.length)]
+  }
+
+  getFloor(number: number) {
+    return Math.floor(number);
   }
 }
