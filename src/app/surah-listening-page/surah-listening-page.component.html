@@ -1,66 +1,77 @@
 <div class="listening_container">
   <div class="file_type_button" (click)="toggleIsVideo()">
-    <fa-icon class="icon"
-      [icon]="faFileAudio"
-      [class.active]="!isVideo"
-    ></fa-icon>
-    <fa-icon class="icon"
-      [icon]="faFileVideo"
-      [class.active]="isVideo"
-    ></fa-icon>
+	<fa-icon class="icon"
+	  [icon]="faFileAudio"
+	  [class.active]="!isVideo"
+	></fa-icon>
+	<fa-icon class="icon"
+	  [icon]="faFileVideo"
+	  [class.active]="isVideo"
+	></fa-icon>
   </div>
   <div class="video-container" *ngIf="isVideo">
-    <div class="video_player">
-      <script src="https://www.youtube.com/iframe_api"></script>
-      <youtube-player
-        [videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
-        [width]="600"
-        [height]="350"
-      ></youtube-player>
-    </div>
-    <div class="control_button">
-      <fa-icon class="icon"
-        [icon]="playPauseIcon"
-        (click)="togglePlayPause()"
-      ></fa-icon>
-      <fa-icon class="icon"
-        [icon]="faStop"
-        (click)="stopVideo()"
-      ></fa-icon>
-    </div>
+	<div class="video_player">
+	  <script src="https://www.youtube.com/iframe_api"></script>
+	  <youtube-player
+		[videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
+		[width]="600"
+		[height]="350"
+	  ></youtube-player>
+	</div>
+	<div class="control_button">
+	  <fa-icon class="icon"
+		[icon]="playPauseIcon"
+		(click)="togglePlayPause()"
+	  ></fa-icon>
+	  <fa-icon class="icon"
+		[icon]="faStop"
+		(click)="stopVideo()"
+	  ></fa-icon>
+	</div>
   </div>
   <div class="mp3_container" *ngIf="!isVideo">
-    <div class="audio_container">
-      <audio controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId">
-        <source type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+	<div class="audio_container">
+	  <audio controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="progress.addToDoneListening(this.surahId)">
+		<source type="audio/mp3">
+		Your browser does not support the audio element.
+	  </audio>
+	</div>
   </div>
   <div class="change_surah_control">
-    <fa-icon class="next_surah"
-      *ngIf="surahId < readers[readerId - 1].quran.length - 1"
-      [icon]="faAnglesLeft"
-      [title]="readers[readerId - 1].quran[surahId].name"
-      [routerLink]="['/surah_listening', readerId ,surahId + 1]"
-      (click)="resetVideo()"
-    ></fa-icon>
-    <p class="surah_name">سورة {{readers[readerId - 1].quran[surahId - 1].name}} بصوت: {{readers[readerId - 1].reader_name}}</p>
-    <fa-icon class="last_surah"
-      *ngIf="surahId > 1"
-      [icon]="faAnglesRight"
-      [title]="readers[readerId - 1].quran[surahId - 2].name"
-      [routerLink]="['/surah_listening', readerId, surahId - 1]"
-      (click)="resetVideo()"
-    ></fa-icon>
+	<fa-icon class="next_surah"
+	  *ngIf="surahId < readers[readerId - 1].quran.length - 1"
+	  [icon]="faAnglesLeft"
+	  [title]="readers[readerId - 1].quran[surahId].name"
+	  [routerLink]="['/surah_listening', readerId ,surahId + 1]"
+	  (click)="resetVideo()"
+	></fa-icon>
+	<p class="surah_name">سورة 
+		<ng-select
+			[items]="quranIndex"
+			bindLabel="name"
+			bindValue="id"
+			[(ngModel)]="surahId"
+			(ngModelChange)="changeSurah()"
+			[clearable]="false"
+		>
+		</ng-select>
+		<!-- {{readers[readerId - 1].quran[surahId - 1].name}} -->
+	   بصوت: {{readers[readerId - 1].reader_name}}</p>
+	<fa-icon class="last_surah"
+	  *ngIf="surahId > 1"
+	  [icon]="faAnglesRight"
+	  [title]="readers[readerId - 1].quran[surahId - 2].name"
+	  [routerLink]="['/surah_listening', readerId, surahId - 1]"
+	  (click)="resetVideo()"
+	></fa-icon>
   </div>
   <div class="reader-list">
-    <div
-      class="reader"
-      *ngFor="let reader of readers"
-      [ngClass]="{'active': readerId == reader.reader_id}"
-      [routerLink]="['/surah_listening', reader.reader_id, surahId]"
-      (click)="resetVideo()"
-    ><p>{{reader.reader_name}}</p></div>
+	<div
+	  class="reader"
+	  *ngFor="let reader of readers"
+	  [ngClass]="{'active': readerId == reader.reader_id}"
+	  [routerLink]="['/surah_listening', reader.reader_id, surahId]"
+	  (click)="resetVideo()"
+	><p>{{reader.reader_name}}</p></div>
   </div>
 </div>

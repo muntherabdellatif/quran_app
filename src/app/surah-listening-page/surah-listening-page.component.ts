@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faAnglesRight, faAnglesLeft, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
+import { quranIndex } from 'src/app/data';
 
 interface SurahLink {
 	id: number,
@@ -25,6 +26,9 @@ interface Reader {
 
 export class SurahListeningPageComponent {
 	@ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
+
+	quranIndex = quranIndex;
+
 	readers: Reader[] = readers;
 	surahId: number = 0;
 	readerId: number = 0;
@@ -41,7 +45,7 @@ export class SurahListeningPageComponent {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private progress: ProgressService
+		public progress: ProgressService
 	) { }
 
 	ngOnInit() {
@@ -102,5 +106,9 @@ export class SurahListeningPageComponent {
 
 	toggleIsVideo() {
 		this.isVideo = !this.isVideo;
+	}
+
+	changeSurah() {
+		this.router.navigate(['surah_listening', this.readerId, this.surahId]);
 	}
 }

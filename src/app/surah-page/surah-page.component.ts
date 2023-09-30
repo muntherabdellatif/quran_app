@@ -4,6 +4,7 @@ import { surahInfo } from '../data/info';
 import { ActivatedRoute } from '@angular/router';
 import { faBrain, faBookOpenReader, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { LightService } from '../services/light.service';
+import { LocalStorageService } from '../services/localStorage.service';
 
 interface Surah {
   id: number,
@@ -57,8 +58,11 @@ export class SurahPageComponent {
   readonly quranIndex = quranIndex;
   readerId: number = 0;
 
-  constructor(private route: ActivatedRoute, private light: LightService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private light: LightService,
+    private localStorageServices: LocalStorageService,
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
@@ -161,14 +165,13 @@ export class SurahPageComponent {
   }
 
   doneListening() {
-    const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
-    const lastListeningTimeArray = JSON.parse(localStorage.getItem("lastListeningTime") || "[]");
-    if (lastListeningTimeArray.length > 0) {
-      lastListeningTimeArray[this.surah.id - 1] = timestampInSeconds;
-      localStorage.setItem("lastListeningTime", JSON.stringify(lastListeningTimeArray));
+    const setLastListeningTime = this.localStorageServices.doneListening(this.surah.id);
+
+    if (setLastListeningTime) {
+      const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
       this.surah.lastListeningTime = timestampInSeconds;
     }
-    this.light.updateSurahLight(this.surah.id);
+
     this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
