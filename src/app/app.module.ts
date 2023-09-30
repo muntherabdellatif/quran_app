@@ -10,24 +10,28 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { QuranPagesComponent } from './quran-pages/quran-pages.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { Mp3Directive } from './directive/mp3.directive';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SurahPageComponent,
-    SurahReadingPageComponent,
-    SurahListeningPageComponent,
-    QuranPagesComponent,
-    SideBarComponent,
-    Mp3Directive,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MainPageModule,
-    YouTubePlayerModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		SurahPageComponent,
+		SurahReadingPageComponent,
+		SurahListeningPageComponent,
+		QuranPagesComponent,
+		SideBarComponent,
+		Mp3Directive,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		MainPageModule,
+		YouTubePlayerModule,
+		FormsModule,
+		NgSelectModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
