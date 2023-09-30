@@ -10,6 +10,7 @@ import { quranIndex } from 'src/app/data';
 })
 export class MainPageComponent {
   quranAriaWidthSubject: Subject<number> = new Subject();
+  quranAriaHeightSubject: Subject<number> = new Subject();
 
   openIcon = faUpRightAndDownLeftFromCenter;
   closeIcon = faDownLeftAndUpRightToCenter;
@@ -19,6 +20,7 @@ export class MainPageComponent {
   quranIndex = quranIndex;
   isSideBarOpen = false;
   quranAriaWidth:number = 1396;
+  quranAriaHeight:number = 1396;
   sideBarWidth:number = 40;
 
   ngOnInit() {
@@ -29,6 +31,8 @@ export class MainPageComponent {
     this.isSideBarOpen = !this.isSideBarOpen;
     this.sideBarWidth = this.isSideBarOpen ? 150 : 40;
     this.quranAriaWidth = window.innerWidth - this.sideBarWidth;
+    this.quranAriaHeight = window.innerHeight - this.sideBarWidth;
     this.quranAriaWidthSubject.next(this.quranAriaWidth);
+    this.quranAriaHeightSubject.next(this.quranAriaHeight);
   }
 }
