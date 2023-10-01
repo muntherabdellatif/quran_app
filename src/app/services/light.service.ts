@@ -17,33 +17,30 @@ export class LightService {
     // get surah data
     const lastReadDay = this.getLastReadDay(surahId);
     const lastListeningDay = this.getLastListeningDay(surahId);
-    const memorize = this.getSurahMemorize(surahId);
-    const interpretation = this.getSurahInterpretation(surahId);
 
-    const surahLight = this.calculateSurahLight(lastReadDay, lastListeningDay, memorize, interpretation);
+    const surahLight = this.calculateSurahLight(lastReadDay, lastListeningDay);
     this.quranLightArray[surahId -1] = surahLight;
     localStorage.setItem('quran-light-array', JSON.stringify(this.quranLightArray));
   }
 
-  private calculateSurahLight(lastReadDay: number, lastListeningDay: number, memorize: boolean, interpretation: boolean ) {
+  private calculateSurahLight(lastReadDay: number, lastListeningDay: number) {
     // find read points
     let readPoints = 0;
     if (lastReadDay < this.dayLimit / 2)
-      readPoints = 80;
+      readPoints = 100;
     else if (lastReadDay < this.dayLimit )
-      readPoints = 80 * (this.dayLimit / 2 - (lastReadDay - this.dayLimit / 2))/(this.dayLimit / 2);
+      readPoints = 100 * (this.dayLimit / 2 - (lastReadDay - this.dayLimit / 2))/(this.dayLimit / 2);
 
     // find listen points
     let listenPoints = 0;
     if (lastListeningDay < this.dayLimit / 2)
-      listenPoints = 40;
+      listenPoints = 50;
     else if (lastListeningDay < this.dayLimit )
-      listenPoints = 40 * (this.dayLimit / 2 - (lastListeningDay - this.dayLimit / 2))/(this.dayLimit / 2);
+      listenPoints = 50 * (this.dayLimit / 2 - (lastListeningDay - this.dayLimit / 2))/(this.dayLimit / 2);
 
-    const readAndListenPoints = Math.min(80,readPoints + listenPoints);
-    const memorizePoints = memorize ? 10 * (readAndListenPoints / 80) : 0;
-    const interpretationPoints = interpretation ? 10 * (readAndListenPoints / 80) : 0;
-    return readAndListenPoints + memorizePoints + interpretationPoints;
+    const readAndListenPoints = Math.min(100,readPoints + listenPoints);
+
+    return readAndListenPoints;
   }
 
   init() {
@@ -53,9 +50,7 @@ export class LightService {
       const surahId = index + 1;
       const lastReadDay = this.getLastReadDay(surahId);
       const lastListeningDay = this.getLastListeningDay(surahId);
-      const memorize = this.getSurahMemorize(surahId);
-      const interpretation = this.getSurahInterpretation(surahId);
-      const surahLight = this.calculateSurahLight(lastReadDay, lastListeningDay, memorize, interpretation);
+      const surahLight = this.calculateSurahLight(lastReadDay, lastListeningDay);
       lightArray.push(surahLight);
     });
     localStorage.setItem('quran-light-array', JSON.stringify(lightArray));
@@ -94,23 +89,5 @@ export class LightService {
     }
 
     return lastListeningDay;
-  }
-
-  private getSurahMemorize (surahId: number) {
-    const memorizeArray = JSON.parse(localStorage.getItem("memorizing") || "[]");
-    if (memorizeArray.length > 0) {
-      return memorizeArray[surahId - 1];
-    }
-
-    return false;
-  }
-
-  private getSurahInterpretation (surahId: number) {
-    const interpretationArray = JSON.parse(localStorage.getItem("interpretation") || "[]");
-    if (interpretationArray.length > 0) {
-      return interpretationArray[surahId - 1];
-    }
-
-    return false;
   }
 }

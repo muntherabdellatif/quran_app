@@ -13,9 +13,6 @@ interface Surah {
   type: string,
   aiahNumber: number,
   parts: number[],
-  memorize: boolean,
-  interpretation: boolean,
-  subjects: ({ subject: string; to: number; } | { subject: string; to: string; })[]
   lastReadingTime: number;
   lastListeningTime: number,
   surahText: string;
@@ -44,9 +41,6 @@ export class SurahPageComponent {
     type: "مكية",
     aiahNumber: 0,
     parts: [0],
-    memorize: true,
-    interpretation: true,
-    subjects: [{ subject: "", to: 1 }],
     lastReadingTime: 0,
     lastListeningTime: 0,
     surahText: "",
@@ -74,38 +68,13 @@ export class SurahPageComponent {
         this.surah.type = this.surahInfo[+id - 1].type;
         this.surah.aiahNumber = this.surahInfo[+id - 1].aiahNumber;
         this.surah.parts = this.surahInfo[+id - 1].parts;
-        this.surah.subjects = this.surahInfo[+id - 1].subjects;
         this.surah.startPage = this.quranIndex[+id - 1].page;
         this.getLastReadTime();
         this.getLastListeningTime();
-        this.getMemorizing();
-        this.getInterpretation();
         this.getDefaultReader();
         this.getTimeColor();
       }
     })
-  }
-
-  toggleSurahMemorize() {
-    this.surah.memorize = !this.surah.memorize;
-    const memorizeArray = JSON.parse(localStorage.getItem("memorizing") || "[]");
-    if (memorizeArray.length > 0) {
-      memorizeArray[this.surah.id - 1] = this.surah.memorize;
-      localStorage.setItem("memorizing", JSON.stringify(memorizeArray));
-    }
-    this.light.updateSurahLight(this.surah.id);
-    this.surah.light = this.light.getSurahLight(this.surah.id);
-  }
-
-  toggleSurahInterpretation() {
-    this.surah.interpretation = !this.surah.interpretation;
-    const interpretationArray = JSON.parse(localStorage.getItem("interpretation") || "[]");
-    if (interpretationArray.length > 0) {
-      interpretationArray[this.surah.id - 1] = this.surah.interpretation;
-      localStorage.setItem("interpretation", JSON.stringify(interpretationArray));
-    }
-    this.light.updateSurahLight(this.surah.id);
-    this.surah.light = this.light.getSurahLight(this.surah.id);
   }
 
   getLastReadTime() {
@@ -119,20 +88,6 @@ export class SurahPageComponent {
     const lastListeningTimeArray = JSON.parse(localStorage.getItem("lastListeningTime") || "[]");
     if (lastListeningTimeArray.length > 0) {
       this.surah.lastListeningTime = lastListeningTimeArray[this.surah.id - 1];
-    }
-  }
-
-  getMemorizing() {
-    const memorizeArray = JSON.parse(localStorage.getItem("memorizing") || "[]");
-    if (memorizeArray.length > 0) {
-      this.surah.memorize = memorizeArray[this.surah.id - 1];
-    }
-  }
-
-  getInterpretation() {
-    const interpretationArray = JSON.parse(localStorage.getItem("interpretation") || "[]");
-    if (interpretationArray.length > 0) {
-      this.surah.interpretation = interpretationArray[this.surah.id - 1];
     }
   }
 

@@ -75,116 +75,6 @@
         }
       }
     }
-
-    .memorizing-interpretation {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      justify-content: right;
-
-      .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .icon {
-          cursor: pointer;
-          font-size: 50px;
-          color: $color4;
-          opacity: 20%;
-          margin: 0 20px;
-        }
-
-        .text {
-          opacity: 20%;
-          margin: 0;
-          color: $color4;
-          font-size: 20px;
-          font-weight: bold;
-        }
-
-        .text.active , .icon.active {
-          opacity: 100%;
-        }
-      }
-    }
-  }
-
-  .memorizing-interpretation_section {
-    display: flex;
-    justify-content: right;
-    flex-direction: row-reverse;
-    gap: 10px;
-
-    button {
-      cursor: pointer;
-      margin: 20px 0 10px;
-      padding: 10px 20px;
-      background-color: $color2;
-      border: solid $color4 0.5px;
-      border-radius: 5px;
-      color: $color4;
-      opacity: 100%;
-      font-size: 18px;
-      font-weight: bold;
-      border: solid 0.5px transparent;
-      background-image: linear-gradient($color1, $color1), linear-gradient(90deg, $color3, $gold3);
-      background-origin: border-box;
-      background-clip: content-box, border-box;
-      padding: 0.5px;
-
-      p {
-        margin: 0;
-        padding: 10px 15px;
-      }
-
-      &:hover {
-        background-image: linear-gradient($color1, $color1), linear-gradient(180deg, $gold1, $gold3);
-      }
-    }
-  }
-
-  .subjects {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: right;
-    align-items: center;
-
-    .subject {
-      margin: 2px;
-
-      .subject_text {
-        border-radius: 2px;
-        padding: 5px 10px;
-        color: $color4;
-        background-color: $color3;
-        font-size: 20px;
-        border: solid 0.5px transparent;
-        background-image: linear-gradient($color3, $color3), linear-gradient(290deg, $gold2, $color1);
-        background-origin: border-box;
-        background-clip: content-box, border-box;
-        padding: 0.5px;
-
-        p {
-          margin: 0;
-          padding: 5px 10px;
-        }
-      }
-
-      .surah_number {
-        font-size: 12px;
-        color: $color4;
-      }
-    }
-  }
-
-  .subjects_title {
-    color: $color4;
-    text-align: right;
-    font-size: 30px;
-    font-weight: bold;
-    margin: 10px 0;
   }
 
   .last_time_section {
@@ -331,40 +221,6 @@
           font-size: 15px;
         }
       }
-
-      .memorizing-interpretation {
-        .container {
-          .icon {
-            font-size: 40px;
-            margin: 0 15px;
-          }
-        }
-      }
-    }
-
-    .memorizing-interpretation_section {
-      flex-direction: column;
-
-      button {
-        margin: 10px 0 5px;
-        padding: 1px 1px;
-        font-size: 16px;
-      }
-    }
-
-    .subjects {
-      overflow-y: scroll;
-
-      .subject {
-        .subject_text {
-          font-size: 15px;
-          text-wrap: nowrap;
-        }
-      }
-    }
-
-    .subjects_title {
-      font-size: 25px;
     }
 
     .last_time_section {
@@ -415,46 +271,6 @@
           text-align: right;
         }
       }
-
-      .memorizing-interpretation {
-        flex-direction: row;
-
-        .container {
-          .icon {
-            font-size: 30px;
-            margin: 0 10px;
-          }
-          .text {
-            display: none;
-          }
-        }
-      }
-    }
-
-    .memorizing-interpretation_section {
-      font-size: 14px;
-      gap: 0;
-
-      button {
-        margin: 5px 0 5px;
-        padding: 1px 1px;
-        font-size: 14px;
-      }
-    }
-
-    .subjects {
-      overflow-y: scroll;
-
-      .subject {
-        .subject_text {
-          font-size: 15px;
-          text-wrap: nowrap;
-        }
-      }
-    }
-
-    .subjects_title {
-      font-size: 20px;
     }
 
     .last_time_section {

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		this.checkLastVisitTime();
 
-		["memorizing", "interpretation", "lastReadingTime", "lastListeningTime"].forEach((key) => {
+		["lastReadingTime", "lastListeningTime"].forEach((key) => {
 			if (!localStorage.getItem(key)) {
 				localStorage.setItem(key, JSON.stringify(Array.from({ length: 144 }, () => 0)));
 			}

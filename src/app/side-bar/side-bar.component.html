@@ -80,13 +80,6 @@
       ></fa-icon>
       <p>التفسير</p>
     </div>
-    <div class="container">
-      <fa-icon class="icon"
-        [icon]="faBrain"
-        [title]="'إستمع للسور التي تحفظها'"
-      ></fa-icon>
-      <p>المحفوظات</p>
-    </div>
     <div class="container"
       *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
     >
