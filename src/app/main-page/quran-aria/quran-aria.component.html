@@ -15,39 +15,7 @@
         title="ابحث عن سورة"
       ></fa-icon>
     </div>
-    <div class="suarh_aria bigView" *ngIf="this.showBig && !this.showList && (!this.searchKey || this.searchKey == '')">
-      <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
-          style="
-            width: {{surah.width}}px;
-            height: {{surah.width}}px;
-            font-size: {{surah.width / (7/2)}}px;
-            top: {{surah.y}}px;
-            left: {{surah.x}}px;
-            background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
-            box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;
-          "
-          [routerLink]="['/surah', surah.id]"
-          >
-        <p class="name">{{surah.name}}</p>
-      </div>
-    </div>
-    <div class="suarh_aria smallView" *ngIf="!this.showBig && !this.showList && (!this.searchKey || this.searchKey == '')">
-      <div class="surah" *ngFor="let surah of smallQuranIndex"
-          style="
-            width: {{surah.width}}px;
-            height: {{surah.width}}px;
-            font-size: {{surah.width / (7/2)}}px;
-            top: {{surah.y}}px;
-            left: {{surah.x}}px;
-            background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
-            box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;
-          "
-          [routerLink]="['/surah', surah.id]"
-          >
-        <p class="name">{{surah.name}}</p>
-      </div>
-    </div>
-    <div class="search_result" *ngIf="this.searchKey && this.searchKey != '' && !this.showList">
+    <div class="search_result" *ngIf="!this.showList">
       <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
           style="
             background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);

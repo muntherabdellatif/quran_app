@@ -11,12 +11,6 @@ import { LightService } from 'src/app/services/light.service';
 	styleUrls: ['./quran-aria.component.scss']
 })
 export class QuranAriaComponent {
-  mobileSize = 426;
-	readonly slanderedPageWidth = 1400;
-	@Input() width: number = this.slanderedPageWidth;
-	@Input() height: number = this.slanderedPageWidth;
-	@Input() quranAriaWidthSubject: Subject<number> | undefined;
-  @Input() quranAriaHeightSubject: Subject<number> | undefined;
   @ViewChild('search_field') searchField: ElementRef | undefined;
 
 	searchKey: string = "";
@@ -26,7 +20,6 @@ export class QuranAriaComponent {
 	faSearch = faSearch;
 	showSearch = false;
 
-	showBig: boolean = true;
 	showList: boolean = false;
 	readerId: number = 0;
 
@@ -39,64 +32,13 @@ export class QuranAriaComponent {
 
 	ngOnInit() {
 		this.showList = this.sideBarService.getShowSurahList();
-		this.showBig = this.sideBarService.getShowBigSurah();
-
-		this.quranAriaWidthSubject && this.quranAriaWidthSubject.subscribe((value: any) => {
-			this.width = value;
-			this.findSurahWidth();
-		});
-
-    this.quranAriaHeightSubject && this.quranAriaHeightSubject.subscribe((value: any) => {
-			this.height = value;
-			this.findSurahWidth();
-		});
 
 		this.sideBarService.surahList.subscribe((value: any) => {
 			this.showList = value;
 		});
 
-		this.sideBarService.showBig.subscribe((value: any) => {
-			this.showBig = value;
-			this.findSurahWidth();
-		});
-
-		this.findSurahWidth();
 		this.findSurahLight();
 		this.getDefaultReader();
-	}
-
-	findSurahWidth() {
-    const isMobile = this.width < this.mobileSize;
-    const space  = isMobile ? this.height/1.75 : this.width;
-		if (this.showBig) {
-			this.quranIndex = quranIndex;
-			this.quranIndex.forEach((surah, index) => {
-				const nextSurah = this.quranIndex[index + 1];
-				if (nextSurah)
-					this.quranIndex[index].width = ((Math.sqrt(nextSurah.page - surah.page)) * 39 * space) / this.slanderedPageWidth * 0.98;
-				this.quranIndex[index].x = (this.quranIndex[index].xIndex * space / this.slanderedPageWidth + 0.02 * space) * 0.98;
-				this.quranIndex[index].y = (this.quranIndex[index].yIndex * space / this.slanderedPageWidth + 0.002 * space) * 0.98;
-        if (isMobile) {
-          const temp = this.quranIndex[index].x;
-          this.quranIndex[index].x = this.quranIndex[index].y;
-				  this.quranIndex[index].y = temp;
-        }
-			})
-		} else {
-			this.smallQuranIndex = smallQuranIndex;
-			this.smallQuranIndex.forEach((surah, index) => {
-				const nextSurah = this.smallQuranIndex[index + 1];
-				if (nextSurah)
-					this.smallQuranIndex[index].width = (Math.sqrt(nextSurah.page - surah.page) * 80 * space) * 1.33 / this.slanderedPageWidth;
-				this.smallQuranIndex[index].x = (this.smallQuranIndex[index].xIndex * space / this.slanderedPageWidth - 0.18 * space) * 1.46;
-				this.smallQuranIndex[index].y = (this.smallQuranIndex[index].yIndex * space / this.slanderedPageWidth - 0.03 * space) * 1.46;
-        if (isMobile) {
-          const temp = this.smallQuranIndex[index].x;
-          this.smallQuranIndex[index].x = this.smallQuranIndex[index].y;
-				  this.smallQuranIndex[index].y = temp;
-        }
-			})
-		}
 	}
 
 	getDefaultReader() {

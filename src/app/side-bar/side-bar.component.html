@@ -16,22 +16,6 @@
       ></fa-icon>
       <p>السورة</p>
     </div>
-    <div class="container" *ngIf="currentUrl == '/' && !showSurahList && !showBigSurah">
-      <fa-icon class="icon"
-        [icon]="faExpand"
-        [title]="'عرض كل السور'"
-        (click)="toggleShowBigSurah()"
-      ></fa-icon>
-      <p>كل السور</p>
-    </div>
-    <div class="container" *ngIf="currentUrl == '/' && !showSurahList && showBigSurah">
-      <fa-icon class="icon"
-        [icon]="faCompress"
-        [title]="'عرض السور القصيرة'"
-        (click)="toggleShowBigSurah()"
-      ></fa-icon>
-      <p>السور القصيرة</p>
-    </div>
     <div class="container" *ngIf="currentUrl == '/'">
       <fa-icon class="icon"
         [icon]="faBars"

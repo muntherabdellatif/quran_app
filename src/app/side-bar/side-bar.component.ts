@@ -9,7 +9,6 @@ import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from 'src/app/data';
 import { ProgressService } from '../services/progress.service';
-import { surahInfo } from '../data/info';
 import { LocalStorageService } from '../services/localStorage.service';
 @Component({
 	selector: 'app-side-bar',
@@ -80,11 +79,6 @@ export class SideBarComponent {
 		this.doneListeningList = this.progress.getDoneListeningList();
 		this.doneReadingList = this.progress.getDoneReadingList();
 
-	}
-
-	toggleShowBigSurah() {
-		this.sideBar.toggleShowBigSurah();
-		this.showBigSurah = this.sideBar.getShowBigSurah();
 	}
 
 	toggleShowSurahList() {
