@@ -378,7 +378,7 @@
     .card_section {
       .card {
         .body {
-          font-size: 16;
+          font-size: 16px;
         }
       }
     }
@@ -388,9 +388,13 @@
 // mobile
 @media (max-width: 426px) {
   .surah-page-container {
-    padding: 20px 60px;
+    padding: 20px 20px;
+    margin-bottom: 50px;
 
     .header {
+      flex-wrap: wrap;
+      justify-content: space-around;
+
       .surah-plant {
         width: 80px;
         height: 80px;
@@ -400,6 +404,10 @@
       }
 
       .surah-info {
+        order: 2;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
         .info {
           margin: 5px;
           font-size: 15px;
@@ -409,7 +417,7 @@
       }
 
       .memorizing-interpretation {
-        flex-direction: column;
+        flex-direction: row;
 
         .container {
           .icon {
@@ -457,8 +465,19 @@
 
     .card_section {
       .card {
+        .header {
+          width: 150px;
+          height: 150px;
+
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+
         .body {
-          font-size: 16;
+          padding: 10px;
+          font-size: 16px;
         }
       }
     }

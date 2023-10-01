@@ -9,3 +9,12 @@
     height: 100vh;
   }
 }
+
+// mobile
+@media (max-width: 426px) {
+  .page {
+    .hidden_element {
+      height: 165vh;
+    }
+  }
+}

@@ -41,3 +41,23 @@
     }
   }
 }
+
+// mobile
+@media (max-width: 426px) {
+  .pages_container {
+    margin-bottom: 90px;
+
+    img {
+      width: 95%;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .button_list {
+
+      button {
+        font-size: 13px;
+      }
+    }
+  }
+}

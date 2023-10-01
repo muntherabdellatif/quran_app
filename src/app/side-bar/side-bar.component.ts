@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
-	faHome, faExpand, faCompress, faBars, faBookmark,
+	faHome, faExpand, faCompress, faBars, faBookmark, faBrain,
 	faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple,
-	faArrowTurnRight, faFloppyDisk, faXmark, faEraser
+	faArrowTurnRight, faFloppyDisk, faXmark, faEraser, faFeatherPointed
 } from '@fortawesome/free-solid-svg-icons';
 import { SideBarService } from '../services/side_bar.service';
 import { ReadServiceService } from '../services/read-service.service';
@@ -43,6 +43,8 @@ export class SideBarComponent {
 	faFloppyDisk = faFloppyDisk;
 	faXmark = faXmark;
 	faEraser = faEraser;
+  faFeatherPointed = faFeatherPointed;
+  faBrain = faBrain;
 
 	constructor(
 		private router: Router,

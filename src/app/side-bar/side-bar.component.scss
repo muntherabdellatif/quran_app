@@ -9,7 +9,7 @@
   right: 10px;
   border-radius: 25px;
 
-  .icon_container {
+  .icons_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,22 +19,26 @@
     min-height: 25px;
     width: 25px;
 
-    .icon {
-      font-size: 20px;
-      color: $color1;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 80%;
-      }
-
-      &.active {
-        color: $gold3;
-      }
-    }
-
-    .save_icon_container {
+    .container {
       position: relative;
+
+      .icon {
+        font-size: 20px;
+        color: $color1;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 80%;
+        }
+
+        &.active {
+          color: $gold3;
+        }
+      }
+
+      p {
+        display: none;
+      }
 
       .done_counter {
         position: absolute;
@@ -50,6 +54,47 @@
         top: 15px;
         right: 15px;
         font-size: 12px;
+      }
+    }
+  }
+}
+
+// mobile
+@media (max-width: 426px) {
+  .side_bar {
+    top: unset;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translate(0,0);
+    border-radius: 25px 25px 0 0;
+
+    .icons_container {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: space-evenly;
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+
+        }
+
+        p {
+          display: block;
+          margin: 0;
+          text-align: center;
+        }
+
+        .done_counter {
+
+        }
       }
     }
   }

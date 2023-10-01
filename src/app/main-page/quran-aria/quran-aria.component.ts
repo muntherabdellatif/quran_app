@@ -67,7 +67,7 @@ export class QuranAriaComponent {
 
 	findSurahWidth() {
     const isMobile = this.width < this.mobileSize;
-    const space  = isMobile ? this.height/1.6 : this.width;
+    const space  = isMobile ? this.height/1.75 : this.width;
 		if (this.showBig) {
 			this.quranIndex = quranIndex;
 			this.quranIndex.forEach((surah, index) => {

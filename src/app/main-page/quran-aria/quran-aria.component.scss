@@ -230,10 +230,17 @@
 @media (max-width: 426px) {
   .surah_container {
     .search_result {
+      margin-bottom: 50px;
+
       .surah {
         width: 100px;
         height: 100px;
       }
+    }
+  }
+  .list_container {
+    .quran_list {
+      margin-bottom: 50px;
     }
   }
 }

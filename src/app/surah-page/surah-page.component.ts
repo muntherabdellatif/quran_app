@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { quranIndex } from '../data/index';
 import { surahInfo } from '../data/info';
 import { ActivatedRoute } from '@angular/router';
-import { faBrain, faBookOpenReader, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faBrain, faFeatherPointed, faAnglesRight, faAnglesLeft, faCircleCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { LightService } from '../services/light.service';
 import { LocalStorageService } from '../services/localStorage.service';
 
@@ -34,7 +34,7 @@ export class SurahPageComponent {
   faAnglesRight = faAnglesRight;
   faAnglesLeft = faAnglesLeft;
   faBrain = faBrain;
-  faBookOpenReader = faBookOpenReader;
+  faFeatherPointed = faFeatherPointed;
   surahLight = 0;
 
   surah: Surah = {

@@ -172,3 +172,64 @@
     }
   }
 }
+
+// mobile
+@media (max-width: 426px) {
+  .listening_container {
+
+    .file_type_button {
+
+      .icon {
+
+      }
+    }
+
+    .reader-list {
+
+      .reader {
+
+        p {
+
+        }
+      }
+    }
+
+    .video_player {
+
+    }
+
+    .mp3_container {
+
+      .audio_container {
+      }
+    }
+
+    .control_button {
+
+      .icon {
+      }
+    }
+
+    .change_surah_control {
+
+      .next_surah,
+      .last_surah {
+
+      }
+
+      .surah_name {
+
+        .option {
+
+        }
+      }
+    }
+
+    .surah_list {
+
+      .list_item {
+
+      }
+    }
+  }
+}

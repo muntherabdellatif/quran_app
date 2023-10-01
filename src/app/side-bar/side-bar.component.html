@@ -1,61 +1,93 @@
 <div class="side_bar" *ngIf="currentUrl != '/visit_reminder'">
-  <div class="icon_container">
-    <fa-icon class="icon"
-      [icon]="faHome"
-      [title]="'الصفحة الرئيسية'"
-      [routerLink]="['/']"
-      *ngIf="currentUrl != '/'"
-    ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)"
-      [icon]="faArrowTurnRight"
-      [title]="'عد إلى صفحة الصورة'"
-      [routerLink]="['/surah',getBackSurahId()]"
-    ></fa-icon>
-    <fa-icon class="icon"
-      [icon]="faExpand"
-      *ngIf="currentUrl == '/' && !showSurahList && !showBigSurah"
-      [title]="'عرض كل السور'"
-      (click)="toggleShowBigSurah()"
-    ></fa-icon>
-    <fa-icon class="icon"
-      [icon]="faCompress"
-      *ngIf="currentUrl == '/' && !showSurahList && showBigSurah"
-      [title]="'عرض السور القصيرة'"
-      (click)="toggleShowBigSurah()"
-    ></fa-icon>
-    <fa-icon class="icon"
-      [icon]="faBars"
-      *ngIf="currentUrl == '/'"
-      [title]="'عرض قائمةالسور'"
-      (click)="toggleShowSurahList()"
-      [class.active]="showSurahList"
-    ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="isQuranPages(currentUrl)"
-      [icon]="faBookmark"
-      [title]="'ضع علامة هنا'"
-      (click)="addMarkHer()"
-    ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="isQuranPages(currentUrl)"
-      [icon]="pointer"
-      [title]="'إذهب إلى العلامة'"
-      (click)="goToMark()"
-    ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="currentUrl == '/'"
-      [icon]="faBookOpenReader"
-      [title]="lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '"
-      [routerLink]="['/quran_pages', getFloor(lastReadPage)]"
-    ></fa-icon>
-    <fa-icon class="icon"
-      *ngIf="currentUrl == '/'"
-      [icon]="faHeadphonesSimple"
-      [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
-      [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]"
-    ></fa-icon>
-    <div class="save_icon_container"
+  <div class="icons_container">
+    <div class="container" *ngIf="currentUrl != '/'">
+      <fa-icon class="icon"
+        [icon]="faHome"
+        [title]="'الصفحة الرئيسية'"
+        [routerLink]="['/']"
+      ></fa-icon>
+      <p>الرأيسية</p>
+    </div>
+    <div class="container" *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)">
+      <fa-icon class="icon"
+        [icon]="faArrowTurnRight"
+        [title]="'عد إلى صفحة الصورة'"
+        [routerLink]="['/surah',getBackSurahId()]"
+      ></fa-icon>
+      <p>السورة</p>
+    </div>
+    <div class="container" *ngIf="currentUrl == '/' && !showSurahList && !showBigSurah">
+      <fa-icon class="icon"
+        [icon]="faExpand"
+        [title]="'عرض كل السور'"
+        (click)="toggleShowBigSurah()"
+      ></fa-icon>
+      <p>كل السور</p>
+    </div>
+    <div class="container" *ngIf="currentUrl == '/' && !showSurahList && showBigSurah">
+      <fa-icon class="icon"
+        [icon]="faCompress"
+        [title]="'عرض السور القصيرة'"
+        (click)="toggleShowBigSurah()"
+      ></fa-icon>
+      <p>السور القصيرة</p>
+    </div>
+    <div class="container" *ngIf="currentUrl == '/'">
+      <fa-icon class="icon"
+        [icon]="faBars"
+        [title]="'عرض قائمةالسور'"
+        (click)="toggleShowSurahList()"
+        [class.active]="showSurahList"
+      ></fa-icon>
+      <p>{{showSurahList ? "خارطة السور": "قائمة السور"}}</p>
+    </div>
+    <div class="container" *ngIf="isQuranPages(currentUrl)">
+      <fa-icon class="icon"
+        [icon]="faBookmark"
+        [title]="'ضع علامة هنا'"
+        (click)="addMarkHer()"
+      ></fa-icon>
+      <p>وضع علامة</p>
+    </div>
+    <div class="container" *ngIf="isQuranPages(currentUrl)">
+      <fa-icon class="icon"
+        [icon]="pointer"
+        [title]="'إذهب إلى العلامة'"
+        (click)="goToMark()"
+      ></fa-icon>
+      <p>الذهاب للعلامة</p>
+    </div>
+    <div class="container" *ngIf="!isQuranPages(currentUrl)">
+      <fa-icon class="icon"
+        [icon]="faBookOpenReader"
+        [title]="lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '"
+        [routerLink]="['/quran_pages', getFloor(lastReadPage)]"
+      ></fa-icon>
+      <p>القراءة</p>
+    </div>
+    <div class="container" *ngIf="!isListeningPage(currentUrl)">
+      <fa-icon class="icon"
+        [icon]="faHeadphonesSimple"
+        [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
+        [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]"
+      ></fa-icon>
+      <p>الإستماع</p>
+    </div>
+    <div class="container">
+      <fa-icon class="icon"
+        [icon]="faFeatherPointed"
+        [title]="firstListeningTime ? 'إبدأ تعلم التفسير الأن' :'أكمل تعلم التفسير من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
+      ></fa-icon>
+      <p>التفسير</p>
+    </div>
+    <div class="container">
+      <fa-icon class="icon"
+        [icon]="faBrain"
+        [title]="'إستمع للسور التي تحفظها'"
+      ></fa-icon>
+      <p>المحفوظات</p>
+    </div>
+    <div class="container"
       *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
     >
       <fa-icon class="icon"
@@ -63,7 +95,8 @@
         [title]="isQuranPages(currentUrl) ? 'أكد السور التي قراتها' : 'أكد السور التي استمعت لها'"
         (click)="toggleSaveProgressPopup()"
       ></fa-icon>
-      <p class="done_counter">{{isQuranPages(currentUrl)? doneReadingList.length : doneListeningList.length}}</p>
+      <span class="done_counter">{{isQuranPages(currentUrl)? doneReadingList.length : doneListeningList.length}}</span>
+      <p>تأكيد الاإستماع</p>
     </div>
   </div>
 </div>
