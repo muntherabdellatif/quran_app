@@ -173,25 +173,26 @@
       .aiah_container {
 
         .aiah {
-          font-size: 30px;
-          line-height: 50px;
+          font-size: 22px;
+          line-height: 35px;
         }
 
         .surah_name {
-          font-size: 16px;
-          bottom: -32px;
-          right: -39px;
+          font-size: 15px;
+          bottom: -27px;
+          right: -26px;
         }
 
         .aiah_number {
-          font-size: 16px;
-          bottom: -32px;
-          left: -39px;
+          font-size: 15px;
+          bottom: -27px;
+          left: -26px;
         }
       }
     }
 
     .control_section {
+      gap: 10px;
 
       button {
         font-size: 18px;

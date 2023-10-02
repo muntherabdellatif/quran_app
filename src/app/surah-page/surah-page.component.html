@@ -35,11 +35,11 @@
   <div class="last_time_section" *ngIf="surah.lastReadingTime || surah.lastListeningTime">
     <p style="background-color: rgb({{surah.color.r}},{{surah.color.g}},0);">
       <span class="last_reading_time" *ngIf="surah.lastReadingTime">
-        {{getDaysOfLastReadTime() != 0 ? 'لم تقرأ هذه السورة منذ' + ' ' + getDaysOfLastReadTime() +' أيام' : 'تمت القراءة اليوم'}}
+        {{getDaysOfLastReadTime() != 0 ? 'لم تقرأ منذ' + ' ' + getDaysOfLastReadTime() +' أيام' : 'تمت القراءة'}}
       </span>
       <span *ngIf="surah.lastReadingTime && surah.lastListeningTime" >/</span>
       <span class="last_listening_time" *ngIf="surah.lastListeningTime ">
-        {{getDaysOfLastListeningTime() != 0 ? 'لم تستمع لهذه السورة منذ' + ' ' + getDaysOfLastListeningTime() +' أيام' : 'تمت الإستماع اليوم'}}
+        {{getDaysOfLastListeningTime() != 0 ? 'لم تستمع منذ' + ' ' + getDaysOfLastListeningTime() +' أيام' : 'تمت الإستماع'}}
       </span>
     </p>
   </div>

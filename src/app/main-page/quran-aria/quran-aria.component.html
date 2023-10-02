@@ -16,7 +16,7 @@
       ></fa-icon>
     </div>
     <div class="search_result" *ngIf="!this.showList">
-      <div class="surah" *ngFor="let surah of quranIndex" title="{{surah.name}}"
+      <div class="surah" *ngFor="let surah of quranIndex.slice(0,114)" title="{{surah.name}}"
           style="
             background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
             box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;

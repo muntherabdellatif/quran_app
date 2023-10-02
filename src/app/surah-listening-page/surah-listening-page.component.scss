@@ -84,6 +84,11 @@
     margin-bottom: 20px;
   }
 
+  youtube-player {
+    width: 600px;
+    height: 350px;
+  }
+
   .mp3_container {
     width: 100%;
     display: flex;
@@ -196,6 +201,11 @@
 
     .video_player {
 
+    }
+
+    youtube-player {
+      width: 100% !important;
+      height: auto !important;
     }
 
     .mp3_container {
