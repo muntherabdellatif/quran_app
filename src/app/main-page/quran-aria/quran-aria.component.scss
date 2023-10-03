@@ -103,8 +103,8 @@
       font-weight: 700;
       background: radial-gradient(circle at center, $color4 0%, $color1 0%);
       box-shadow: 0 0 0px 0px $color4;
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       font-size: 25px;
 
       &:hover {
@@ -242,17 +242,22 @@
       margin-bottom: 50px;
       padding: 0;
       justify-content: space-around;
+      gap: 10px;
 
       .surah {
-        width: 75px;
-        height: 75px;
+        width: 100px;
+        height: 100px;
         font-size: 20px;
       }
     }
   }
 
   .list_container {
-    .quran_list {
+    .quran_list:first-child {
+      margin-bottom: 10px;
+    }
+
+    .quran_list:last-child {
       margin-bottom: 50px;
     }
   }

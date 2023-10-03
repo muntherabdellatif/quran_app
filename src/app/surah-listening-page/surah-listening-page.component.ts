@@ -28,6 +28,8 @@ export class SurahListeningPageComponent {
 	@ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
 
 	quranIndex = quranIndex;
+  videoWidth = 0;
+  videoHight = 0;
 
 	readers: Reader[] = readers;
 	surahId: number = 0;
@@ -69,6 +71,16 @@ export class SurahListeningPageComponent {
 			this.apiLoaded = true;
 		}
 		this.togglePlayPause();
+
+    const PageWidth = window.innerWidth;
+    if (PageWidth < 600) {
+      this.videoWidth = PageWidth * 90/100;
+      this.videoHight = 350 * this.videoWidth / 600;
+    } else {
+      this.videoWidth = 600;
+      this.videoHight = 350;
+    }
+
 
 		// get default reader
 	}
