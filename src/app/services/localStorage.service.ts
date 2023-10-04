@@ -55,7 +55,11 @@ export class LocalStorageService {
 	}
 
 	shouldAutoPlay() {
-		return JSON.parse(localStorage.getItem('auto-play') || '');
+		const autoPlay = localStorage.getItem('auto-play');
+		if (autoPlay)
+			return JSON.parse(autoPlay);
+
+		return false;
 	}
 
 	autoPlayToggle(value: boolean) {
