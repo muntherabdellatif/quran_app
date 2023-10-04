@@ -100,6 +100,29 @@
     }
   }
 
+  .options_control {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+
+    .option {
+      background-color: $color3;
+      border: 1px solid $color4;
+      color: $color4;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 20px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+  }
+
   .control_button {
     display: flex;
     justify-content: center;
@@ -212,10 +235,20 @@
       }
     }
 
+    .options_control {
+      padding: 0 20px;
+
+      .option {
+        padding: 5px 10px;
+        font-size: 15px;
+      }
+    }
+
     .control_button {
       .icon {
         font-size: 20px;
       }
+
     }
 
     .change_surah_control {
