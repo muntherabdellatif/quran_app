@@ -33,12 +33,12 @@ export class LocalStorageService {
 		return setLastListeningTime;
 	}
 
-  doneReading(surahIds: number | number[]) {
-    if (!Array.isArray(surahIds))
+	doneReading(surahIds: number | number[]) {
+		if (!Array.isArray(surahIds))
 			surahIds = [surahIds];
 
-    let setLastReadingTime = false;
-    for (const id of surahIds) {
+		let setLastReadingTime = false;
+		for (const id of surahIds) {
 			const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
 			const lastReadingTimeArray = JSON.parse(localStorage.getItem("lastReadingTime") || "[]");
 
@@ -52,5 +52,13 @@ export class LocalStorageService {
 			setLastReadingTime = true;
 		}
 		return setLastReadingTime;
-  }
+	}
+
+	shouldAutoPlay() {
+		return JSON.parse(localStorage.getItem('auto-play') || '');
+	}
+
+	autoPlayToggle(value: boolean) {
+		return localStorage.setItem('auto-play', JSON.stringify(value));
+	}
 }

@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft,faAngleLeft , faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 import { quranIndex } from 'src/app/data';
+import { LocalStorageService } from '../services/localStorage.service';
 
 interface SurahLink {
 	id: number,
@@ -31,28 +32,32 @@ export class SurahListeningPageComponent {
 	quranIndex = quranIndex;
   videoHeight: number | undefined;
   videoWidth: number | undefined;
+	@ViewChild('mp3Player') mp3Player: any;
 
 	readers: Reader[] = readers;
 	surahId: number = 0;
 	readerId: number = 0;
 	private apiLoaded = false;
 	isVideo: boolean = true;
-  showList: boolean = false;
+	showList: boolean = false;
 
 	playPauseIcon = faPlay;
 	faStop = faStop;
 	faAnglesLeft = faAnglesLeft;
-  faAngleLeft = faAngleLeft;
+	faAngleLeft = faAngleLeft;
 	faAnglesRight = faAnglesRight;
-  faAngleDown = faAngleDown;
+	faAngleDown = faAngleDown;
 	faFileAudio = faFileAudio;
 	faFileVideo = faFileVideo;
+
+	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		public progress: ProgressService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+		public localStorageService: LocalStorageService,
 	) { }
 
 	ngOnInit() {
@@ -80,7 +85,7 @@ export class SurahListeningPageComponent {
 			this.player.stateChange.subscribe((event: any) => {
 				if (event.data === YT.PlayerState.ENDED) {
 					// Video has ended, perform your desired actions here
-					this.progress.addToDoneListening(this.surahId);
+					this.doneListening();
 				}
 			});
 		}
@@ -120,6 +125,7 @@ export class SurahListeningPageComponent {
 	resetVideo() {
 		if (this.player)
 			this.player.stopVideo();
+
 		this.playPauseIcon = faPlay;
 	}
 
@@ -127,12 +133,31 @@ export class SurahListeningPageComponent {
 		this.isVideo = !this.isVideo;
 	}
 
-  toggleShowList() {
-    this.showList = !this.showList;
-  }
+	toggleShowList() {
+		this.showList = !this.showList;
+	}
 
 	changeSurah(surahId: number) {
 		this.router.navigate(['surah_listening', this.readerId, surahId]);
-    this.showList = !this.showList;
+		this.showList = !this.showList;
+	}
+
+	doneListening() {
+		this.progress.addToDoneListening(this.surahId);
+
+		if (this.localStorageService.shouldAutoPlay() && this.surahId < 114) {
+			this.router.navigate(['surah_listening', this.readerId, this.surahId + 1]);
+
+			setTimeout(() => {
+				if (this.isVideo)
+					this.togglePlayPause();
+				else
+					this.mp3Player?.nativeElement.play();
+			}, 2000);
+		}
+	}
+
+	autoPlayToggle() {
+		this.localStorageService.autoPlayToggle(this.autoPlay);
 	}
 }

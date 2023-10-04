@@ -1,4 +1,5 @@
 <div class="listening_container">
+  <span>تشغيل تلقائي</span><input type="checkbox" [(ngModel)]="autoPlay" placeholder="تشغيل تلقائي" (change)="autoPlayToggle()"/>
   <div class="file_type_button" (click)="toggleIsVideo()">
     <fa-icon class="icon"
       [icon]="faFileAudio"
@@ -31,7 +32,7 @@
   </div>
   <div class="mp3_container" *ngIf="!isVideo">
     <div class="audio_container">
-      <audio controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="progress.addToDoneListening(this.surahId)">
+      <audio #mp3Player controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="doneListening()">
       <source type="audio/mp3">
       Your browser does not support the audio element.
       </audio>
