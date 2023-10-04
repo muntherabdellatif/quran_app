@@ -60,6 +60,8 @@
       background-origin: border-box;
       background-clip: content-box, border-box;
       padding: 0.5px;
+      min-width: 178px;
+      text-align: right;
 
       p {
         margin: 0;
@@ -92,6 +94,9 @@
     margin-top: 50px;
 
     .audio_container {
+      audio {
+        width: 700px;
+      }
     }
   }
 
@@ -176,20 +181,22 @@
 // mobile
 @media (max-width: 426px) {
   .listening_container {
+    padding: 20px;
+
     .file_type_button {
       .icon {
-        font-size: 16px;
-        padding: 4px;
-        width: 20px;
-        height: 20px;
+        font-size: 20px;
+        padding: 6px;
+        width: 30px;
+        height: 30px;
       }
     }
 
     .reader-list {
       .reader {
-        width: 50%;
+        width: 80%;
         text-align: center;
-        font-size: 12px;
+        font-size: 16px;
         border-radius: 5px;
         margin: 5px;
       }
@@ -199,35 +206,36 @@
       margin-bottom: 10px;
     }
 
-    .mp3_container {
-      .audio_container {
+    .audio_container {
+      audio {
+        width: 350px !important;
       }
     }
 
     .control_button {
       .icon {
-        font-size: 16px;
+        font-size: 20px;
       }
     }
 
     .change_surah_control {
-      width: 80%;
+      width: 90%;
       margin: 0 auto;
 
       .next_surah,
       .last_surah {
-        font-size: 16px;
+        font-size: 20px;
       }
 
       .surah_name {
-        font-size: 16px;
+        font-size: 20px;
         width: unset;
       }
     }
 
     .surah_list {
       .list_item {
-        font-size: 16px;
+        font-size: 20px;
         margin: 5px;
       }
     }

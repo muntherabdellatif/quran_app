@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAnglesRight, faAnglesLeft,faAngleLeft , faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
@@ -26,10 +26,11 @@ interface Reader {
 
 export class SurahListeningPageComponent {
 	@ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
+  @ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
 
 	quranIndex = quranIndex;
-  videoWidth = 0;
-  videoHight = 0;
+  videoHeight: number | undefined;
+  videoWidth: number | undefined;
 
 	readers: Reader[] = readers;
 	surahId: number = 0;
@@ -50,7 +51,8 @@ export class SurahListeningPageComponent {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		public progress: ProgressService
+		public progress: ProgressService,
+    private changeDetectorRef: ChangeDetectorRef
 	) { }
 
 	ngOnInit() {
@@ -71,18 +73,6 @@ export class SurahListeningPageComponent {
 			this.apiLoaded = true;
 		}
 		this.togglePlayPause();
-
-    const PageWidth = window.innerWidth;
-    if (PageWidth < 600) {
-      this.videoWidth = PageWidth * 90/100;
-      this.videoHight = 350 * this.videoWidth / 600;
-    } else {
-      this.videoWidth = 600;
-      this.videoHight = 350;
-    }
-
-
-		// get default reader
 	}
 
 	ngAfterViewInit() {
@@ -94,7 +84,21 @@ export class SurahListeningPageComponent {
 				}
 			});
 		}
+
+    this.onResize();
+    window.addEventListener('resize', this.onResize.bind(this));
 	}
+
+  onResize(): void {
+    const PageWidth = window.innerWidth;
+    if (this.youTubePlayer)
+      this.videoWidth = Math.min(
+        PageWidth * 0.85,
+        1200
+      );
+    this.videoHeight = this.videoWidth ? this.videoWidth * 0.6 : 1200*0.6;
+    this.changeDetectorRef.detectChanges();
+  }
 
 	stopVideo() {
 		if (this.player)
