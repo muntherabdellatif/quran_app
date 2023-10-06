@@ -16,10 +16,11 @@
 
     .aiah_container {
       position: relative;
-      max-width: 600px;
+      min-width: 750px;
+      max-width: 80%;
 
       .aiah {
-        font-size: 50px;
+        font-size: 40px;
         color: $color4;
         font-weight: bold;
         text-align: center;
