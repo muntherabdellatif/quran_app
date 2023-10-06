@@ -66,7 +66,9 @@ export class SurahListeningPageComponent {
 	) { }
 
 	ngOnInit() {
-		// get surah id
+		this.readers = this.readers.sort((a: any, b: any) => (a.reader_name > b.reader_name) ? 1 : ((b.reader_name > a.reader_name) ? -1 : 0));
+		// get surah id			
+
 		this.route.paramMap.subscribe((params: any) => {
 			const id = params.get('id');
 			const readerId = params.get('reader');
@@ -217,6 +219,14 @@ export class SurahListeningPageComponent {
 
 	mp3Paused() {
 		this.playPauseIcon = faPlay;
+	}
+
+	get getReaderInfo() {
+		const reader = this.readers.find(reader => reader.reader_id == this.readerId);
+		if (reader)
+			return reader;
+
+		return null;
 	}
 
 	get getSurahFirstPage() {
