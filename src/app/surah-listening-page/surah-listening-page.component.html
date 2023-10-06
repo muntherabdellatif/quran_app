@@ -10,10 +10,10 @@
     ></fa-icon>
   </div>
   <div class="video-container" *ngIf="isVideo">
-    <div class="video_player">
+    <div class="video_player" *ngIf="getReaderInfo">
       <script src="https://www.youtube.com/iframe_api"></script>
       <youtube-player #youTubePlayer
-        [videoId]="readers[readerId - 1].quran[surahId - 1].link_id"
+        [videoId]="getReaderInfo.quran[surahId - 1].link_id"
         [width]="videoWidth"
         [height]="videoHeight"
       ></youtube-player>
@@ -34,8 +34,8 @@
     </div>
   </div>
   <div class="mp3_container" *ngIf="!isVideo">
-    <div class="audio_container">
-      <audio #mp3Player controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="mp3Done()" (pause)="mp3Paused()" (playing)="mp3Played()">
+    <div class="audio_container" *ngIf="getReaderInfo">
+      <audio #mp3Player controls [mp3]="getReaderInfo.quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="mp3Done()" (pause)="mp3Paused()" (playing)="mp3Played()">
       <source type="audio/mp3">
       Your browser does not support the audio element.
       </audio>
@@ -55,23 +55,23 @@
       (click)="ToggleSettingPopup()"
     ></fa-icon>
   </div>
-  <div class="change_surah_control">
+  <div class="change_surah_control" *ngIf="getReaderInfo">
     <fa-icon class="next_surah"
-      *ngIf="surahId < readers[readerId - 1].quran.length - 1"
+      *ngIf="surahId < getReaderInfo.quran.length - 1"
       [icon]="faAnglesLeft"
-      [title]="readers[readerId - 1].quran[surahId].name"
+      [title]="getReaderInfo.quran[surahId].name"
       [routerLink]="['/surah_listening', readerId ,surahId + 1]"
       (click)="resetVideo()"
     ></fa-icon>
     <p class="surah_name">
       سورة
-      <span class="option" (click)="toggleShowList()">{{readers[readerId - 1].quran[surahId - 1].name}}</span>
-      بصوت: {{readers[readerId - 1].reader_name}}
+      <span class="option" (click)="toggleShowList()">{{getReaderInfo.quran[surahId - 1].name}}</span>
+      بصوت: {{getReaderInfo.reader_name}}
     </p>
     <fa-icon class="last_surah"
       *ngIf="surahId > 1"
       [icon]="faAnglesRight"
-      [title]="readers[readerId - 1].quran[surahId - 2].name"
+      [title]="getReaderInfo.quran[surahId - 2].name"
       [routerLink]="['/surah_listening', readerId, surahId - 1]"
       (click)="resetVideo()"
     ></fa-icon>
