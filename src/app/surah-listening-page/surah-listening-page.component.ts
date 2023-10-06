@@ -158,6 +158,7 @@ export class SurahListeningPageComponent {
 	}
 
 	autoPlayToggle() {
+    this.autoPlay = !this.autoPlay;
 		this.localStorageService.autoPlayToggle(this.autoPlay);
 	}
 }

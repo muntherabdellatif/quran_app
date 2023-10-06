@@ -219,6 +219,7 @@
         .info {
           margin: 5px;
           font-size: 15px;
+          background-image: linear-gradient($color1, $color1), linear-gradient( 130deg, $color1, $gold3);
         }
       }
     }
@@ -300,5 +301,16 @@
         }
       }
     }
+  }
+
+  .gold_bg {
+
+  }
+
+  .gold_bg_2 {
+    width: 223px;
+    height: 244px;
+    left: 30px;
+    top: 8%;
   }
 }

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
 	checkLastVisitTime() {
 		const lastVisitTime = +(localStorage.getItem('last-visit-reminder') || '');
-		if (!lastVisitTime)
+		if (1 || !lastVisitTime)
 			return this.router.navigate(['visit_reminder']);
 
 		if ((Date.now() - lastVisitTime) / 1000 >= this.oneDayUnix)

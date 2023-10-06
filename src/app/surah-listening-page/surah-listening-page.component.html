@@ -18,11 +18,6 @@
         [height]="videoHeight"
       ></youtube-player>
     </div>
-    <div class="options_control">
-      <div class="option" (change)="autoPlayToggle()">
-        <label for="outo_play">تشغيل تلقائي</label><input id="outo_play" type="checkbox" [(ngModel)]="autoPlay" placeholder="تشغيل تلقائي"/>
-      </div>
-    </div>
     <div class="control_button">
       <fa-icon class="icon"
         [icon]="playPauseIcon"
@@ -67,12 +62,17 @@
     </div>
   </div>
   <div class="reader-list">
-	<div
-	  class="reader"
-	  *ngFor="let reader of readers"
-	  [ngClass]="{'active': readerId == reader.reader_id}"
-	  [routerLink]="['/surah_listening', reader.reader_id, surahId]"
-	  (click)="resetVideo()"
-	><p>{{reader.reader_name}}</p></div>
+    <div class="options_control">
+      <div class="option" (click)="autoPlayToggle()">
+        {{autoPlay ? 'إيقاف التشغيل التلقائي' :'تفعيل التشغيل التلقائي' }}
+      </div>
+    </div>
+    <div
+      class="reader"
+      *ngFor="let reader of readers"
+      [ngClass]="{'active': readerId == reader.reader_id}"
+      [routerLink]="['/surah_listening', reader.reader_id, surahId]"
+      (click)="resetVideo()"
+    ><p>{{reader.reader_name}}</p></div>
   </div>
 </div>
