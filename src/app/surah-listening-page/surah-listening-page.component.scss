@@ -1,5 +1,11 @@
 @import '../../styles.scss';
 
+.quran-pages {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 700px;
+}
+
 .listening_container {
   position: relative;
   min-height: 100vh;

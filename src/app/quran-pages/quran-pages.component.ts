@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from '../data';
@@ -10,13 +10,15 @@ import { LocalStorageService } from '../services/localStorage.service';
   styleUrls: ['./quran-pages.component.scss']
 })
 export class QuranPagesComponent {
-  pageIdNumber = 1;
+  @Input('pageIdNumber') pageIdNumber = 1;
+  @Input('inListening') inListening: boolean = false;
+
   pageId = "001";
   pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
   lastScrollPosition: number = 0;
   quranIndex = quranIndex;
   pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
-  currentPages = ['001','002','003'];
+  currentPages = ['001', '002', '003'];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +32,7 @@ export class QuranPagesComponent {
 
     quranIndex.forEach((surah, index) => {
       const nextSurah = quranIndex[index + 1];
-      if (nextSurah){
+      if (nextSurah) {
         let nextSurahPage = 0;
         if (nextSurah.page - Math.floor(nextSurah.page) == 0)
           nextSurahPage = nextSurah.page - 1;
@@ -46,8 +48,10 @@ export class QuranPagesComponent {
     this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       if (id) {
-        this.pageIdNumber = +id - 1;
-        this.updateCurrentPages(+id);
+        if (!this.inListening)
+          this.pageIdNumber = +id - 1;
+
+        this.updateCurrentPages(this.inListening ? this.pageIdNumber : +id);
         this.pageId = this.pagesNumber[this.pageIdNumber];
         this.scrollToPage(this.pageId);
       }
@@ -120,7 +124,7 @@ export class QuranPagesComponent {
 
     const currentPages: string[] = [];
     pagesIds.forEach(id => {
-      currentPages.push(this.pagesNumber[id-1])
+      currentPages.push(this.pagesNumber[id - 1])
     });
     this.currentPages = currentPages;
   }

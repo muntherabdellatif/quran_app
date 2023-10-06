@@ -80,6 +80,14 @@
         {{autoPlay ? 'إيقاف التشغيل التلقائي' :'تفعيل التشغيل التلقائي' }}
       </div>
     </div>
+    <div class="options_control">
+      <div class="option" (click)="viewReading = !viewReading">
+        {{viewReading ? 'Hide Reading' :'View Reading' }}
+      </div>
+    </div>
+    <div *ngIf="viewReading" class="quran-pages">
+      <app-quran-pages *ngIf="getSurahFirstPage" [pageIdNumber]="getSurahFirstPage - 1" [inListening]="true"></app-quran-pages>
+    </div>
     <div
       class="reader"
       *ngFor="let reader of readers"

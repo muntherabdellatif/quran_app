@@ -54,6 +54,7 @@ export class SurahListeningPageComponent {
 	faFileVideo = faFileVideo;
 
 	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
+	viewReading: boolean = true;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -201,5 +202,13 @@ export class SurahListeningPageComponent {
 
 	mp3Paused() {
 		this.playPauseIcon = faPlay;
+	}
+
+	get getSurahFirstPage() {
+		const page = this.quranIndex.find(surah => surah.id == this.surahId)?.page || 0;
+		if (page)
+			return page;
+
+		return null
 	}
 }
