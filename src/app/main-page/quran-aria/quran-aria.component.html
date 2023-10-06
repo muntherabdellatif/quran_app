@@ -4,7 +4,7 @@
         name="search"
         id="search"
         [(ngModel)]="searchKey"
-        placeholder="ابحث هنا"
+        placeholder="{{'search' | translate}}"
         (ngModelChange)="search()"
         *ngIf="showSearch"
         #search_field
@@ -12,7 +12,7 @@
       <fa-icon class="icon"
         [icon]="faSearch"
         (click)="toggelShowSearch()"
-        title="ابحث عن سورة"
+        title="{{'search_surah' | translate}}"
       ></fa-icon>
     </div>
     <div class="search_result" *ngIf="!this.showList">
@@ -36,7 +36,7 @@
           <div class="control">
             <fa-icon class="icon read"
               [icon]="faBookOpenReader"
-              [title]="'إقرأ الأن'"
+              [title]="'اقرأ الأن'"
               [routerLink]="['/quran_pages', getFloor(surah.page)]">
             </fa-icon>
             <fa-icon class="icon listen"

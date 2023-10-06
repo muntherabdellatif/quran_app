@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@ng-select/ng-select": "^11.1.1",
+    "@ngx-translate/core": "^15.0.0",
     "firebase": "^10.4.0",
     "font-awesome": "^4.7.0",
     "install": "^0.13.0",

@@ -5,14 +5,14 @@
         [icon]="faHome"
         [title]="'الصفحة الرئيسية'"
       ></fa-icon>
-      <p>الرأيسية</p>
+      <p>{{'main' | translate}}</p>
     </div>
     <div class="container" *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)" [routerLink]="['/surah',getBackSurahId()]">
       <fa-icon class="icon"
         [icon]="faArrowTurnRight"
         [title]="'عد إلى صفحة الصورة'"
       ></fa-icon>
-      <p>السورة</p>
+      <p>{{'the_surah' | translate}}</p>
     </div>
     <div class="container" *ngIf="currentUrl == '/'" (click)="toggleShowSurahList()">
       <fa-icon class="icon"

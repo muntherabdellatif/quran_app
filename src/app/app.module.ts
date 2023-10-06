@@ -12,6 +12,12 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { Mp3Directive } from './directive/mp3.directive';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateFileLoader } from './shared/translation/TranslateFileLoader';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+
+export function TranslateFileLoaderFactory() {
+	return new TranslateFileLoader();
+}
 
 @NgModule({
 	declarations: [
@@ -30,8 +36,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
 		YouTubePlayerModule,
 		FormsModule,
 		NgSelectModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: TranslateFileLoaderFactory,
+			},
+		}),
 	],
-	providers: [],
+	providers: [TranslateService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

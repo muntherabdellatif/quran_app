@@ -7,7 +7,7 @@
     >
     <div class="button_list" *ngIf="pagesSurahEndArray[+pageId - 1].length > 0">
       <button *ngFor="let surahId of pagesSurahEndArray[+pageId - 1]" (click)="doneReading(surahId); deleteButton(+pageId - 1 ,surahId);">
-        <p>أكد قراءة سورة {{quranIndex[surahId - 1]?.name}}</p>
+        <p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1]?.name}}</p>
       </button>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LightService } from './services/light.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-root',
@@ -14,8 +15,11 @@ export class AppComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private light: LightService
-	) { }
+		private light: LightService,
+		private translate: TranslateService,
+	) {
+		this.translate.setDefaultLang('ar');
+	}
 
 	ngOnInit() {
 		this.checkLastVisitTime();
