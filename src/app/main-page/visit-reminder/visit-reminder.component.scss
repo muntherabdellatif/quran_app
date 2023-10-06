@@ -168,14 +168,20 @@
     height: 100%;
 
     .page_header {
-      width: 80%;
+      width: 75%;
       top: 40%;
 
       .aiah_container {
+        min-width: unset;
+        max-width: unset;
 
         .aiah {
           font-size: 22px;
           line-height: 35px;
+
+          p {
+            padding: 10px;
+          }
         }
 
         .surah_name {
@@ -209,7 +215,7 @@
     }
 
     .icon_home {
-      font-size: 40px;
+      font-size: 35px;
       top: 35px;
       right: 35px;
     }
