@@ -75,6 +75,7 @@
   *ngIf="showSavePopup && (isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0)">
   <fa-icon class="close"
     [icon]="faXmark"
+    (click)="toggleSaveProgressPopup()"
   ></fa-icon>
   <h2>{{isQuranPages(currentUrl) ? 'قم بتأكيد السور التي اتممت قراتها': 'قم بتأكيد السور الي قمت بالاستماع لها'}}</h2>
   <div class="surah_list" *ngIf="isQuranPages(currentUrl)">

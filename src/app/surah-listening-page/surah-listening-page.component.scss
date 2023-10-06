@@ -106,35 +106,11 @@
     }
   }
 
-  .options_control {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    padding: 0 50px;
-    box-sizing: border-box;
-    gap: 10px;
-    flex-direction: row-reverse;
-
-    .option {
-      background-color: $color3;
-      border: 1px solid $color4;
-      color: $color4;
-      padding: 10px 20px;
-      font-size: 18px;
-      border-radius: 20px;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 80%;
-      }
-    }
-  }
-
   .control_button {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     .icon {
       font-size: 30px;
@@ -209,6 +185,77 @@
   }
 }
 
+.listen_setting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+  gap: 10px;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background: $color1;
+  width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+
+  .option {
+    color: $color4;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 40%;
+    text-decoration-line: line-through;
+
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+
+  .option.active {
+    opacity: 100%;
+    text-decoration: unset;
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: $color4;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+}
+
+.over_layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 50%;
+  z-index: 90;
+  background-color: $color2;
+  width: 100%;
+  height: 100%;
+}
+
+.reading_container {
+  height: 100vh;
+  overflow-y: auto;
+  margin: auto;
+  width: fit-content;
+}
+
 // mobile
 @media (max-width: 426px) {
   .listening_container {
@@ -245,18 +292,6 @@
       }
     }
 
-    .options_control {
-      flex-direction: column;
-      margin-bottom: 10px;
-
-      .option {
-        padding: 5px 10px;
-        font-size: 15px;
-        width: 80%;
-        text-align: center;
-      }
-    }
-
     .control_button {
       .icon {
         font-size: 20px;
@@ -284,6 +319,31 @@
         font-size: 20px;
         margin: 5px;
       }
+    }
+  }
+
+  .listen_setting {
+    width: 100%;
+    padding: 0 50px;
+    gap: 10px;
+    z-index: 100;
+    background: $color1;
+    width: 80%;
+    padding: 20px;
+    border-radius: 20px;
+
+    .option {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 18px;
+      opacity: 40%;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 18px;
     }
   }
 }

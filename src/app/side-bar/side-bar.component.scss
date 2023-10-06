@@ -132,7 +132,7 @@
     align-items: center;
     justify-content: right;
     gap: 50px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .item {
       color: $color4;

@@ -18,7 +18,7 @@ export class QuranPagesComponent {
   lastScrollPosition: number = 0;
   quranIndex = quranIndex;
   pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
-  currentPages = ['001', '002', '003'];
+  currentPages = ['001', '002', '003', '004', '005'];
 
   constructor(
     private route: ActivatedRoute,
@@ -68,6 +68,7 @@ export class QuranPagesComponent {
   updateCurrentPage(): void {
     const pagesList: any = this.getElementsList();
     const currentPage = this.checkElementsVisibility(pagesList);
+    console.log("currentPage :", currentPage);
     this.read.setCurrentPageId(currentPage);
     this.updateCurrentPages(currentPage);
   }
@@ -119,7 +120,7 @@ export class QuranPagesComponent {
   }
 
   updateCurrentPages(currentPage: number) {
-    const pagesIds = [currentPage - 1, currentPage, currentPage + 1]
+    const pagesIds = [currentPage - 2 ,currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
       .filter(id => id > 0).filter(id => id < 605);
 
     const currentPages: string[] = [];

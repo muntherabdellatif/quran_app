@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 import { quranIndex } from 'src/app/data';
@@ -43,6 +43,7 @@ export class SurahListeningPageComponent {
 	private apiLoaded = false;
 	isVideo: boolean = true;
 	showList: boolean = false;
+  showSettingPopup: boolean = false;
 
 	playPauseIcon = faPlay;
 	faStop = faStop;
@@ -52,10 +53,14 @@ export class SurahListeningPageComponent {
 	faAngleDown = faAngleDown;
 	faFileAudio = faFileAudio;
 	faFileVideo = faFileVideo;
+  faGear = faGear;
+  faXmark = faXmark;
 
 	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 	viewReading: boolean = true;
 	repeat: boolean = false;
+  pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
+  surahPages: string[] = [];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -63,7 +68,11 @@ export class SurahListeningPageComponent {
 		public progress: ProgressService,
 		private changeDetectorRef: ChangeDetectorRef,
 		public localStorageService: LocalStorageService,
-	) { }
+	) {
+    this.pagesNumber.forEach(n => {
+      this.pagesNumber[n - 1] = String(this.pagesNumber[n - 1]).padStart(3, '0')
+    });
+ }
 
 	ngOnInit() {
 		// get surah id
@@ -72,6 +81,7 @@ export class SurahListeningPageComponent {
 			const readerId = params.get('reader');
 			if (id) this.surahId = +id;
 			if (readerId) this.readerId = +readerId;
+      this.getSurahPages();
 			localStorage.setItem('last_listening', JSON.stringify({ readerId: this.readerId, surahId: this.surahId }));
 		})
 
@@ -170,6 +180,18 @@ export class SurahListeningPageComponent {
 		this.showList = !this.showList;
 	}
 
+  toggleRepeat() {
+    this.repeat = !this.repeat;
+  }
+
+  toggleViewReading() {
+    this.viewReading = !this.viewReading;
+  }
+
+  ToggleSettingPopup() {
+    this.showSettingPopup = !this.showSettingPopup;
+  }
+
 	changeSurah(surahId: number) {
 		this.router.navigate(['surah_listening', this.readerId, surahId]);
 		this.showList = !this.showList;
@@ -226,4 +248,23 @@ export class SurahListeningPageComponent {
 
 		return null
 	}
+
+  getSurahPages() {
+    const surahFirstPage = Math.floor(this.quranIndex[this.surahId - 1].page);
+    let surahLastPage = Math.floor(surahFirstPage);
+    const nextSurah = this.quranIndex[this.surahId];
+    if (nextSurah)
+      surahLastPage = Math.floor(nextSurah.page) == nextSurah.page ? nextSurah.page - 1 : Math.floor(nextSurah.page);
+
+    const surahPages: string[] = [];
+
+    this.pagesNumber.forEach((page) => {
+      if (+page >=  surahFirstPage && +page <= surahLastPage)
+        surahPages.push(page);
+    });
+
+    this.surahPages = surahPages;
+
+    console.log("this.surahPages :", this.surahPages);
+  }
 }
