@@ -77,17 +77,13 @@
   <div class="reader-list">
     <div class="options_control">
       <div class="option" (click)="autoPlayToggle()">
-        {{autoPlay ? 'إيقاف التشغيل التلقائي' :'تفعيل التشغيل التلقائي' }}
+        {{(autoPlay ? 'off': 'on') | translate}} {{'auto_play' | translate}}
       </div>
-    </div>
-    <div class="options_control">
       <div class="option" (click)="repeat = !repeat">
-        {{(repeat ? 'off' : 'on') | translate}} {{'repeat' | translate}} 
+        {{(repeat ? 'off' : 'on') | translate}} {{'repeat' | translate}}
       </div>
-    </div>
-    <div class="options_control">
       <div class="option" (click)="viewReading = !viewReading">
-        {{viewReading ? 'Hide Reading' :'View Reading' }}
+        {{(viewReading ? 'off' : 'on') | translate }} {{'reading_while_listening' | translate}}
       </div>
     </div>
     <div *ngIf="viewReading" class="quran-pages">

@@ -132,6 +132,7 @@
     align-items: center;
     justify-content: right;
     gap: 50px;
+    overflow-y: scroll;
 
     .item {
       color: $color4;
@@ -176,6 +177,47 @@
       &:hover {
         background-image: linear-gradient($color2, $color3), linear-gradient(150deg, $gold1, $gold3);
         box-shadow: 0 0 5px $gold1;
+      }
+    }
+  }
+}
+
+
+// mobile
+@media (max-width: 426px) {
+  .save_progress_popup {
+    padding: 20px;
+
+    .close {
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .surah_list {
+      gap: 30px;
+
+      .item {
+        font-size: 16px;
+
+        .delete {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .button_container {
+      button {
+        cursor: pointer;
+        font-size: 16px;
+        padding: 1px;
+        margin: 15px;
+
+        p {
+
+        }
       }
     }
   }
