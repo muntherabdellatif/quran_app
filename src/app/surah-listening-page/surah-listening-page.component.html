@@ -31,7 +31,7 @@
   </div>
   <div class="mp3_container" *ngIf="!isVideo">
     <div class="audio_container">
-      <audio #mp3Player controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="doneListening()" (pause)="mp3Paused()" (playing)="mp3Played()">
+      <audio #mp3Player controls [mp3]="readers[readerId - 1].quran[surahId - 1].mp3_link" [surahId]="surahId" (ended)="mp3Done()" (pause)="mp3Paused()" (playing)="mp3Played()">
       <source type="audio/mp3">
       Your browser does not support the audio element.
       </audio>
@@ -81,12 +81,17 @@
       </div>
     </div>
     <div class="options_control">
+      <div class="option" (click)="repeat = !repeat">
+        {{(repeat ? 'off' : 'on') | translate}} {{'repeat' | translate}} 
+      </div>
+    </div>
+    <div class="options_control">
       <div class="option" (click)="viewReading = !viewReading">
         {{viewReading ? 'Hide Reading' :'View Reading' }}
       </div>
     </div>
     <div *ngIf="viewReading" class="quran-pages">
-      <app-quran-pages *ngIf="getSurahFirstPage" [pageIdNumber]="getSurahFirstPage - 1" [inListening]="true"></app-quran-pages>
+      <!-- <app-quran-pages *ngIf="getSurahFirstPage" [pageIdNumber]="getSurahFirstPage - 1" [inListening]="true"></app-quran-pages> -->
     </div>
     <div
       class="reader"

@@ -55,6 +55,7 @@ export class SurahListeningPageComponent {
 
 	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 	viewReading: boolean = true;
+	repeat: boolean = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -65,8 +66,6 @@ export class SurahListeningPageComponent {
 	) { }
 
 	ngOnInit() {
-		console.log(this.quranIndexFiltered);
-
 		// get surah id
 		this.route.paramMap.subscribe((params: any) => {
 			const id = params.get('id');
@@ -90,6 +89,13 @@ export class SurahListeningPageComponent {
 		if (this.player) {
 			this.player.stateChange.subscribe((event: any) => {
 				if (event.data === YT.PlayerState.ENDED) {
+					debugger
+					if (this.repeat) {
+						setTimeout(() => {
+							return this.player?.playVideo();
+						}, 2000);
+					}
+
 					// Video has ended, perform your desired actions here
 					this.doneListening();
 				}
@@ -169,8 +175,11 @@ export class SurahListeningPageComponent {
 		this.showList = !this.showList;
 	}
 
-	doneListening() {
-		this.progress.addToDoneListening(this.surahId);
+	mp3Done() {
+		if (this.repeat)
+			setTimeout(() => {
+				return this.mp3Player?.nativeElement.play();
+			}, 2000);
 
 		if (this.localStorageService.shouldAutoPlay() && this.surahId < 114) {
 			this.router.navigate(['surah_listening', this.readerId, this.surahId + 1]);
@@ -182,6 +191,12 @@ export class SurahListeningPageComponent {
 					this.mp3Player?.nativeElement.play();
 			}, 2000);
 		}
+
+		this.doneListening();
+	}
+
+	doneListening() {
+		this.progress.addToDoneListening(this.surahId);
 	}
 
 	autoPlayToggle() {
