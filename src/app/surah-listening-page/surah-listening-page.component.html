@@ -18,11 +18,6 @@
         [height]="videoHeight"
       ></youtube-player>
     </div>
-    <div class="options_control">
-      <div class="option" (change)="autoPlayToggle()">
-        <label for="outo_play">تشغيل تلقائي</label><input id="outo_play" type="checkbox" [(ngModel)]="autoPlay" placeholder="تشغيل تلقائي"/>
-      </div>
-    </div>
     <div *ngIf="isVideo" class="control_button">
       <fa-icon class="icon"
         [icon]="playPauseIcon"
