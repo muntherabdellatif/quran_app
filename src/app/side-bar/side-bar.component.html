@@ -71,6 +71,11 @@
   </div>
 </div>
 
+<div class="over_layout"
+  *ngIf="showSavePopup && (isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0)"
+  (click)="toggleSaveProgressPopup()">
+</div>
+
 <div class="save_progress_popup"
   *ngIf="showSavePopup && (isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0)">
   <fa-icon class="close"

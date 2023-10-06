@@ -76,7 +76,7 @@ export class SurahListeningPageComponent {
 
 	ngOnInit() {
 		this.readers = this.readers.sort((a: any, b: any) => (a.reader_name > b.reader_name) ? 1 : ((b.reader_name > a.reader_name) ? -1 : 0));
-		// get surah id			
+		// get surah id
 
 		this.route.paramMap.subscribe((params: any) => {
 			const id = params.get('id');
@@ -101,7 +101,6 @@ export class SurahListeningPageComponent {
 		if (this.player) {
 			this.player.stateChange.subscribe((event: any) => {
 				if (event.data === YT.PlayerState.ENDED) {
-					debugger
 					if (this.repeat) {
 						setTimeout(() => {
 							return this.player?.playVideo();
@@ -276,5 +275,9 @@ export class SurahListeningPageComponent {
     this.surahPages = surahPages;
 
     console.log("this.surahPages :", this.surahPages);
+  }
+
+  doneReading(surahId: number) {
+    this.localStorageService.doneReading(surahId);
   }
 }

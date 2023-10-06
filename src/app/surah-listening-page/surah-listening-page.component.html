@@ -114,14 +114,12 @@
 </div>
 
 <div class="reading_container" *ngIf="viewReading">
-  <div class="page_container" *ngFor="let pageId of surahPages; let i = index">
-    <img
-      [src]="'./assets/image/'+ pageId + '.gif'"
-      alt=""
-      [id]="'page-' + pageId"
-    >
-  </div>
-  <!-- <button (click)="doneReading(surahId);">
+  <img *ngFor="let pageId of surahPages; let i = index"
+    [src]="'./assets/image/'+ pageId + '.gif'"
+    alt=""
+    [id]="'page-' + pageId"
+  >
+  <button (click)="doneReading(surahId);">
     <p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1]?.name}}</p>
-  </button> -->
+  </button>
 </div>
