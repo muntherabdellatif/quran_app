@@ -27,11 +27,14 @@ interface Reader {
 
 export class SurahListeningPageComponent {
 	@ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
-  @ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
+	@ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
 
 	quranIndex = quranIndex;
-  videoHeight: number | undefined;
-  videoWidth: number | undefined;
+	quranIndexFiltered: any[] = ['filter', ...quranIndex];
+	surahFilter: string = '';
+
+	videoHeight: number | undefined;
+	videoWidth: number | undefined;
 	@ViewChild('mp3Player') mp3Player: any;
 
 	readers: Reader[] = readers;
@@ -56,11 +59,13 @@ export class SurahListeningPageComponent {
 		private route: ActivatedRoute,
 		private router: Router,
 		public progress: ProgressService,
-    private changeDetectorRef: ChangeDetectorRef,
+		private changeDetectorRef: ChangeDetectorRef,
 		public localStorageService: LocalStorageService,
 	) { }
 
 	ngOnInit() {
+		console.log(this.quranIndexFiltered);
+
 		// get surah id
 		this.route.paramMap.subscribe((params: any) => {
 			const id = params.get('id');
@@ -90,20 +95,20 @@ export class SurahListeningPageComponent {
 			});
 		}
 
-    this.onResize();
-    window.addEventListener('resize', this.onResize.bind(this));
+		this.onResize();
+		window.addEventListener('resize', this.onResize.bind(this));
 	}
 
-  onResize(): void {
-    const PageWidth = window.innerWidth;
-    if (this.youTubePlayer)
-      this.videoWidth = Math.min(
-        PageWidth * 0.85,
-        1200
-      );
-    this.videoHeight = this.videoWidth ? this.videoWidth * 0.6 : 1200*0.6;
-    this.changeDetectorRef.detectChanges();
-  }
+	onResize(): void {
+		const PageWidth = window.innerWidth;
+		if (this.youTubePlayer)
+			this.videoWidth = Math.min(
+				PageWidth * 0.85,
+				1200
+			);
+		this.videoHeight = this.videoWidth ? this.videoWidth * 0.6 : 1200 * 0.6;
+		this.changeDetectorRef.detectChanges();
+	}
 
 	stopVideo() {
 		if (this.player)
@@ -122,9 +127,30 @@ export class SurahListeningPageComponent {
 		}
 	}
 
+	togglePlayPauseAudio() {
+		if (!this.mp3Player)
+			return;
+
+		if (!this.mp3Player.nativeElement.paused) {
+			this.mp3Player?.nativeElement.pause();
+			this.playPauseIcon = faPlay;
+		} else {
+			this.mp3Player?.nativeElement.play();
+			this.playPauseIcon = faPause;
+		}
+	}
+
+	stopMp3() {
+		if (this.mp3Player)
+			this.mp3Player.nativeElement.pause();
+	}
+
 	resetVideo() {
 		if (this.player)
 			this.player.stopVideo();
+
+		if (this.mp3Player)
+			this.mp3Player.nativeElement.pause();
 
 		this.playPauseIcon = faPlay;
 	}
@@ -158,7 +184,22 @@ export class SurahListeningPageComponent {
 	}
 
 	autoPlayToggle() {
-    this.autoPlay = !this.autoPlay;
+		this.autoPlay = !this.autoPlay;
 		this.localStorageService.autoPlayToggle(this.autoPlay);
+	}
+
+	filterSurah() {
+		if (!this.surahFilter)
+			return this.quranIndexFiltered = ['filter', ...this.quranIndex];
+
+		return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
+	}
+
+	mp3Played() {
+		this.playPauseIcon = faPause;
+	}
+
+	mp3Paused() {
+		this.playPauseIcon = faPlay;
 	}
 }
