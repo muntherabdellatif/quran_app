@@ -16,6 +16,7 @@ export class QuranPagesComponent {
   lastScrollPosition: number = 0;
   quranIndex = quranIndex;
   pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
+  currentPages = ['001','002','003'];
 
   constructor(
     private route: ActivatedRoute,
@@ -41,17 +42,19 @@ export class QuranPagesComponent {
     });
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.route.paramMap.subscribe((params: any) => {
       const id = params.get('id');
       if (id) {
         this.pageIdNumber = +id - 1;
+        this.updateCurrentPages(+id);
         this.pageId = this.pagesNumber[this.pageIdNumber];
         this.scrollToPage(this.pageId);
       }
     });
     this.read.scroll.subscribe((id: any) => {
       this.pageIdNumber = +id - 1;
+      this.updateCurrentPages(+id);
       this.pageId = this.pagesNumber[this.pageIdNumber];
       this.scrollToPage(this.pageId);
     })
@@ -62,11 +65,12 @@ export class QuranPagesComponent {
     const pagesList: any = this.getElementsList();
     const currentPage = this.checkElementsVisibility(pagesList);
     this.read.setCurrentPageId(currentPage);
+    this.updateCurrentPages(currentPage);
   }
 
   getElementsList() {
     const pagesList: any = [];
-    this.pagesNumber.forEach(pageId => {
+    this.currentPages.forEach(pageId => {
       const imageElement = this.el.nativeElement.querySelector(`#page-${pageId}`);
       pagesList.push(imageElement)
     })
@@ -94,7 +98,7 @@ export class QuranPagesComponent {
     setTimeout(() => {
       const imageElement = this.el.nativeElement.querySelector(`#page-${pageId}`);
       if (imageElement) {
-        imageElement.scrollIntoView({ behavior: 'smooth' });
+        imageElement.scrollIntoView({ behavior: 'instant' });
       }
     }, 800);
   }
@@ -108,5 +112,16 @@ export class QuranPagesComponent {
     if (indexToDelete !== -1) {
       this.pagesSurahEndArray[index].splice(indexToDelete, 1);
     }
+  }
+
+  updateCurrentPages(currentPage: number) {
+    const pagesIds = [currentPage - 1, currentPage, currentPage + 1]
+      .filter(id => id > 0).filter(id => id < 605);
+
+    const currentPages: string[] = [];
+    pagesIds.forEach(id => {
+      currentPages.push(this.pagesNumber[id-1])
+    });
+    this.currentPages = currentPages;
   }
 }
