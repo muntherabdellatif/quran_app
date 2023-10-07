@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class ReadServiceService {
   scroll: Subject<number> = new Subject();
   currentPage: Subject<number> = new Subject();
+  mark: Subject<number> = new Subject();
   currentPageId = 0;
   markId = 0;
 
@@ -27,7 +28,7 @@ export class ReadServiceService {
   addMark(page_id: number) {
     this.markId = page_id
     localStorage.setItem("bookMarkPage", JSON.stringify(page_id));
-    this.currentPage.next(this.currentPageId);
+    this.mark.next(page_id);
   }
 
   getMarkPageId(): number {

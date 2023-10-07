@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReadServiceService } from '../services/read-service.service';
 import { quranIndex } from '../data';
 import { LocalStorageService } from '../services/localStorage.service';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-quran-pages',
@@ -19,6 +20,9 @@ export class QuranPagesComponent {
   quranIndex = quranIndex;
   pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
   currentPages = ['001', '002', '003', '004', '005'];
+  markId = 0;
+
+  faBookmark = faBookmark;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +66,11 @@ export class QuranPagesComponent {
       this.pageId = this.pagesNumber[this.pageIdNumber];
       this.scrollToPage(this.pageId);
     })
+    this.read.mark.subscribe((id: any) => {
+      this.markId = id;
+    })
+
+    this.markId = this.read.getMarkPageId();
   }
 
   @HostListener('window:scroll', ['$event'])
