@@ -68,8 +68,6 @@ export class QuranPagesComponent {
   updateCurrentPage(): void {
     const pagesList: any = this.getElementsList();
     const currentPage = this.checkElementsVisibility(pagesList);
-    console.log("currentPage :", currentPage);
-    this.read.setCurrentPageId(currentPage);
     this.updateCurrentPages(currentPage);
   }
 
@@ -128,5 +126,6 @@ export class QuranPagesComponent {
       currentPages.push(this.pagesNumber[id - 1])
     });
     this.currentPages = currentPages;
+    this.read.setCurrentPageId(currentPage);
   }
 }

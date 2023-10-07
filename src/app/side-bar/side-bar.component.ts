@@ -64,6 +64,7 @@ export class SideBarComponent {
 		});
 		this.read.currentPage.subscribe((currentPage: any) => {
 			this.checkPointerDirection(currentPage);
+      this.lastReadPage = currentPage;
 		})
 		this.progress.showSave.subscribe((showPopup: any) => {
 			this.showSavePopup = showPopup;
