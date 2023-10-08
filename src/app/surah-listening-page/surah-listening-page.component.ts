@@ -43,7 +43,7 @@ export class SurahListeningPageComponent {
 	private apiLoaded = false;
 	isVideo: boolean = true;
 	showList: boolean = false;
-  showSettingPopup: boolean = false;
+	showSettingPopup: boolean = false;
 
 	playPauseIcon = faPlay;
 	faStop = faStop;
@@ -53,14 +53,14 @@ export class SurahListeningPageComponent {
 	faAngleDown = faAngleDown;
 	faFileAudio = faFileAudio;
 	faFileVideo = faFileVideo;
-  faGear = faGear;
-  faXmark = faXmark;
+	faGear = faGear;
+	faXmark = faXmark;
 
 	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 	viewReading: boolean = true;
 	repeat: boolean = false;
-  pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
-  surahPages: string[] = [];
+	pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
+	surahPages: string[] = [];
 
 	constructor(
 		private route: ActivatedRoute,
@@ -69,10 +69,10 @@ export class SurahListeningPageComponent {
 		private changeDetectorRef: ChangeDetectorRef,
 		public localStorageService: LocalStorageService,
 	) {
-    this.pagesNumber.forEach(n => {
-      this.pagesNumber[n - 1] = String(this.pagesNumber[n - 1]).padStart(3, '0')
-    });
- }
+		this.pagesNumber.forEach(n => {
+			this.pagesNumber[n - 1] = String(this.pagesNumber[n - 1]).padStart(3, '0')
+		});
+	}
 
 	ngOnInit() {
 		this.readers = this.readers.sort((a: any, b: any) => (a.reader_name > b.reader_name) ? 1 : ((b.reader_name > a.reader_name) ? -1 : 0));
@@ -83,7 +83,7 @@ export class SurahListeningPageComponent {
 			const readerId = params.get('reader');
 			if (id) this.surahId = +id;
 			if (readerId) this.readerId = +readerId;
-      this.getSurahPages();
+			this.getSurahPages();
 			localStorage.setItem('last_listening', JSON.stringify({ readerId: this.readerId, surahId: this.surahId }));
 		})
 
@@ -94,7 +94,10 @@ export class SurahListeningPageComponent {
 			document.body.appendChild(tag);
 			this.apiLoaded = true;
 		}
+
 		this.togglePlayPause();
+		this.restoreLastSecondListened();
+		this.saveLastSecondListened();
 	}
 
 	ngAfterViewInit() {
@@ -175,23 +178,24 @@ export class SurahListeningPageComponent {
 
 	toggleIsVideo() {
 		this.isVideo = !this.isVideo;
+		this.restoreLastSecondListened();
 	}
 
 	toggleShowList() {
 		this.showList = !this.showList;
 	}
 
-  toggleRepeat() {
-    this.repeat = !this.repeat;
-  }
+	toggleRepeat() {
+		this.repeat = !this.repeat;
+	}
 
-  toggleViewReading() {
-    this.viewReading = !this.viewReading;
-  }
+	toggleViewReading() {
+		this.viewReading = !this.viewReading;
+	}
 
-  ToggleSettingPopup() {
-    this.showSettingPopup = !this.showSettingPopup;
-  }
+	ToggleSettingPopup() {
+		this.showSettingPopup = !this.showSettingPopup;
+	}
 
 	changeSurah(surahId: number) {
 		this.router.navigate(['surah_listening', this.readerId, surahId]);
@@ -242,6 +246,15 @@ export class SurahListeningPageComponent {
 		this.playPauseIcon = faPlay;
 	}
 
+	playerPlayedPaused(event: any) {
+		if (event.data == 2)
+			return this.playPauseIcon = faPlay;
+		if (event.data == 3)
+			return this.playPauseIcon = faPause;
+
+		return;
+	}
+
 	get getReaderInfo() {
 		const reader = this.readers.find(reader => reader.reader_id == this.readerId);
 		if (reader)
@@ -258,26 +271,57 @@ export class SurahListeningPageComponent {
 		return null
 	}
 
-  getSurahPages() {
-    const surahFirstPage = Math.floor(this.quranIndex[this.surahId - 1].page);
-    let surahLastPage = Math.floor(surahFirstPage);
-    const nextSurah = this.quranIndex[this.surahId];
-    if (nextSurah)
-      surahLastPage = Math.floor(nextSurah.page) == nextSurah.page ? nextSurah.page - 1 : Math.floor(nextSurah.page);
+	getSurahPages() {
+		const surahFirstPage = Math.floor(this.quranIndex[this.surahId - 1].page);
+		let surahLastPage = Math.floor(surahFirstPage);
+		const nextSurah = this.quranIndex[this.surahId];
+		if (nextSurah)
+			surahLastPage = Math.floor(nextSurah.page) == nextSurah.page ? nextSurah.page - 1 : Math.floor(nextSurah.page);
 
-    const surahPages: string[] = [];
+		const surahPages: string[] = [];
 
-    this.pagesNumber.forEach((page) => {
-      if (+page >=  surahFirstPage && +page <= surahLastPage)
-        surahPages.push(page);
-    });
+		this.pagesNumber.forEach((page) => {
+			if (+page >= surahFirstPage && +page <= surahLastPage)
+				surahPages.push(page);
+		});
 
-    this.surahPages = surahPages;
+		this.surahPages = surahPages;
+	}
 
-    console.log("this.surahPages :", this.surahPages);
-  }
+	restoreLastSecondListened() {
+		const savedLastSecondListened = this.localStorageService.restoreLastSecondListened();
+		if (!savedLastSecondListened)
+			return;
 
-  doneReading(surahId: number) {
-    this.localStorageService.doneReading(surahId);
-  }
+		if (savedLastSecondListened.readerId != this.readerId || savedLastSecondListened.surahId != this.surahId)
+			return;
+
+		setTimeout(() => {
+			if (this.mp3Player) {
+				this.mp3Player.nativeElement.currentTime = savedLastSecondListened.lastSecond;
+				this.mp3Player.nativeElement.play();
+			} else if (this.player)
+				this.player.startSeconds = savedLastSecondListened.lastSecond;
+		}, 1000);
+	}
+
+	saveLastSecondListened() {
+		let lastSecond = 0;
+
+		setTimeout(() => {
+			if (this.mp3Player)
+				lastSecond = this.mp3Player.nativeElement.currentTime;
+			else if (this.player)
+				lastSecond = this.player.getCurrentTime();
+
+			if (lastSecond)
+				this.localStorageService.saveLastSecondListened(this.readerId, this.surahId, lastSecond);
+
+			this.saveLastSecondListened();
+		}, 5000);
+	}
+
+	doneReading(surahId: number) {
+		this.localStorageService.doneReading(surahId);
+	}
 }

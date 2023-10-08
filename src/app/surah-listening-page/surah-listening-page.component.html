@@ -16,6 +16,7 @@
         [videoId]="getReaderInfo.quran[surahId - 1].link_id"
         [width]="videoWidth"
         [height]="videoHeight"
+        (stateChange)="playerPlayedPaused($event)"
       ></youtube-player>
     </div>
     <div *ngIf="isVideo" class="control_button">
@@ -77,7 +78,7 @@
     ></fa-icon>
     <div class="surah_list" *ngIf="showList">
       <div *ngFor="let surah of quranIndexFiltered">
-        <input *ngIf="surah == 'filter'" type="text" name="filter" [(ngModel)]="surahFilter" (input)="filterSurah()">
+        <input *ngIf="surah == 'filter'" placeholder="{{'search_surah' | translate}}" type="text" name="filter" [(ngModel)]="surahFilter" (input)="filterSurah()">
         <p *ngIf="surah != 'filter'" class="list_item" (click)="changeSurah(surah.id)">{{surah.name}}</p>
       </div>
     </div>
