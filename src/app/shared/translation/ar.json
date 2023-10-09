@@ -10,9 +10,10 @@
 	"confirm_reading": "أكد قراءة سورة",
 	"main": "الرئيسية",
 	"repeat": "التكرار",
-  "auto_play": "التشغيل التلقائي",
-  "reading_while_listening": "القراءة أثناء الإستماع",
+	"auto_play": "التشغيل التلقائي",
+	"reading_while_listening": "القراءة أثناء الإستماع",
 	"on": "تفعيل",
 	"off": "إيقاف",
+	"page": "صفحة",
 	"": ""
 }

@@ -35,8 +35,8 @@ export class ReadServiceService {
     return JSON.parse(localStorage.getItem("bookMarkPage") || '0');
   }
 
-  scrollToPage() {
-    this.scroll.next(this.markId);
+  scrollToPage(page?: any) {
+    this.scroll.next(page || this.markId);
   }
 
   setLastPageLocalStorage(page: number) {

@@ -1,20 +1,32 @@
+<div>
+	<input type="radio" id="surah" name="go_to" value="surah" [(ngModel)]="goToType">
+	<label for="surah">{{'surah' | translate}}</label><br>
+	<input type="radio" id="page" name="go_to" value="page" [(ngModel)]="goToType">
+	<label for="page">{{'page' | translate}}</label><br>
+
+	<input [type]="goToType == 'page' ? 'number' : 'text'" min="0" [max]="getMax" [(ngModel)]="goToValue"
+		placeholder="{{(goToType == 'surah' ? 'the_surah' : 'page') | translate}}">
+
+	<button (click)="goTo()">الذهاب إلى</button>
+</div>
+
 <div class="pages_container">
   <div class="page_container" *ngFor="let pageId of currentPages; let i = index">
-    <div class="image_container">
-      <img
-        [src]="'./assets/image/'+ pageId + '.gif'"
-        alt=""
-        [id]="'page-' + pageId"
-      >
-      <fa-icon class="mark"
-        *ngIf="+pageId == markId"
-        [icon]="faBookmark"
-      ></fa-icon>
-    </div>
-    <div class="button_list" *ngIf="pagesSurahEndArray[+pageId - 1].length > 0">
-      <button *ngFor="let surahId of pagesSurahEndArray[+pageId - 1]" (click)="doneReading(surahId); deleteButton(+pageId - 1 ,surahId);">
-        <p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1]?.name}}</p>
-      </button>
-    </div>
+	<div class="image_container">
+	  <img
+		[src]="'./assets/image/'+ pageId + '.gif'"
+		alt=""
+		[id]="'page-' + pageId"
+	  >
+	  <fa-icon class="mark"
+		*ngIf="+pageId == markId"
+		[icon]="faBookmark"
+	  ></fa-icon>
+	</div>
+	<div class="button_list" *ngIf="pagesSurahEndArray[+pageId - 1].length > 0">
+	  <button *ngFor="let surahId of pagesSurahEndArray[+pageId - 1]" (click)="doneReading(surahId); deleteButton(+pageId - 1 ,surahId);">
+		<p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1]?.name}}</p>
+	  </button>
+	</div>
   </div>
 </div>
