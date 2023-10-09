@@ -61,4 +61,16 @@ export class LocalStorageService {
 	autoPlayToggle(value: boolean) {
 		return localStorage.setItem('auto-play', JSON.stringify(value));
 	}
+
+	saveLastSecondListened(readerId: number, surahId: number, lastSecond: number) {
+		return localStorage.setItem('last-second-listened', JSON.stringify({ readerId, surahId, lastSecond }));
+	}
+
+	restoreLastSecondListened() {
+		const lastSecondListened = localStorage.getItem('last-second-listened')
+		if (lastSecondListened)
+			return JSON.parse(lastSecondListened);
+
+		return null;
+	}
 }
