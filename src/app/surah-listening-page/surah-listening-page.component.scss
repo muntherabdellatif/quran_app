@@ -314,6 +314,22 @@
   }
 }
 
+.move_up_down {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  font-size: 20px;
+  border-radius: 50%;
+  color: $color2;
+  background-color: $color4;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // mobile
 @media (max-width: 426px) {
   .listening_container {

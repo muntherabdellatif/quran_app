@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faAngleUp, faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 import { quranIndex } from 'src/app/data';
@@ -44,6 +44,8 @@ export class SurahListeningPageComponent {
 	isVideo: boolean = true;
 	showList: boolean = false;
 	showSettingPopup: boolean = false;
+  isUp = true;
+  upDownAngle = faAngleDown;
 
 	playPauseIcon = faPlay;
 	faStop = faStop;
@@ -75,6 +77,7 @@ export class SurahListeningPageComponent {
 	}
 
 	ngOnInit() {
+    this.moveUp();
 		this.readers = this.readers.sort((a: any, b: any) => (a.reader_name > b.reader_name) ? 1 : ((b.reader_name > a.reader_name) ? -1 : 0));
 		// get surah id
 
@@ -324,4 +327,20 @@ export class SurahListeningPageComponent {
 	doneReading(surahId: number) {
 		this.localStorageService.doneReading(surahId);
 	}
+
+  moveDown() {
+    setTimeout(() => {
+			window.scrollTo({ top: document.body.scrollHeight, left: 0, behavior: 'smooth'});
+		}, 800);
+    this.isUp = false;
+    this.upDownAngle  = faAngleUp;
+  }
+
+  moveUp() {
+    setTimeout(() => {
+			window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
+		}, 800);
+    this.isUp = true;
+    this.upDownAngle  = faAngleDown;
+  }
 }
