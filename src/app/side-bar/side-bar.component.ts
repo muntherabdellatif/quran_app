@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
-	faHome, faExpand, faCompress, faBars, faBookmark, faBrain,
+	faHome, faExpand, faCompress, faBars, faBookmark, faBrain, faSearch,
 	faHandPointDown, faHandPointUp, faHandPointLeft, faBookOpenReader, faHeadphonesSimple,
 	faArrowTurnRight, faFloppyDisk, faXmark, faEraser, faFeatherPointed
 } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +22,8 @@ export class SideBarComponent {
 	showBigSurah = true;
 	showSmallSurah = true;
 	showSurahList = false;
+  showMark = false;
+  showSearch = false;
 	lastReadPage: number = 0;
 	listeningData: { readerId: number, surahId: number } = { readerId: 1, surahId: 1 };
 	firstListeningTime = true;
@@ -44,6 +46,7 @@ export class SideBarComponent {
 	faEraser = faEraser;
   faFeatherPointed = faFeatherPointed;
   faBrain = faBrain;
+  faSearch = faSearch;
 
 	constructor(
 		private router: Router,
@@ -169,5 +172,13 @@ export class SideBarComponent {
 
   getFloor(number: number) {
     return Math.floor(number);
+  }
+
+  showAddMarkPopup() {
+    this.showMark = !this.showMark;
+  }
+
+  showSearchPopup() {
+    this.showSearch = !this.showSearch;
   }
 }

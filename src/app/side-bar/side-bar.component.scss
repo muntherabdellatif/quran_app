@@ -56,6 +56,15 @@
         font-size: 12px;
       }
     }
+
+  }
+
+  .container.mobile {
+    display: none;
+  }
+
+  .container.desktop {
+    display: flex;
   }
 }
 
@@ -77,7 +86,6 @@
       justify-content: space-evenly;
 
       .container {
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -98,6 +106,14 @@
         }
       }
     }
+  }
+
+  .container.mobile {
+    display: flex !important;
+  }
+
+  .container.desktop {
+    display: none !important;
   }
 }
 
@@ -219,6 +235,36 @@
 
         }
       }
+    }
+  }
+
+  .mark_popup {
+    z-index: 1000;
+    width: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color1;
+    border-radius: 20px;
+    box-shadow: 0 0 10px $gold3;
+    padding: 30px;
+    text-align: right;
+
+    .close {
+      color: $color4;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5px;
+      justify-content: right;
+      align-items: center;
+      color: $color4;
+      font-size: 20px;
     }
   }
 }

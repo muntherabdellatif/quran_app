@@ -22,14 +22,26 @@
       ></fa-icon>
       <p>{{showSurahList ? "خارطة السور": "قائمة السور"}}</p>
     </div>
-    <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="addMarkHer()">
+    <div class="container mobile" *ngIf="isQuranPages(currentUrl)" (click)="showAddMarkPopup()">
+      <fa-icon class="icon"
+        [icon]="faBookmark"
+      ></fa-icon>
+      <p>علامة</p>
+    </div>
+    <div class="container mobile" *ngIf="isQuranPages(currentUrl)" (click)="showSearchPopup()">
+      <fa-icon class="icon"
+        [icon]="faSearch"
+      ></fa-icon>
+      <p>البحث</p>
+    </div>
+    <div class="container desktop" *ngIf="isQuranPages(currentUrl)" (click)="addMarkHer()">
       <fa-icon class="icon"
         [icon]="faBookmark"
         [title]="'ضع علامة هنا'"
       ></fa-icon>
       <p>وضع علامة</p>
     </div>
-    <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="goToMark()">
+    <div class="container desktop" *ngIf="isQuranPages(currentUrl)" (click)="goToMark()">
       <fa-icon class="icon"
         [icon]="pointer"
         [title]="'إذهب إلى العلامة'"
@@ -103,5 +115,30 @@
     <button (click)="doneListeningAllList()">
       <p>تأكيد</p>
     </button>
+  </div>
+</div>
+
+<div class="over_layout" *ngIf="showMark"
+  (click)="showAddMarkPopup()">
+</div>
+
+<div class="mark_popup" *ngIf="showMark">
+  <fa-icon class="close"
+    [icon]="faXmark"
+    (click)="showAddMarkPopup()"
+  ></fa-icon>
+  <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="addMarkHer(); showAddMarkPopup();">
+    <fa-icon class="icon"
+      [icon]="faBookmark"
+      [title]="'ضع علامة هنا'"
+    ></fa-icon>
+    <p>وضع علامة</p>
+  </div>
+  <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="goToMark(); showAddMarkPopup();">
+    <fa-icon class="icon"
+      [icon]="pointer"
+      [title]="'إذهب إلى العلامة'"
+    ></fa-icon>
+    <p>الذهاب للعلامة</p>
   </div>
 </div>
