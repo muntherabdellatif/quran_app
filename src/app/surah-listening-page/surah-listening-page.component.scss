@@ -169,7 +169,7 @@
     background-color: $color1;
     z-index: 100;
     top: 65%;
-    border-radius: 20px;
+    border-radius: 5px;
 
     .list_item {
       color: #efefef;
@@ -190,10 +190,11 @@
       border-radius: 3px;
       font-size: 16px;
       text-align: right;
+      padding: 5px 0px;
     }
 
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 5px;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -210,8 +211,8 @@
 
 .listen_setting {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: right;
+  align-items: end;
   padding: 0 50px;
   box-sizing: border-box;
   gap: 10px;
@@ -234,17 +235,19 @@
     cursor: pointer;
     font-weight: bold;
     opacity: 40%;
-    text-decoration-line: line-through;
-
 
     &:hover {
       opacity: 80%;
+      font-size: 20px;
+    }
+
+    .icon {
+      color: $color4;
     }
   }
 
   .option.active {
     opacity: 100%;
-    text-decoration: unset;
   }
 
   .close {
@@ -398,12 +401,11 @@
 
   .listen_setting {
     width: 100%;
-    padding: 0 50px;
     gap: 10px;
     z-index: 100;
     background: $color1;
     width: 80%;
-    padding: 20px;
+    padding: 30px 10px 10px;
     border-radius: 20px;
 
     .option {
@@ -437,5 +439,13 @@
     button {
       font-size: 13px;
     }
+  }
+
+  .move_up_down {
+    top: 10px;
+    right: 10px;
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
   }
 }

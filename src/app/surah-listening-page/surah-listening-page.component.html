@@ -108,12 +108,21 @@
   ></fa-icon>
   <div class="option" (click)="autoPlayToggle()" [class.active]="autoPlay">
     {{('on') | translate}} {{'auto_play' | translate}}
+    <fa-icon class="icon"
+      [icon]="autoPlay ? faCheckSquare : faSquare"
+    ></fa-icon>
   </div>
   <div class="option" (click)="toggleRepeat()" [class.active]="repeat">
     {{('on') | translate}} {{'repeat' | translate}}
+    <fa-icon class="icon"
+      [icon]="repeat ? faCheckSquare : faSquare"
+    ></fa-icon>
   </div>
   <div class="option" (click)="toggleViewReading()" [class.active]="viewReading">
     {{('on') | translate }} {{'reading_while_listening' | translate}}
+    <fa-icon class="icon"
+      [icon]="viewReading ? faCheckSquare : faSquare"
+    ></fa-icon>
   </div>
 </div>
 

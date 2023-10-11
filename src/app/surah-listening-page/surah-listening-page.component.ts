@@ -1,7 +1,10 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { readers } from '../data/readers';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faAngleUp, faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAnglesRight, faAnglesLeft, faAngleLeft, faAngleDown, faCheckSquare, faSquare,
+  faAngleUp, faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark
+} from '@fortawesome/free-solid-svg-icons';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { ProgressService } from '../services/progress.service';
 import { quranIndex } from 'src/app/data';
@@ -57,6 +60,8 @@ export class SurahListeningPageComponent {
 	faFileVideo = faFileVideo;
 	faGear = faGear;
 	faXmark = faXmark;
+  faSquare = faSquare;
+  faCheckSquare = faCheckSquare;
 
 	autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 	viewReading: boolean = true;
