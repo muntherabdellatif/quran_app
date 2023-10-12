@@ -28,9 +28,13 @@ export class SideBarComponent {
 	listeningData: { readerId: number, surahId: number } = { readerId: 1, surahId: 1 };
 	firstListeningTime = true;
 	showSavePopup = false;
+  searchBySurah = true;
 	doneReadingList: number[] = [];
 	doneListeningList: number[] = [];
+
 	quranIndex = quranIndex;
+  quranIndexFiltered: any[] = ['filter', ...quranIndex];
+  surahFilter: string = '';
 
 	faExpand = faExpand;
 	faCompress = faCompress;
@@ -180,5 +184,16 @@ export class SideBarComponent {
 
   showSearchPopup() {
     this.showSearch = !this.showSearch;
+  }
+
+  setSearchBySurah(searchBySurah: boolean) {
+    this.searchBySurah = searchBySurah;
+  }
+
+  filterSurah() {
+    if (!this.surahFilter)
+      return this.quranIndexFiltered = ['filter', ...this.quranIndex];
+
+    return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
   }
 }

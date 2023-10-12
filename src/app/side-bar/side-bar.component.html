@@ -142,3 +142,39 @@
     <p>الذهاب للعلامة</p>
   </div>
 </div>
+
+<div class="over_layout" *ngIf="showSearch"
+  (click)="showSearchPopup()">
+</div>
+
+<div class="search_popup" *ngIf="showSearch">
+  <fa-icon class="close"
+    [icon]="faXmark"
+    (click)="showSearchPopup()"
+  ></fa-icon>
+  <div class="header">
+    <div class="button">
+      <div class="option" (click)="setSearchBySurah(true)" [class.active]="searchBySurah">السور</div>
+      <div class="option" (click)="setSearchBySurah(false)" [class.active]="!searchBySurah">الصفحات</div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="list_container" *ngIf="searchBySurah">
+      <div *ngFor="let surah of quranIndexFiltered">
+        <input *ngIf="surah == 'filter'" placeholder="{{'search_surah' | translate}}" type="text" name="filter" [(ngModel)]="surahFilter" (input)="filterSurah()">
+        <p *ngIf="surah != 'filter'"
+            class="list_item"
+            [routerLink]="['/quran_pages', getFloor(surah.page)]"
+            (click)="showSearchPopup()"
+        >
+          <span>{{surah.id}}</span>
+          <span>{{surah.name}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="list_container" *ngIf="!searchBySurah">
+      <div class="item">
+      </div>
+    </div>
+  </div>
+</div>
