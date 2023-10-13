@@ -423,7 +423,7 @@ export const mofasreen = [
   },
   {
     id: 2,
-    name: "",
+    name: "الشعراوي",
     type: "",
     quran: [
       { id: 1, name: "الفاتحة", videoArray: [

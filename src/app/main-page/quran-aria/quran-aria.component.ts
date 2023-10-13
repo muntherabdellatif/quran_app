@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { quranIndex, smallQuranIndex } from 'src/app/data';
 import { SideBarService } from 'src/app/services/side_bar.service';
-import { faBookOpenReader, faHeadphonesSimple, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpenReader, faHeadphonesSimple, faSearch, faFeatherPointed } from '@fortawesome/free-solid-svg-icons';
 import { LightService } from 'src/app/services/light.service';
 import { group } from '@angular/animations';
 
@@ -17,9 +17,10 @@ export class QuranAriaComponent {
 
 	faBookOpenReader = faBookOpenReader;
 	faHeadphonesSimple = faHeadphonesSimple;
+  faFeatherPointed = faFeatherPointed;
 	faSearch = faSearch;
-	showSearch = false;
 
+	showSearch = false;
 	showList: boolean = false;
 	readerId: number = 0;
 

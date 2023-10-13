@@ -1,8 +1,9 @@
 <div class="meditation_container">
-    <div class="video-container">
+  <div class="video-container">
     <div class="video_player">
       <script src="https://www.youtube.com/iframe_api"></script>
       <youtube-player #youTubePlayer
+        *ngIf="mofasreen[mofasrId - 1].quran[surahId - 1].videoArray[videoIndex]?.link_id"
         [videoId]="mofasreen[mofasrId - 1].quran[surahId - 1].videoArray[videoIndex].link_id"
         [width]="videoWidth"
         [height]="videoHeight"
@@ -22,6 +23,42 @@
         [icon]="faGear"
         (click)="ToggleSettingPopup()"
       ></fa-icon>
+    </div>
+    <div class="change_surah_control" *ngIf="mofasreen[mofasrId - 1]">
+      <fa-icon class="next_surah"
+        *ngIf="surahId < mofasreen[mofasrId - 1].quran.length - 1"
+        [icon]="faAnglesLeft"
+        [title]="mofasreen[mofasrId - 1].quran[surahId].name"
+        [routerLink]="['/meditation', mofasrId ,surahId + 1]"
+        (click)="resetVideo()"
+      ></fa-icon>
+      <p class="surah_name">
+        سورة
+        <span class="option" (click)="toggleShowList()">{{mofasreen[mofasrId - 1].quran[surahId - 1].name}}</span>
+        بصوت: {{mofasreen[mofasrId - 1].name}}
+      </p>
+      <fa-icon class="last_surah"
+        *ngIf="surahId > 1"
+        [icon]="faAnglesRight"
+        [title]="mofasreen[mofasrId - 1].quran[surahId - 2].name"
+        [routerLink]="['/meditation', mofasrId, surahId - 1]"
+        (click)="resetVideo()"
+      ></fa-icon>
+      <div class="surah_list" *ngIf="showList">
+        <div *ngFor="let surah of quranIndexFiltered">
+          <input *ngIf="surah == 'filter'" placeholder="{{'search_surah' | translate}}" type="text" name="filter" [(ngModel)]="surahFilter" (input)="filterSurah()">
+          <p *ngIf="surah != 'filter'" class="list_item" (click)="changeSurah(surah.id)">{{surah.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="mofasreen-list">
+      <div
+        class="mofasr"
+        *ngFor="let mofasr of mofasreen"
+        [ngClass]="{'active': mofasrId == mofasr.id}"
+        [routerLink]="['/meditation', mofasr.id, surahId]"
+        (click)="resetVideo()"
+      ><p>{{mofasr.name}}</p></div>
     </div>
   </div>
 </div>

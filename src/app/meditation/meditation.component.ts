@@ -6,6 +6,7 @@ import {
   faStop, faPlay, faPause, faFileAudio, faFileVideo, faGear, faXmark
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
+import { quranIndex } from 'src/app/data';
 import { ProgressService } from '../services/progress.service';
 import { LocalStorageService } from '../services/localStorage.service';
 
@@ -38,10 +39,15 @@ export class MeditationComponent {
   @ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
 	@ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
 
+	quranIndex = quranIndex;
+	quranIndexFiltered: any[] = ['filter', ...quranIndex];
+	surahFilter: string = '';
+
   showSettingPopup: boolean = false;
   videoHeight: number | undefined;
 	videoWidth: number | undefined;
 	private apiLoaded = false;
+	showList: boolean = false;
 
   mofasreen: Mofasreen[] = mofasreen;
 	surahId: number = 1;
@@ -96,6 +102,28 @@ export class MeditationComponent {
 		return;
 	}
 
+
+  stopVideo() {
+		if (this.player)
+			this.player.stopVideo();
+	}
+
+	resetVideo() {
+		if (this.player)
+			this.player.stopVideo();
+
+		this.playPauseIcon = faPlay;
+	}
+
+
+	ToggleSettingPopup() {
+		this.showSettingPopup = !this.showSettingPopup;
+	}
+
+  toggleShowList() {
+		this.showList = !this.showList;
+	}
+
   togglePlayPause() {
 		if (!this.player) return;
 
@@ -108,13 +136,15 @@ export class MeditationComponent {
 		}
 	}
 
-  stopVideo() {
-		if (this.player)
-			this.player.stopVideo();
+	filterSurah() {
+		if (!this.surahFilter)
+			return this.quranIndexFiltered = ['filter', ...this.quranIndex];
+
+		return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
 	}
 
-
-	ToggleSettingPopup() {
-		this.showSettingPopup = !this.showSettingPopup;
+	changeSurah(surahId: number) {
+		this.router.navigate(['meditation', this.mofasrId, surahId]);
+		this.showList = !this.showList;
 	}
 }
