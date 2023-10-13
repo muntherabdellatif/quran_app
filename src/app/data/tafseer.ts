@@ -1,5 +1,6 @@
 export const mofasreen = [
   {
+    id: 1,
     name: "محمد راتب النابلسي",
     type: "",
     quran: [
@@ -421,6 +422,7 @@ export const mofasreen = [
     ]
   },
   {
+    id: 2,
     name: "",
     type: "",
     quran: [

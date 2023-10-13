@@ -1,0 +1,406 @@
+@import '../../styles.scss';
+
+.quran-pages {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 700px;
+}
+
+.meditation_container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px 70px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  .mofasreen-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+
+    .mofaser {
+      cursor: pointer;
+      font-size: 20px;
+      color: $color4;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin: 20px;
+      border: solid 0.5px transparent;
+      background-image: linear-gradient($color2, $color3), linear-gradient(290deg, $gold2, $gold3);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      padding: 0.5px;
+      min-width: 178px;
+      text-align: right;
+
+      p {
+        margin: 0;
+        padding: 5px 10px;
+      }
+
+      &:hover {
+        background-image: linear-gradient($color2, $color3), linear-gradient(150deg, $gold1, $gold3);
+        box-shadow: 0 0 5px $gold1;
+      }
+    }
+
+    .mofaser.active {
+      box-shadow: 0 0 20px $gold1;
+    }
+  }
+
+  .video_player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .control_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .icon {
+      font-size: 30px;
+      margin: 10px;
+      color: $color4;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 70%;
+      }
+    }
+  }
+
+  .change_surah_control {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    margin: 20px auto;
+    position: relative;
+
+    .next_surah,
+    .last_surah {
+      font-size: 30px;
+      cursor: pointer;
+      color: $color4;
+
+      &:hover {
+        opacity: 70%;
+      }
+    }
+
+    .surah_name {
+      color: $color4;
+      font-size: 30px;
+      width: 400px;
+      text-align: center;
+
+      .option {
+        color: $gold3;
+        cursor: pointer;
+
+        &:hover {
+          color: $gold2;
+        }
+      }
+    }
+  }
+
+  .surah_list {
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    overflow-y: scroll;
+    margin: 0 auto;
+    background-color: $color1;
+    z-index: 100;
+    top: 65%;
+    border-radius: 5px;
+
+    .list_item {
+      color: #efefef;
+      text-align: right;
+      font-size: 20px;
+      margin: 10px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 80%;
+      }
+    }
+
+    input {
+      width: 85%;
+      margin: 10px auto 0;
+      display: block;
+      border-radius: 3px;
+      font-size: 16px;
+      text-align: right;
+      padding: 5px 0px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color2;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $color4;
+      border-radius: 4px;
+    }
+  }
+}
+
+.listen_setting {
+  display: flex;
+  justify-content: right;
+  align-items: end;
+  padding: 0 50px;
+  box-sizing: border-box;
+  gap: 10px;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background: $color1;
+  width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+
+  .option {
+    color: $color4;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 40%;
+
+    &:hover {
+      opacity: 80%;
+      font-size: 20px;
+    }
+
+    .icon {
+      color: $color4;
+    }
+  }
+
+  .option.active {
+    opacity: 100%;
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: $color4;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+}
+
+.reading_container {
+  height: 100vh;
+  overflow-y: auto;
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 700px;
+    margin: 20px;
+    filter: contrast(1.4) brightness(0.9);
+  }
+
+  button {
+    cursor: pointer;
+    font-size: 20px;
+    color: $color4;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 0.5px transparent;
+    background-image: linear-gradient($color2, $color3), linear-gradient(290deg, $gold2, $gold3);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 0.5px;
+
+    p {
+      margin: 0;
+      padding: 5px 10px;
+    }
+
+    &:hover {
+      background-image: linear-gradient($color2, $color3), linear-gradient(150deg, $gold1, $gold3);
+      box-shadow: 0 0 5px $gold1;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color2;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color4;
+    border-radius: 6px;
+  }
+}
+
+.move_up_down {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  font-size: 20px;
+  border-radius: 50%;
+  color: $color2;
+  background-color: $color4;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// mobile
+@media (max-width: 426px) {
+  .meditation_container {
+    padding: 20px;
+
+    .file_type_button {
+      .icon {
+        font-size: 20px;
+        padding: 6px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .reader-list {
+      margin-bottom: 45px;
+
+      .reader {
+        width: 80%;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+    }
+
+    .video_player {
+      margin-bottom: 10px;
+    }
+
+    .audio_container {
+      audio {
+        width: 350px !important;
+      }
+    }
+
+    .control_button {
+      .icon {
+        font-size: 20px;
+      }
+
+    }
+
+    .change_surah_control {
+      width: 90%;
+      margin: 0 auto;
+
+      .next_surah,
+      .last_surah {
+        font-size: 20px;
+      }
+
+      .surah_name {
+        font-size: 20px;
+        width: unset;
+      }
+    }
+
+    .surah_list {
+      .list_item {
+        font-size: 20px;
+        margin: 5px;
+      }
+    }
+  }
+
+  .listen_setting {
+    width: 100%;
+    gap: 10px;
+    z-index: 100;
+    background: $color1;
+    width: 80%;
+    padding: 30px 10px 10px;
+    border-radius: 20px;
+
+    .option {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 18px;
+      opacity: 40%;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 18px;
+    }
+  }
+
+  .reading_container {
+    height: 100vh;
+    overflow-y: auto;
+    margin: auto;
+    width: fit-content;
+    margin-bottom: 65px;
+
+    img {
+      width: 100%;
+      margin: 10px auto;
+      display: block;
+    }
+
+    button {
+      font-size: 13px;
+    }
+  }
+
+  .move_up_down {
+    top: 10px;
+    right: 10px;
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+  }
+}

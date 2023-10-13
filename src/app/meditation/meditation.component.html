@@ -1,0 +1,27 @@
+<div class="meditation_container">
+    <div class="video-container">
+    <div class="video_player">
+      <script src="https://www.youtube.com/iframe_api"></script>
+      <youtube-player #youTubePlayer
+        [videoId]="mofasreen[mofasrId - 1].quran[surahId - 1].videoArray[videoIndex].link_id"
+        [width]="videoWidth"
+        [height]="videoHeight"
+        (stateChange)="playerPlayedPaused($event)"
+      ></youtube-player>
+    </div>
+    <div class="control_button">
+      <fa-icon class="icon"
+        [icon]="playPauseIcon"
+        (click)="togglePlayPause()"
+      ></fa-icon>
+      <fa-icon class="icon"
+        [icon]="faStop"
+        (click)="stopVideo()"
+      ></fa-icon>
+      <fa-icon class="icon"
+        [icon]="faGear"
+        (click)="ToggleSettingPopup()"
+      ></fa-icon>
+    </div>
+  </div>
+</div>

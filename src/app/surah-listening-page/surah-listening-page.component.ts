@@ -48,8 +48,8 @@ export class SurahListeningPageComponent {
 	showList: boolean = false;
 	showSettingPopup: boolean = false;
   isUp = true;
-  upDownAngle = faAngleDown;
 
+  upDownAngle = faAngleDown;
 	playPauseIcon = faPlay;
 	faStop = faStop;
 	faAnglesLeft = faAnglesLeft;

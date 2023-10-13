@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateFileLoader } from './shared/translation/TranslateFileLoader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MeditationComponent } from './meditation/meditation.component';
 
 export function TranslateFileLoaderFactory() {
 	return new TranslateFileLoader();
@@ -28,6 +29,7 @@ export function TranslateFileLoaderFactory() {
 		QuranPagesComponent,
 		SideBarComponent,
 		Mp3Directive,
+  MeditationComponent,
 	],
 	imports: [
 		BrowserModule,

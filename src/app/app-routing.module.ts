@@ -6,6 +6,7 @@ import { SurahReadingPageComponent } from './surah-reading-page/surah-reading-pa
 import { SurahListeningPageComponent } from './surah-listening-page/surah-listening-page.component';
 import { QuranPagesComponent } from './quran-pages/quran-pages.component';
 import { VisitReminderComponent } from './main-page/visit-reminder/visit-reminder.component';
+import { MeditationComponent } from './meditation/meditation.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'surah/:id', component: SurahPageComponent },
   { path: 'surah_read/:id', component: SurahReadingPageComponent },
   { path: 'surah_listening/:reader/:id', component: SurahListeningPageComponent },
+  { path: 'meditation/:mofasr/:id', component: MeditationComponent },
   { path: 'quran_pages/:id', component: QuranPagesComponent }
 ];
 
