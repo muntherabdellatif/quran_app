@@ -131,7 +131,7 @@ export class Mp3Directive implements OnChanges {
 	};
 
 	ngOnChanges(): void {
-		this.renderer.setProperty(this.el.nativeElement, 'src', this.mp3 + this.numbers[this.surahId] + '.mp3');
+		this.renderer.setProperty(this.el.nativeElement, 'src', 'https://drive.google.com/uc?export=download&id=' + this.mp3);
 	}
 
 }
