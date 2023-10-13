@@ -24,9 +24,6 @@ export class QuranPagesComponent {
 
 	faBookmark = faBookmark;
 
-	goToType: string = 'surah';
-	goToValue: number | string = '';
-
 	constructor(
 		private route: ActivatedRoute,
 		private el: ElementRef,
@@ -139,31 +136,5 @@ export class QuranPagesComponent {
 		});
 		this.currentPages = currentPages;
 		this.read.setCurrentPageId(currentPage);
-	}
-
-	goTo() {
-		if (!this.goToType || !this.goToValue)
-			return;
-
-		if (this.goToType == 'page')
-			return this.read.scrollToPage(this.goToValue);
-
-		if (this.goToType == 'surah') {
-			const surahPage = (this.quranIndex.find(surah => surah.name == this.goToValue) || {}).page;
-			if (!surahPage)
-				return;
-
-			return this.read.scrollToPage(Math.floor(surahPage));
-		}
-	}
-
-	get getMax() {
-		if (this.goToType == 'surah')
-			return 114;
-
-		if (this.goToType == 'page')
-			return 604;
-
-		return 0;
 	}
 }

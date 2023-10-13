@@ -1,15 +1,3 @@
-<div>
-	<input type="radio" id="surah" name="go_to" value="surah" [(ngModel)]="goToType">
-	<label for="surah">{{'surah' | translate}}</label><br>
-	<input type="radio" id="page" name="go_to" value="page" [(ngModel)]="goToType">
-	<label for="page">{{'page' | translate}}</label><br>
-
-	<input [type]="goToType == 'page' ? 'number' : 'text'" min="0" [max]="getMax" [(ngModel)]="goToValue"
-		placeholder="{{(goToType == 'surah' ? 'the_surah' : 'page') | translate}}">
-
-	<button (click)="goTo()">الذهاب إلى</button>
-</div>
-
 <div class="pages_container">
   <div class="page_container" *ngFor="let pageId of currentPages; let i = index">
 	<div class="image_container">

@@ -1,20 +1,20 @@
 <div class="side_bar" *ngIf="currentUrl != '/visit_reminder'">
   <div class="icons_container">
-    <div class="container" *ngIf="currentUrl != '/'"  [routerLink]="['/']">
+    <div class="container" *ngIf="currentUrl != '/'"  [routerLink]="['/']" (click)="closeAllPopUp()">
       <fa-icon class="icon"
         [icon]="faHome"
         [title]="'الصفحة الرئيسية'"
       ></fa-icon>
       <p>{{'main' | translate}}</p>
     </div>
-    <div class="container" *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)" [routerLink]="['/surah',getBackSurahId()]">
+    <div class="container" *ngIf="isQuranPages(currentUrl) || isListeningPage(currentUrl)" [routerLink]="['/surah',getBackSurahId()]" (click)="closeAllPopUp()">
       <fa-icon class="icon"
         [icon]="faArrowTurnRight"
         [title]="'عد إلى صفحة الصورة'"
       ></fa-icon>
       <p>{{'the_surah' | translate}}</p>
     </div>
-    <div class="container" *ngIf="currentUrl == '/'" (click)="toggleShowSurahList()">
+    <div class="container" *ngIf="currentUrl == '/'" (click)="toggleShowSurahList(); closeAllPopUp();">
       <fa-icon class="icon"
         [icon]="faBars"
         [title]="'عرض قائمةالسور'"
@@ -22,47 +22,33 @@
       ></fa-icon>
       <p>{{showSurahList ? "خارطة السور": "قائمة السور"}}</p>
     </div>
-    <div class="container mobile" *ngIf="isQuranPages(currentUrl)" (click)="showAddMarkPopup()">
+    <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="closeAllPopUp(); showAddMarkPopup();">
       <fa-icon class="icon"
         [icon]="faBookmark"
       ></fa-icon>
       <p>علامة</p>
     </div>
-    <div class="container mobile" *ngIf="isQuranPages(currentUrl)" (click)="showSearchPopup()">
+    <div class="container" *ngIf="isQuranPages(currentUrl)" (click)="closeAllPopUp(); showSearchPopup();">
       <fa-icon class="icon"
         [icon]="faSearch"
       ></fa-icon>
       <p>البحث</p>
     </div>
-    <div class="container desktop" *ngIf="isQuranPages(currentUrl)" (click)="addMarkHer()">
-      <fa-icon class="icon"
-        [icon]="faBookmark"
-        [title]="'ضع علامة هنا'"
-      ></fa-icon>
-      <p>وضع علامة</p>
-    </div>
-    <div class="container desktop" *ngIf="isQuranPages(currentUrl)" (click)="goToMark()">
-      <fa-icon class="icon"
-        [icon]="pointer"
-        [title]="'إذهب إلى العلامة'"
-      ></fa-icon>
-      <p>الذهاب للعلامة</p>
-    </div>
-    <div class="container" *ngIf="!isQuranPages(currentUrl)" [routerLink]="['/quran_pages', getFloor(lastReadPage)]">
+    <div class="container" *ngIf="!isQuranPages(currentUrl)" [routerLink]="['/quran_pages', getFloor(lastReadPage)]" (click)="closeAllPopUp()">
       <fa-icon class="icon"
         [icon]="faBookOpenReader"
         [title]="lastReadPage ? ' أكمل القراءة من الصفحة ' + lastReadPage: 'ابدأ القراءة '"
       ></fa-icon>
       <p>القراءة</p>
     </div>
-    <div class="container" *ngIf="!isListeningPage(currentUrl)" [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]">
+    <div class="container" *ngIf="!isListeningPage(currentUrl)" [routerLink]="['/surah_listening',listeningData.readerId ,listeningData.surahId]" (click)="closeAllPopUp()">
       <fa-icon class="icon"
         [icon]="faHeadphonesSimple"
         [title]="firstListeningTime ? 'إبدأ الاستماع الأن' :'أكمل الاستماع من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
       ></fa-icon>
       <p>الإستماع</p>
     </div>
-    <div class="container">
+    <div class="container" (click)="closeAllPopUp()">
       <fa-icon class="icon"
         [icon]="faFeatherPointed"
         [title]="firstListeningTime ? 'إبدأ تعلم التفسير الأن' :'أكمل تعلم التفسير من سورة' + ' ' + quranIndex[listeningData.surahId - 1].name"
@@ -71,7 +57,7 @@
     </div>
     <div class="container"
       *ngIf="isQuranPages(currentUrl) && doneReadingList.length > 0 || isListeningPage(currentUrl) && doneListeningList.length > 0"
-      (click)="toggleSaveProgressPopup()"
+      (click)="closeAllPopUp(); toggleSaveProgressPopup()"
     >
       <fa-icon class="icon"
         [icon]="faFloppyDisk"
@@ -173,8 +159,9 @@
       </div>
     </div>
     <div class="list_container" *ngIf="!searchBySurah">
-      <div class="item">
-      </div>
+        <input min="0" max="604" type="number" [(ngModel)]="goToPageValue"
+          placeholder="{{'page' | translate}}">
+        <button (click)="goTo()">الذهاب</button>
     </div>
   </div>
 </div>

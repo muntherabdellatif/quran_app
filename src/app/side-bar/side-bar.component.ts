@@ -17,10 +17,9 @@ import { LocalStorageService } from '../services/localStorage.service';
 })
 
 export class SideBarComponent {
+  goToPageValue = 0;
 	itIsFirstTime = false;
 	currentUrl: string = '/';
-	showBigSurah = true;
-	showSmallSurah = true;
 	showSurahList = false;
   showMark = false;
   showSearch = false;
@@ -183,6 +182,7 @@ export class SideBarComponent {
   }
 
   showSearchPopup() {
+    this.goToPageValue = this.lastReadPage;
     this.showSearch = !this.showSearch;
   }
 
@@ -196,4 +196,17 @@ export class SideBarComponent {
 
     return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
   }
+
+  closeAllPopUp() {
+    this.showMark = false;
+    this.showSearch = false;
+    this.showSavePopup = false;
+  }
+
+  goTo() {
+    if (this.goToPageValue > 604)
+      this.goToPageValue = 604;
+
+		this.read.scrollToPage(this.goToPageValue);
+	}
 }
