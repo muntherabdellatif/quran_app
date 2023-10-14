@@ -127,14 +127,14 @@ export class QuranPagesComponent {
 	}
 
 	updateCurrentPages(currentPage: number) {
-		const pagesIds = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
-			.filter(id => id > 0).filter(id => id < 605);
+    const pagesIds = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
+      .filter(id => id > 0).filter(id => id < 605);
 
-		const currentPages: string[] = [];
-		pagesIds.forEach(id => {
-			currentPages.push(this.pagesNumber[id - 1])
-		});
-		this.currentPages = currentPages;
-		this.read.setCurrentPageId(currentPage);
+    const currentPages: string[] = [];
+    pagesIds.forEach(id => {
+      currentPages.push(this.pagesNumber[id - 1])
+    });
+    this.currentPages = currentPages;
+    this.read.setCurrentPageId(currentPage);
 	}
 }

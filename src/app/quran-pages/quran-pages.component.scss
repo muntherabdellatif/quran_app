@@ -59,34 +59,27 @@
 @media (max-width: 426px) {
   .pages_container {
     margin-bottom: 90px;
-    scroll-snap-type: y mandatory;
-    overflow: scroll;
-    height: 100vh;
 
-    .page_container {
-      scroll-snap-align: center;
+    .image_container {
+      position: relative;
 
-      .image_container {
-        position: relative;
-
-        img {
-          width: 100%;
-          margin: 10px auto;
-          display: block;
-        }
-
-        .mark {
-          top: -1px;
-          right: 35px;
-          font-size: 28px;
-        }
+      img {
+        width: 100%;
+        margin: 10px auto;
+        display: block;
       }
 
-      .button_list {
+      .mark {
+        top: -1px;
+        right: 35px;
+        font-size: 28px;
+      }
+    }
 
-        button {
-          font-size: 13px;
-        }
+    .button_list {
+
+      button {
+        font-size: 13px;
       }
     }
   }
