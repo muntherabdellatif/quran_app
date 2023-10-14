@@ -59,14 +59,6 @@
 @media (max-width: 426px) {
   .pages_container {
     margin-bottom: 90px;
-    scroll-snap-type: y mandatory;
-    overflow: scroll;
-    height: 100vh;
-
-    .page_container {
-      scroll-snap-align: start;
-      // height: 100vh;
-    }
 
     .image_container {
       position: relative;
