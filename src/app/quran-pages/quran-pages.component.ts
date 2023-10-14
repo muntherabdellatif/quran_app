@@ -14,6 +14,8 @@ export class QuranPagesComponent {
 	@Input('pageIdNumber') pageIdNumber = 1;
 	@Input('inListening') inListening: boolean = false;
 
+  doneUpdate = false;
+
 	pageId = "001";
 	pagesNumber: any[] = Array.from({ length: 604 }, (_, index) => index + 1);
 	lastScrollPosition: number = 0;
@@ -75,9 +77,13 @@ export class QuranPagesComponent {
 
 	@HostListener('window:scroll', ['$event'])
 	updateCurrentPage(): void {
+
 		const pagesList: any = this.getElementsList();
 		const currentPage = this.checkElementsVisibility(pagesList);
-		this.updateCurrentPages(currentPage);
+    if (+this.currentPages[2] !== currentPage && !this.doneUpdate) {
+      this.updateCurrentPages(currentPage);
+      this.doneUpdate = true;
+    }
 	}
 
 	getElementsList() {
@@ -127,6 +133,7 @@ export class QuranPagesComponent {
 	}
 
 	updateCurrentPages(currentPage: number) {
+    console.log("updateCurrentPages");
     const pagesIds = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
       .filter(id => id > 0).filter(id => id < 605);
 
@@ -136,5 +143,9 @@ export class QuranPagesComponent {
     });
     this.currentPages = currentPages;
     this.read.setCurrentPageId(currentPage);
+
+    setTimeout(() => {
+      this.doneUpdate = false;
+    }, 300);
 	}
 }
