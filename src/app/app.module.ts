@@ -15,6 +15,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateFileLoader } from './shared/translation/TranslateFileLoader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MeditationComponent } from './meditation/meditation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export function TranslateFileLoaderFactory() {
 	return new TranslateFileLoader();
@@ -29,7 +30,7 @@ export function TranslateFileLoaderFactory() {
 		QuranPagesComponent,
 		SideBarComponent,
 		Mp3Directive,
-  MeditationComponent,
+		MeditationComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -37,6 +38,7 @@ export function TranslateFileLoaderFactory() {
 		MainPageModule,
 		YouTubePlayerModule,
 		FormsModule,
+		HttpClientModule,
 		NgSelectModule,
 		TranslateModule.forRoot({
 			loader: {
