@@ -115,6 +115,7 @@
       background-clip: content-box, border-box;
       padding: 0.5px;
       min-height: 305px;
+      width: 200px;
 
       .header {
         width: 200px;
@@ -265,7 +266,7 @@
         height: 80px;
         min-width: 80px;
         min-height: 80px;
-        font-size: 25px;
+        font-size: 20px;
       }
 
       .surah-info {
@@ -293,6 +294,7 @@
       flex-wrap: wrap;
 
       .card {
+        width: 120px;
         .header {
           width: 120px;
           height: 120px;

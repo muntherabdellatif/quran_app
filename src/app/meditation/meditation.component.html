@@ -29,19 +29,19 @@
         *ngIf="surahId < mofasreen[mofasrId - 1].quran.length - 1"
         [icon]="faAnglesLeft"
         [title]="mofasreen[mofasrId - 1].quran[surahId].name"
-        [routerLink]="['/meditation', mofasrId ,surahId + 1]"
+        [routerLink]="['/meditation', mofasrId ,surahId + 1, 0]"
         (click)="resetVideo()"
       ></fa-icon>
       <p class="surah_name">
-        سورة
+        تفسير سورة
         <span class="option" (click)="toggleShowList()">{{mofasreen[mofasrId - 1].quran[surahId - 1].name}}</span>
-        بصوت: {{mofasreen[mofasrId - 1].name}}
+        : {{mofasreen[mofasrId - 1].name}}
       </p>
       <fa-icon class="last_surah"
         *ngIf="surahId > 1"
         [icon]="faAnglesRight"
         [title]="mofasreen[mofasrId - 1].quran[surahId - 2].name"
-        [routerLink]="['/meditation', mofasrId, surahId - 1]"
+        [routerLink]="['/meditation', mofasrId, surahId - 1, 0]"
         (click)="resetVideo()"
       ></fa-icon>
       <div class="surah_list" *ngIf="showList">
@@ -51,14 +51,39 @@
         </div>
       </div>
     </div>
+    <div class="videos_list" *ngIf="hasVideos(mofasrId, surahId)">
+      <div class="video"
+        *ngFor="let video of getVideosList(); let i = index"
+        (click)="changeVideo(video)"
+        [ngClass]="{'active': video.link_id == mofasreen[mofasrId - 1].quran[surahId - 1].videoArray[videoIndex].link_id}"
+      >
+        <div class="from_to_aiah" *ngIf="video.start && video.end">{{video.start}}-{{video.end}}</div>
+        <div class="order">{{video.number}}/{{mofasreen[mofasrId - 1].quran[surahId - 1].videoArray.length}}</div>
+      </div>
+    </div>
     <div class="mofasreen-list">
       <div
         class="mofasr"
         *ngFor="let mofasr of mofasreen"
         [ngClass]="{'active': mofasrId == mofasr.id}"
-        [routerLink]="['/meditation', mofasr.id, surahId]"
+        [routerLink]="['/meditation', mofasr.id, surahId, videoIndex]"
         (click)="resetVideo()"
       ><p>{{mofasr.name}}</p></div>
     </div>
+  </div>
+</div>
+
+<div class="over_layout" *ngIf="showSettingPopup" (click)="ToggleSettingPopup()">
+</div>
+<div class="listen_setting" *ngIf="showSettingPopup">
+  <fa-icon class="close"
+    [icon]="faXmark"
+    (click)="ToggleSettingPopup()"
+  ></fa-icon>
+  <div class="option" (click)="autoPlayToggle()" [class.active]="autoPlay">
+    {{('on') | translate}} {{'auto_play' | translate}}
+    <fa-icon class="icon"
+      [icon]="autoPlay ? faCheckSquare : faSquare"
+    ></fa-icon>
   </div>
 </div>

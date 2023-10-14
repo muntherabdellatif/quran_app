@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'surah/:id', component: SurahPageComponent },
   { path: 'surah_read/:id', component: SurahReadingPageComponent },
   { path: 'surah_listening/:reader/:id', component: SurahListeningPageComponent },
-  { path: 'meditation/:mofasr/:id', component: MeditationComponent },
+  { path: 'meditation/:mofasr/:id/:video_id', component: MeditationComponent },
   { path: 'quran_pages/:id', component: QuranPagesComponent }
 ];
 

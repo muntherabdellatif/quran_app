@@ -38,6 +38,7 @@ interface Mofasreen {
 export class MeditationComponent {
   @ViewChild(YouTubePlayer) player: YouTubePlayer | undefined;
 	@ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
+  autoPlay: boolean = this.localStorageService.shouldAutoPlay();
 
 	quranIndex = quranIndex;
 	quranIndexFiltered: any[] = ['filter', ...quranIndex];
@@ -80,6 +81,7 @@ export class MeditationComponent {
     this.route.paramMap.subscribe((params: any) => {
 			const id = params.get('id');
 			const mofasrId = params.get('mofasr');
+      this.videoIndex = params.get('video_id') ? +params.get('video_id') : 0;
 			if (id) this.surahId = +id;
 			if (mofasrId) this.mofasrId = +mofasrId;
 		})
@@ -144,7 +146,78 @@ export class MeditationComponent {
 	}
 
 	changeSurah(surahId: number) {
-		this.router.navigate(['meditation', this.mofasrId, surahId]);
+		this.router.navigate(['meditation', this.mofasrId, surahId, this.videoIndex]);
 		this.showList = !this.showList;
 	}
+
+  ngAfterViewInit() {
+		// if (this.player) {
+		// 	this.player.stateChange.subscribe((event: any) => {
+		// 		if (event.data === YT.PlayerState.ENDED) {
+		// 			if (this.repeat) {
+		// 				setTimeout(() => {
+		// 					return this.player?.playVideo();
+		// 				}, 2000);
+		// 			}
+
+		// 			// Video has ended, perform your desired actions here
+		// 			this.doneListening();
+		// 		}
+		// 	});
+		// }
+
+		this.onResize();
+		window.addEventListener('resize', this.onResize.bind(this));
+	}
+
+	onResize(): void {
+		const PageWidth = window.innerWidth;
+		if (this.youTubePlayer)
+			this.videoWidth = Math.min(
+				PageWidth * 0.85,
+				1200
+			);
+		this.videoHeight = this.videoWidth ? this.videoWidth * 0.6 : 1200 * 0.6;
+		this.changeDetectorRef.detectChanges();
+	}
+
+	autoPlayToggle() {
+		this.autoPlay = !this.autoPlay;
+		this.localStorageService.autoPlayToggle(this.autoPlay);
+	}
+
+  hasVideos(mofasrId: number, surahId: number) {
+    const videoArray = this.mofasreen[mofasrId - 1]?.quran[surahId - 1]?.videoArray;
+    return videoArray && videoArray.length;
+  }
+
+  changeVideo(selectedVideo: Video) {
+    const videoArray = this.mofasreen[this.mofasrId - 1]?.quran[this.surahId - 1]?.videoArray;
+    videoArray.forEach((video , index) => {
+      if (video.link_id == selectedVideo.link_id)
+        this.videoIndex = index;
+    })
+		this.router.navigate(['meditation', this.mofasrId, this.surahId,  this.videoIndex]);
+  }
+
+  getVideosList () {
+    const list = [];
+    const videoArray = this.mofasreen[this.mofasrId - 1].quran[this.surahId -1].videoArray
+    const maxIndex = videoArray.length - 1;
+
+
+    if (this.videoIndex > 1)
+      list.push(videoArray[this.videoIndex - 2]);
+    if (this.videoIndex > 0)
+      list.push(videoArray[this.videoIndex - 1]);
+
+    list.push(videoArray[this.videoIndex]);
+
+    if (this.videoIndex < maxIndex)
+      list.push(videoArray[this.videoIndex + 1]);
+    if (this.videoIndex < maxIndex - 1)
+      list.push(videoArray[this.videoIndex + 2]);
+
+    return list;
+  }
 }

@@ -162,6 +162,33 @@
       border-radius: 4px;
     }
   }
+
+  .videos_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin: auto;
+    gap: 2px;
+    width: 80%;
+    padding: 20px;
+
+    .video {
+      padding: 5px 10px;
+      color: $color4;
+      background-color: $color3;
+      border: 1px solid $color4;
+      cursor: pointer;
+
+      div {
+        cursor: pointer;
+      }
+
+      &.active {
+        box-shadow: 0 0 20px $gold1;
+      }
+    }
+  }
 }
 
 .listen_setting {
@@ -270,22 +297,6 @@
     background: $color4;
     border-radius: 6px;
   }
-}
-
-.move_up_down {
-  position: fixed;
-  top: 50px;
-  right: 50px;
-  font-size: 20px;
-  border-radius: 50%;
-  color: $color2;
-  background-color: $color4;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 // mobile
@@ -402,5 +413,13 @@
     font-size: 15px;
     width: 30px;
     height: 30px;
+  }
+
+  .videos_list {
+    padding: 10px;
+
+    .video {
+      font-size: 12px;
+    }
   }
 }
