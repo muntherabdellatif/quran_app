@@ -143,12 +143,12 @@ export class QuranPagesComponent {
 
 	updateCurrentPages(currentPage: number) {
     [currentPage, currentPage + 1, currentPage + 2].filter(id => id < 605).forEach((page => {
-      if (!this.currentPages.includes(this.pagesNumber[page - 1]))
+      if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
         this.currentPages.push(this.pagesNumber[page - 1])
     }));
 
     [currentPage - 1, currentPage - 2].filter(id => id > 0).forEach((page => {
-      if (!this.currentPages.includes(this.pagesNumber[page - 1]))
+      if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
         this.currentPages.unshift(this.pagesNumber[page - 1])
     }));
 
