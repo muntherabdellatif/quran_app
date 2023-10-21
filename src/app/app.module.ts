@@ -16,8 +16,6 @@ import { TranslateFileLoader } from './shared/translation/TranslateFileLoader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MeditationComponent } from './meditation/meditation.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReadingVerticalScrollComponent } from './reading-vertical-scroll/reading-vertical-scroll.component';
-import { ReadingHorizontalScrollComponent } from './reading-horizontal-scroll/reading-horizontal-scroll.component';
 
 export function TranslateFileLoaderFactory() {
 	return new TranslateFileLoader();
@@ -33,8 +31,6 @@ export function TranslateFileLoaderFactory() {
 		SideBarComponent,
 		Mp3Directive,
 		MeditationComponent,
-    ReadingVerticalScrollComponent,
-    ReadingHorizontalScrollComponent,
 	],
 	imports: [
 		BrowserModule,
