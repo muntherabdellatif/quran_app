@@ -133,7 +133,7 @@
     [id]="'page-' + pageId"
   >
   <button (click)="doneReading(surahId);">
-    <p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1]?.name}}</p>
+    <p>{{'confirm_reading' | translate}} {{quranIndex[surahId - 1].name}}</p>
   </button>
 </div>
 

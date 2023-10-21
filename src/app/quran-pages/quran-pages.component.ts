@@ -152,9 +152,6 @@ export class QuranPagesComponent {
         this.currentPages.unshift(this.pagesNumber[page - 1])
     }));
 
-    console.log(currentPage);
-    console.log(this.currentPages);
-
 		this.read.setCurrentPageId(currentPage);
 	}
 }

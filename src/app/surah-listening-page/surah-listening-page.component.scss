@@ -14,7 +14,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 
   .file_type_button {
     display: flex;
@@ -212,7 +212,7 @@
 .listen_setting {
   display: flex;
   justify-content: right;
-  align-items: end;
+  align-items: flex-end;
   padding: 0 50px;
   box-sizing: border-box;
   gap: 10px;
