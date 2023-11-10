@@ -98,9 +98,10 @@ export class QuranPagesComponent {
     if (window.innerWidth < 426) {
       for (const page of pagesList) {
         const rect = page.getBoundingClientRect();
-        if (rect.left < 10 && rect.left > -10) {
+        if (rect.left < 426 && rect.left > -426) {
           const id = (page.id).split('page-')[1];
-          currentPage = +id;
+          if (this.currentPages.includes(id))
+            currentPage = +id;
         }
       }
     } else {
@@ -142,12 +143,12 @@ export class QuranPagesComponent {
 	}
 
 	updateCurrentPages(currentPage: number) {
-    [currentPage, currentPage + 1, currentPage + 2].filter(id => id < 605).forEach((page => {
+    [currentPage, currentPage + 1, currentPage + 2, currentPage + 3, currentPage + 4].filter(id => id < 605).forEach((page => {
       if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
         this.currentPages.push(this.pagesNumber[page - 1])
     }));
 
-    [currentPage - 1, currentPage - 2].filter(id => id > 0).forEach((page => {
+    [currentPage - 1, currentPage - 2, currentPage - 3, currentPage - 4].filter(id => id > 0).forEach((page => {
       if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
         this.currentPages.unshift(this.pagesNumber[page - 1])
     }));
