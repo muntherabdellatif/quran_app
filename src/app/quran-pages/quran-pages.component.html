@@ -1,5 +1,5 @@
 <div class="pages_container">
-  <div (scroll)="updateCurrentPage()" class="page_container" *ngFor="let pageId of currentPages">
+  <div (scroll)="updateCurrentPage()" class="page_container" *ngFor="let pageId of currentPages; trackBy: trackByPageId">
     <div class="image_container">
       <img
         [src]="'./assets/image/'+ pageId + '.gif'"
