@@ -58,21 +58,20 @@
 // mobile
 @media (max-width: 426px) {
   .pages_container {
-    display: flex;
-    justify-content: unset;
-    align-items: center;
-    scroll-snap-type: x mandatory;
-    overflow-x: scroll;
-    white-space: nowrap;
-    flex-direction: row-reverse;
+    // display: flex;
+    // justify-content: unset;
+    // align-items: center;
+    // scroll-snap-type: x mandatory;
+    // overflow-x: scroll;
+    // white-space: nowrap;
+    // flex-direction: row-reverse;
 
     .page_container {
-      scroll-snap-align: center;
-      width: 100vw;
-      height: 100vh;
-      display: inline-block;
-      flex: 0 0 auto;
-
+      // scroll-snap-align: center;
+      // width: 100vw;
+      // height: 100vh;
+      // display: inline-block;
+      // flex: 0 0 auto;
 
       .image_container {
         position: relative;
