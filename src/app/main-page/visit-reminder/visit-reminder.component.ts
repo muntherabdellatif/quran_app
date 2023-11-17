@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faBookOpenReader, faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBookOpenReader, faHeadphonesSimple, faFeatherPointed } from '@fortawesome/free-solid-svg-icons';
 import { aiehArray } from 'src/app/data/aieh';
 import { quranIndex } from 'src/app/data';
 
@@ -13,12 +13,15 @@ export class VisitReminderComponent implements OnInit {
 	faHome = faHome;
 	faBookOpenReader = faBookOpenReader;
 	faHeadphonesSimple = faHeadphonesSimple;
+	faFeatherPointed = faFeatherPointed;
 
 	aiehObj: { aieh: string, aiehNumber: number, surahName: string } = aiehArray[0];
 	listiningData: { readerId: number, surahId: number } = { readerId: 1, surahId: 1 }
+	tafseerData: {lecturerId: number, surahId: number, videoId: number } = {lecturerId: 1, surahId: 1, videoId: 0 }
 
 	lastReadPage: number = 0;
 	firstListeningTime = true;
+	firstTafseerTime = true;
 
 	readonly quranIndex = quranIndex;
 
@@ -28,6 +31,7 @@ export class VisitReminderComponent implements OnInit {
 		this.setLastVisitTime();
 		this.getLastReadPage();
 		this.getLastListeningData();
+		this.getTafseerData();
 	}
 
 	setLastVisitTime() {
@@ -59,7 +63,24 @@ export class VisitReminderComponent implements OnInit {
 		return readerId;
 	}
 
-  getFloor(number: number) {
-    return Math.floor(number);
-  }
+	getTafseerData() {
+		const LastTafseerData = JSON.parse(localStorage.getItem('last_Tafseer_video') || '{}');
+		console.log(LastTafseerData);
+		if (LastTafseerData?.surahId && LastTafseerData?.mofasrId) {
+
+			this.tafseerData = {
+				surahId: LastTafseerData?.surahId,
+				videoId: LastTafseerData?.videoId || 0,
+				lecturerId: LastTafseerData?.mofasrId
+			}
+
+			this.firstTafseerTime = false;
+		} else {
+			this.firstTafseerTime = true;
+		}
+	}
+
+	getFloor(number: number) {
+		return Math.floor(number);
+	}
 }

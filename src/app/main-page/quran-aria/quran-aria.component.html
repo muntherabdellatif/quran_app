@@ -1,79 +1,81 @@
-  <div class="surah_container">
-    <div class="search">
-      <input type="text"
-        name="search"
-        id="search"
-        [(ngModel)]="searchKey"
-        placeholder="{{'search' | translate}}"
-        (ngModelChange)="search()"
-        *ngIf="showSearch"
-        #search_field
-      >
-      <fa-icon class="icon"
-        [icon]="faSearch"
-        (click)="toggelShowSearch()"
-        title="{{'search_surah' | translate}}"
-      ></fa-icon>
-    </div>
-    <div class="search_result" *ngIf="!this.showList">
-      <div class="surah" *ngFor="let surah of quranIndex.slice(0,114)" title="{{surah.name}}"
-          style="
-            background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
-            box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;
-          "
-          [routerLink]="['/surah', surah.id]"
-          >
-        <p class="name">{{surah.name}}</p>
-      </div>
-    </div>
-    <div class="list_container">
-      <div class="quran_list" *ngIf="this.showList">
-        <div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[0]" [routerLink]="['/surah', surah.id]">
-          <div class="text">
-            <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
-            <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
-          </div>
-          <div class="control">
-            <fa-icon class="icon read"
-              [icon]="faBookOpenReader"
-              [title]="'اقرأ الأن'"
-              [routerLink]="['/quran_pages', getFloor(surah.page)]">
-            </fa-icon>
-            <fa-icon class="icon listen"
-              [icon]="faHeadphonesSimple"
-              [title]="'إستمع الأن'"
-              [routerLink]="['/surah_listening', readerId ,surah.id]">
-            </fa-icon>
-            <fa-icon class="icon meditation"
-              [icon]="faFeatherPointed"
-              [title]="'إستمع للتفسير الأن'">
-            </fa-icon>
-          </div>
-        </div>
-      </div>
-      <div class="quran_list" *ngIf="this.showList">
-        <div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[1]">
-          <div class="text">
-            <span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
-            <span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
-          </div>
-          <div class="control">
-            <fa-icon class="icon read"
-              [icon]="faBookOpenReader"
-              [title]="'إقرأ الأن'"
-              [routerLink]="['/quran_pages', getFloor(surah.page)]">
-            </fa-icon>
-            <fa-icon class="icon listen"
-              [icon]="faHeadphonesSimple"
-              [title]="'إستمع الأن'"
-              [routerLink]="['/surah_listening', readerId ,surah.id]">
-            </fa-icon>
-            <fa-icon class="icon meditation"
-              [icon]="faFeatherPointed"
-              [title]="'إستمع للتفسير الأن'">
-            </fa-icon>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="surah_container">
+		<div class="search">
+			<input type="text"
+				name="search"
+				id="search"
+				[(ngModel)]="searchKey"
+				placeholder="{{'search' | translate}}"
+				(ngModelChange)="search()"
+				*ngIf="showSearch"
+				#search_field
+			>
+			<fa-icon class="icon"
+				[icon]="faSearch"
+				(click)="toggelShowSearch()"
+				title="{{'search_surah' | translate}}"
+			></fa-icon>
+		</div>
+		<div class="search_result" *ngIf="!this.showList">
+			<div class="surah" *ngFor="let surah of quranIndex.slice(0,114)" title="{{surah.name}}"
+					style="
+						background: radial-gradient(circle at center, rgb({{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}},{{lightArray[surah.id - 1] * 5/2}}) 0%, black 80%);
+						box-shadow: 0 0 {{lightArray[surah.id - 1] < 40 ? 0 : lightArray[surah.id - 1] / 5}}px 0px white;
+					"
+					[routerLink]="['/surah', surah.id]"
+					>
+				<p class="name">{{surah.name}}</p>
+			</div>
+		</div>
+		<div class="list_container">
+			<div class="quran_list" *ngIf="this.showList">
+				<div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[0]" [routerLink]="['/surah', surah.id]">
+					<div class="text">
+						<span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
+						<span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
+					</div>
+					<div class="control">
+						<fa-icon class="icon read"
+							[icon]="faBookOpenReader"
+							[title]="'اقرأ الأن'"
+							[routerLink]="['/quran_pages', getFloor(surah.page)]">
+						</fa-icon>
+						<fa-icon class="icon listen"
+							[icon]="faHeadphonesSimple"
+							[title]="'إستمع الأن'"
+							[routerLink]="['/surah_listening', readerId ,surah.id]">
+						</fa-icon>
+						<fa-icon class="icon meditation"
+							[icon]="faFeatherPointed"
+							[title]="'إستمع للتفسير الأن'"
+							[routerLink]="['/meditation', 1, surah.id, 0]">
+						</fa-icon>
+					</div>
+				</div>
+			</div>
+			<div class="quran_list" *ngIf="this.showList">
+				<div class="surah" *ngFor="let surah of splitSearchResult(quranIndex)[1]">
+					<div class="text">
+						<span class="name" [routerLink]="['/surah', surah.id]">{{surah.name}}</span>
+						<span class="number" [routerLink]="['/surah', surah.id]">-{{surah.id}}</span>
+					</div>
+					<div class="control">
+						<fa-icon class="icon read"
+							[icon]="faBookOpenReader"
+							[title]="'إقرأ الأن'"
+							[routerLink]="['/quran_pages', getFloor(surah.page)]">
+						</fa-icon>
+						<fa-icon class="icon listen"
+							[icon]="faHeadphonesSimple"
+							[title]="'إستمع الأن'"
+							[routerLink]="['/surah_listening', readerId ,surah.id]">
+						</fa-icon>
+						<fa-icon class="icon meditation"
+							[icon]="faFeatherPointed"
+							[title]="'إستمع للتفسير الأن'"
+							[routerLink]="['/meditation', 1, surah.id, 0]">
+						</fa-icon>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

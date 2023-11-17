@@ -17,23 +17,28 @@ import { LocalStorageService } from '../services/localStorage.service';
 })
 
 export class SideBarComponent {
-  goToPageValue = 0;
+	goToPageValue = 0;
 	itIsFirstTime = false;
 	currentUrl: string = '/';
 	showSurahList = false;
-  showMark = false;
-  showSearch = false;
+	showMark = false;
+	showSearch = false;
+
 	lastReadPage: number = 0;
 	listeningData: { readerId: number, surahId: number } = { readerId: 1, surahId: 1 };
+	tafseerData: {lecturerId: number, surahId: number, videoId: number } = {lecturerId: 1, surahId: 1, videoId: 0 }
+
 	firstListeningTime = true;
+	firstTafseerTime = true;
+
 	showSavePopup = false;
-  searchBySurah = true;
+	searchBySurah = true;
 	doneReadingList: number[] = [];
 	doneListeningList: number[] = [];
 
 	quranIndex = quranIndex;
-  quranIndexFiltered: any[] = ['filter', ...quranIndex];
-  surahFilter: string = '';
+	quranIndexFiltered: any[] = ['filter', ...quranIndex];
+	surahFilter: string = '';
 
 	faExpand = faExpand;
 	faCompress = faCompress;
@@ -47,8 +52,8 @@ export class SideBarComponent {
 	faFloppyDisk = faFloppyDisk;
 	faXmark = faXmark;
 	faEraser = faEraser;
-  faFeatherPointed = faFeatherPointed;
-  faSearch = faSearch;
+	faFeatherPointed = faFeatherPointed;
+	faSearch = faSearch;
 
 	constructor(
 		private router: Router,
@@ -67,24 +72,30 @@ export class SideBarComponent {
 				this.currentUrl = this.router.url;
 			}
 		});
+
 		this.read.currentPage.subscribe((currentPage: any) => {
 			this.checkPointerDirection(currentPage);
-      this.lastReadPage = currentPage;
+			this.lastReadPage = currentPage;
 		})
+
 		this.progress.showSave.subscribe((showPopup: any) => {
 			this.showSavePopup = showPopup;
 		})
+
 		this.progress.updateDoneReadingList.subscribe((doneReadingList: any) => {
 			this.doneReadingList = doneReadingList;
 		})
+
 		this.progress.updateDoneListeningList.subscribe((doneListeningList: any) => {
 			this.doneListeningList = doneListeningList;
 		})
+
 		this.getLastReadPage();
 		this.getLastListeningData();
+		this.getTafseerData();
+
 		this.doneListeningList = this.progress.getDoneListeningList();
 		this.doneReadingList = this.progress.getDoneReadingList();
-
 	}
 
 	toggleShowSurahList() {
@@ -135,6 +146,23 @@ export class SideBarComponent {
 		}
 	}
 
+	getTafseerData() {
+		const LastTafseerData = JSON.parse(localStorage.getItem('last_Tafseer_video') || '{}');
+		console.log(LastTafseerData);
+		if (LastTafseerData?.surahId && LastTafseerData?.mofasrId) {
+
+			this.tafseerData = {
+				surahId: LastTafseerData?.surahId,
+				videoId: LastTafseerData?.videoId || 0,
+				lecturerId: LastTafseerData?.mofasrId
+			}
+
+			this.firstTafseerTime = false;
+		} else {
+			this.firstTafseerTime = true;
+		}
+	}
+
 	getDefaultReader() {
 		let readerId = JSON.parse(localStorage.getItem("readerId") || "0");
 		if (!readerId) {
@@ -172,39 +200,39 @@ export class SideBarComponent {
 		this.progress.toggleSavePopup();
 	}
 
-  getFloor(number: number) {
-    return Math.floor(number);
-  }
+	getFloor(number: number) {
+		return Math.floor(number);
+	}
 
-  showAddMarkPopup() {
-    this.showMark = !this.showMark;
-  }
+	showAddMarkPopup() {
+		this.showMark = !this.showMark;
+	}
 
-  showSearchPopup() {
-    this.goToPageValue = this.lastReadPage;
-    this.showSearch = !this.showSearch;
-  }
+	showSearchPopup() {
+		this.goToPageValue = this.lastReadPage;
+		this.showSearch = !this.showSearch;
+	}
 
-  setSearchBySurah(searchBySurah: boolean) {
-    this.searchBySurah = searchBySurah;
-  }
+	setSearchBySurah(searchBySurah: boolean) {
+		this.searchBySurah = searchBySurah;
+	}
 
-  filterSurah() {
-    if (!this.surahFilter)
-      return this.quranIndexFiltered = ['filter', ...this.quranIndex];
+	filterSurah() {
+		if (!this.surahFilter)
+			return this.quranIndexFiltered = ['filter', ...this.quranIndex];
 
-    return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
-  }
+		return this.quranIndexFiltered = ['filter', ...this.quranIndex.filter((surah: { name: string }) => surah.name.includes(this.surahFilter))];
+	}
 
-  closeAllPopUp() {
-    this.showMark = false;
-    this.showSearch = false;
-    this.showSavePopup = false;
-  }
+	closeAllPopUp() {
+		this.showMark = false;
+		this.showSearch = false;
+		this.showSavePopup = false;
+	}
 
-  goTo() {
-    if (this.goToPageValue > 604)
-      this.goToPageValue = 604;
+	goTo() {
+		if (this.goToPageValue > 604)
+			this.goToPageValue = 604;
 
 		this.read.scrollToPage(this.goToPageValue);
 	}

@@ -11,7 +11,7 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 	styleUrls: ['./quran-pages.component.scss']
 })
 export class QuranPagesComponent {
-  window = window;
+	window = window;
 	@Input('pageIdNumber') pageIdNumber = 1;
 	@Input('inListening') inListening: boolean = false;
 
@@ -21,9 +21,9 @@ export class QuranPagesComponent {
 	quranIndex = quranIndex;
 	pagesSurahEndArray: any = Array.from({ length: 605 }, (_, index) => []);
 	currentPages: string[] = [];
-  currentPage = 0;
+	currentPage = 0;
 	markId = 0;
-  lastPage = 0;
+	lastPage = 0;
 
 	faBookmark = faBookmark;
 
@@ -76,12 +76,12 @@ export class QuranPagesComponent {
 		this.markId = this.read.getMarkPageId();
 	}
 
-  // @HostListener('touchstart', ['$event'])
+	// @HostListener('touchstart', ['$event'])
 	@HostListener('window:scroll', ['$event'])
 	updateCurrentPage(): void {
 		const pagesList: any = this.getElementsList();
 		const currentPage = this.checkElementsVisibility(pagesList);
-    this.updateCurrentPages(currentPage);
+		this.updateCurrentPages(currentPage);
 	}
 
 	getElementsList() {
@@ -94,33 +94,22 @@ export class QuranPagesComponent {
 	}
 
 	checkElementsVisibility(pagesList: any[]) {
-    let currentPage = 0
-    // if (window.innerWidth < 426) {
-    //   for (const page of pagesList) {
-    //     const rect = page.getBoundingClientRect();
-    //     if (rect.left < 426 && rect.left > -426) {
-    //       const id = (page.id).split('page-')[1];
-    //       if (this.currentPages.includes(id))
-    //         currentPage = +id;
-    //     }
-    //   }
-    // } else {
-      const viewportTop = window.scrollY;
-      const viewportBottom = viewportTop + window.innerHeight;
+		let currentPage = 0
+		const viewportTop = window.scrollY;
+		const viewportBottom = viewportTop + window.innerHeight;
 
-      for (const page of pagesList) {
-        const rect = page.getBoundingClientRect();
-        const elementTop = rect.top + viewportTop;
-        const elementBottom = elementTop + rect.height;
+		for (const page of pagesList) {
+			const rect = page.getBoundingClientRect();
+			const elementTop = rect.top + viewportTop;
+			const elementBottom = elementTop + rect.height;
 
-        if (elementTop <= viewportBottom && elementBottom >= viewportTop) {
-          const id = (page.id).split('page-')[1];
-          currentPage = +id;
-        }
-      }
-    // }
-    this.currentPage = currentPage;
-    return currentPage;
+			if (elementTop <= viewportBottom && elementBottom >= viewportTop) {
+				const id = (page.id).split('page-')[1];
+				currentPage = +id;
+			}
+		}
+		this.currentPage = currentPage;
+		return currentPage;
 	}
 
 	scrollToPage(pageId: string) {
@@ -144,16 +133,15 @@ export class QuranPagesComponent {
 	}
 
 	updateCurrentPages(currentPage: number) {
-    [currentPage, currentPage + 1, currentPage + 2].filter(id => id < 605).forEach((page => {
-      if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
-        this.currentPages.push(this.pagesNumber[page - 1])
-    }));
+		const pagesIds = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2]
+			.filter(id => id > 0).filter(id => id < 605);
 
-    [currentPage - 1, currentPage - 2].filter(id => id > 0).forEach((page => {
-      if (this.pagesNumber[page - 1] && !this.currentPages.includes(this.pagesNumber[page - 1]))
-        this.currentPages.unshift(this.pagesNumber[page - 1])
-    }));
+		const currentPages: string[] = [];
+		pagesIds.forEach(id => {
+			currentPages.push(this.pagesNumber[id - 1])
+		});
 
+		this.currentPages = currentPages;
 		this.read.setCurrentPageId(currentPage);
 	}
 }
